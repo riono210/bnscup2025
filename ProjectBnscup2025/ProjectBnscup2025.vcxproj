@@ -136,7 +136,16 @@
     <ClCompile Include="src/Main.cpp" />
     <ClCompile Include="src/Title.cpp" />
     <ClCompile Include="src/Game.cpp" />
-    <ClCompile Include="src/ModelCheck.cpp" />
+    <ClCompile Include="src/AnimeDraw.cpp" />
+    <ClCompile Include="src/CameraTest.cpp" />
+    <ClCompile Include="src/Collision.cpp" />
+    <ClCompile Include="src/ModelView.cpp" />
+    <ClCompile Include="src/ObjectController.cpp" />
+    <ClCompile Include="src/PhiController.cpp" />
+    <ClCompile Include="src/Ranking.cpp" />
+    <ClCompile Include="src/Result.cpp" />
+    <ClCompile Include="src/Stage.cpp" />
+    <ClCompile Include="src/ToBeContinued.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

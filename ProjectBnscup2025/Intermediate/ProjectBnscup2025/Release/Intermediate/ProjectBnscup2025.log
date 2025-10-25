@@ -1,0 +1,479 @@
+﻿  stdafx.cpp
+  Main.cpp
+  Title.cpp
+  Game.cpp
+  AnimeDraw.cpp
+  CameraTest.cpp
+  Collision.cpp
+  ModelView.cpp
+  ObjectController.cpp
+  PhiController.cpp
+  Ranking.cpp
+  Result.cpp
+  Stage.cpp
+  ToBeContinued.cpp
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\PhiController.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/PhiController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ToBeContinued.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/ToBeContinued.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Result.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Result.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ModelView.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/ModelView.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Stage.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Stage.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Ranking.cpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Ranking.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Game.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Game.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Title.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\ModelView.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/ModelView.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Stage.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Stage.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Title.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\AnimeDraw.cpp(46,33): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/AnimeDraw.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(46,55): warning C4100: 'r': 参照されないパラメーター
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ObjectController.cpp(20,19): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/ObjectController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ObjectController.cpp(94,21): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/ObjectController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ObjectController.cpp(100,21): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/ObjectController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ObjectController.cpp(106,21): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/ObjectController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ObjectController.cpp(112,21): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/ObjectController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ObjectController.cpp(116,21): warning C4244: '=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/ObjectController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\ObjectController.cpp(11,14): warning C4100: 'eyePos': 参照されないパラメーター
+  (ソース ファイル '/src/ObjectController.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Title.hpp(46,25): warning C4305: '初期化中': 'double' から 'const float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Game.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Title.hpp(46,25): warning C4305: '初期化中': 'double' から 'const float' へ切り詰めます。
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(121,31): warning C4244: '=': 'V' から 'float' への変換です。データが失われる可能性があります。
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(121,31): warning C4244:         with
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(121,31): warning C4244:         [
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(121,31): warning C4244:             V=double
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(121,31): warning C4244:         ]
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(122,31): warning C4244: '=': 'V' から 'float' への変換です。データが失われる可能性があります。
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(122,31): warning C4244:         with
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(122,31): warning C4244:         [
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(122,31): warning C4244:             V=double
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(122,31): warning C4244:         ]
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(126,31): warning C4244: '=': 'V' から 'float' への変換です。データが失われる可能性があります。
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(126,31): warning C4244:         with
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(126,31): warning C4244:         [
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(126,31): warning C4244:             V=double
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(126,31): warning C4244:         ]
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(127,31): warning C4244: '=': 'V' から 'float' への変換です。データが失われる可能性があります。
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(127,31): warning C4244:         with
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(127,31): warning C4244:         [
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(127,31): warning C4244:             V=double
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(127,31): warning C4244:         ]
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(149,15): warning C4458: 'boldFont' を宣言すると、クラス メンバーが隠蔽されます
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+      D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Title.hpp(40,14):
+      'Title::boldFont' の宣言を確認してください
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(188,22): warning C4244: '=': 'V' から 'float' への変換です。データが失われる可能性があります。
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(188,22): warning C4244:         with
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(188,22): warning C4244:         [
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(188,22): warning C4244:             V=double
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(188,22): warning C4244:         ]
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(192,22): warning C4244: '=': 'V' から 'float' への変換です。データが失われる可能性があります。
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(192,22): warning C4244:         with
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(192,22): warning C4244:         [
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(192,22): warning C4244:             V=double
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Title.cpp(192,22): warning C4244:         ]
+  (ソース ファイル '/src/Title.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(393,26): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(394,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(396,21): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(400,29): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(486,29): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(487,29): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(755,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(757,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\Game.cpp(115,11): warning C4458: 'activeVoxelXZ' を宣言すると、クラス メンバーが隠蔽されます
+  (ソース ファイル '/src/Game.cpp' をコンパイルしています)
+      D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Game.hpp(156,11):
+      'Game::activeVoxelXZ' の宣言を確認してください
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1592,22): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1593,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1594,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1602,26): warning C4305: '初期化中': 'double' から 'const float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(46,55): warning C4100: 'r': 参照されないパラメーター
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(393,26): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(394,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(396,21): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(400,29): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(486,29): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(487,29): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(755,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(757,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(21,33): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(21,23): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(62,41): warning C4267: '+=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(76,12): warning C4458: 'stopwatch' を宣言すると、クラス メンバーが隠蔽されます
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+      D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(367,12):
+      'CameraTest::stopwatch' の宣言を確認してください
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1592,22): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1593,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1594,19): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(1602,26): warning C4305: '初期化中': 'double' から 'const float' へ切り詰めます。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\ModelView.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\Stage.hpp(1,1): warning C4819: ファイルは、現在のコード ページ (932) で表示できない文字を含んでいます。データの損失を防ぐために、ファイルを Unicode 形式で保存してください。
+  (ソース ファイル '/src/Main.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(407,18): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(412,18): warning C4305: '-=': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(520,8): warning C4458: 'globalAmbientColor' を宣言すると、クラス メンバーが隠蔽されます
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+      D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(400,8):
+      'CameraTest::globalAmbientColor' の宣言を確認してください
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(520,27): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(523,8): warning C4458: 'sunColor' を宣言すると、クラス メンバーが隠蔽されます
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+      D:\UnityProjects\bnscup2025\ProjectBnscup2025\include\CameraTest.hpp(403,8):
+      'CameraTest::sunColor' の宣言を確認してください
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(523,8): warning C4189: 'sunColor': ローカル変数が初期化されましたが、参照されていません
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(520,8): warning C4189: 'globalAmbientColor': ローカル変数が初期化されましたが、参照されていません
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(692,33): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(692,23): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(743,28): warning C4244: '-=': 'const double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(811,35): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(811,25): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(843,35): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(843,25): warning C4244: '引数': 'const double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1100,27): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1144,31): warning C4244: '+=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1164,32): warning C4244: '-=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1193,31): warning C4244: '-=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1481,39): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1481,78): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1481,117): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1482,39): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1482,78): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1482,117): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1483,39): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1483,78): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1483,117): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1488,47): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1488,86): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1488,125): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1489,47): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1489,86): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1489,125): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1490,47): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1490,86): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1490,125): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1523,30): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1523,60): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1524,30): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1524,60): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1598,41): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1598,78): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1599,41): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1599,78): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1722,41): warning C4244: '+=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1768,22): warning C4244: '-=': 'const double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1856,37): warning C4244: '+=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1895,21): warning C4244: '-=': 'const double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2200,20): warning C4244: '+=': 'const double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2242,19): warning C4244: '+=': 'const double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2252,76): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2357,33): warning C4244: '引数': 'double' から 's3d::int32' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(1486,15): warning C4101: 'hit': ローカル変数は 1 度も使われていません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2394,21): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2416,31): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2417,42): warning C4267: '-=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2423,34): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2463,20): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2504,22): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2510,25): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2581,18): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2711,41): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2711,72): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2712,41): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2712,72): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2713,41): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2713,72): warning C4244: '引数': 'double' から 'std::array<s3d::Vec3,8>::size_type' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2785,12): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2786,12): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2867,30): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2879,30): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2890,30): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2902,30): warning C4267: '=': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2946,17): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(2947,17): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(3059,16): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(3060,16): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(3544,18): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+D:\UnityProjects\bnscup2025\ProjectBnscup2025\src\CameraTest.cpp(3824,10): warning C4189: 'distance': ローカル変数が初期化されましたが、参照されていません
+  (ソース ファイル '/src/CameraTest.cpp' をコンパイルしています)
+  
+     ライブラリ D:\UnityProjects\bnscup2025\ProjectBnscup2025\Intermediate\ProjectBnscup2025\Release\ProjectBnscup2025.lib とオブジェクト D:\UnityProjects\bnscup2025\ProjectBnscup2025\Intermediate\ProjectBnscup2025\Release\ProjectBnscup2025.exp を作成中
+  コード生成しています。
+  Previous IPDB not found, fall back to full compilation.
+  All 1689 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  ProjectBnscup2025.vcxproj -> D:\UnityProjects\bnscup2025\ProjectBnscup2025\Intermediate\ProjectBnscup2025\Release\ProjectBnscup2025.exe
+  D:\UnityProjects\bnscup2025\ProjectBnscup2025\Intermediate\ProjectBnscup2025\Release\ProjectBnscup2025.exe
+  1 個のファイルをコピーしました
