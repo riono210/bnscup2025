@@ -1,6 +1,7 @@
 ﻿# include "Common.hpp"
 # include "Title.hpp"
 # include "Game.hpp"
+# include "ModelCheck.hpp"
 //# include "Ranking.hpp"
 
 void Main()
@@ -10,9 +11,11 @@ void Main()
 
 	FontAsset::Register(U"Bold", FontMethod::MSDF, 48, Typeface::Bold);
 
+	// シーン追加
 	App manager;
 	manager.add<Title>(State::Title);
 	manager.add<Game>(State::Game);
+	manager.add<ModelCheck>(State::ModelCheck);
 	//manager.add<Ranking>(State::Ranking);
 
 	while (System::Update())

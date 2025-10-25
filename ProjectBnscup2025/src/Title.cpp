@@ -11,7 +11,7 @@ void Title::update()
 	// Button updates
 	{
 		m_startTransition.update(m_startButton.mouseOver());
-		// m_rankingTransition.update(m_rankingButton.mouseOver());
+		m_modelCheckTransition.update(m_modelCheckButton.mouseOver());
 		m_exitTransition.update(m_exitButton.mouseOver());
 
 		if (m_startButton.mouseOver() || m_exitButton.mouseOver())
@@ -21,15 +21,15 @@ void Title::update()
 	}
 
 	// Button click handling
-	if (m_startButton.leftClicked()) // To game
+	if (m_startButton.leftClicked())
 	{
 		changeScene(State::Game);
 	}
-	// else if (m_rankingButton.leftClicked()) // To ranking
-	// {
-	// 	changeScene(State::Ranking);
-	// }
-	else if (m_exitButton.leftClicked()) // Exit
+	else if (m_modelCheckButton.leftClicked())
+	{
+		changeScene(State::ModelCheck);
+	}
+	else if (m_exitButton.leftClicked())
 	{
 		System::Exit();
 	}
@@ -46,12 +46,12 @@ void Title::draw() const
 	// Button drawing
 	{
 		m_startButton.draw(ColorF{ 1.0, m_startTransition.value() }).drawFrame(2);
-		// m_rankingButton.draw(ColorF{ 1.0, m_rankingTransition.value() }).drawFrame(2);
+		m_modelCheckButton.draw(ColorF{ 1.0, m_modelCheckTransition.value() }).drawFrame(2);
 		m_exitButton.draw(ColorF{ 1.0, m_exitTransition.value() }).drawFrame(2);
 
 		const Font& boldFont = FontAsset(U"Bold");
 		boldFont(U"PLAY").drawAt(36, m_startButton.center(), ColorF{ 0.1 });
-		// boldFont(U"RANKING").drawAt(36, m_rankingButton.center(), ColorF{ 0.1 });
+		boldFont(U"MODEL CHECK").drawAt(36, m_modelCheckButton.center(), ColorF{ 0.1 });
 		boldFont(U"EXIT").drawAt(36, m_exitButton.center(), ColorF{ 0.1 });
 	}
 }

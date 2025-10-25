@@ -8,6 +8,8 @@ class BulletBody {
 	std::shared_ptr<BulletBodyDetail> m_impl = nullptr;
 
 public:
+	BulletBody() = default;
+
 	BulletBody(const std::shared_ptr<DynamicsWorldDetail>& world, const Vec3& center, const Sphere& sivSphere, double mass) :
 		m_impl{ std::make_shared<BulletBodyDetail>(world, center, sivSphere, mass) } {
 
