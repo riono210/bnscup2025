@@ -5,7 +5,7 @@
 *.slo
 *.lo
 *.o
-*.obj
+#*.obj
 
 # Precompiled Headers
 *.gch
@@ -46,3 +46,4 @@
 .vs
 ProjectBnscup2025/Intermediate/ProjectBnscup2025/Debug/**
 ProjectBnscup2025/App/AS_DEBUG
+ProjectBnscup2025/App/example/obj/**
