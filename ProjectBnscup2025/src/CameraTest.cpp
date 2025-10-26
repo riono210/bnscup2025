@@ -12,7 +12,18 @@ CameraTest::CameraTest(const InitData& init)
 	: IScene{ init }
 {
 	// 背景の色
-	backgroundColor = ColorF{ 0.05, 0.08, 0.1 }.removeSRGBCurve();
+	//backgroundColor = ColorF{ 0.05, 0.08, 0.1 }.removeSRGBCurve();
+	// TODO: model test
+	backgroundColor = ColorF{ 0.4, 0.6, 0.8 }.removeSRGBCurve();
+
+	// 環境光を設定する
+	Graphics3D::SetGlobalAmbientColor(ColorF{ 0.75, 0.75, 0.75 });
+
+	// 太陽光を設定する
+	Graphics3D::SetSunColor(ColorF{ 0.5, 0.5, 0.5 });
+
+	// 太陽の方向を設定する
+	Graphics3D::SetSunDirection(Vec3{ 0, 1, -0.3 }.normalized());
 	
 	// カメラ
 	camera = BasicCamera3D{ renderTexture.size(), m_verticalFOV, Vec3{ 10, 10, -10 } };
@@ -82,210 +93,214 @@ void CameraTest::loadResources() const
 
 	switch (loadCount)
 	{
-	case 0:
-		model = std::make_unique<Model>(modelPath);
-		Model::RegisterDiffuseTextures(*model, TextureDesc::MippedSRGB);
-		break;
+		case 0:
+			roomModel = std::make_unique<Model>(roomModelPath);
+			Model::RegisterDiffuseTextures(*roomModel, TextureDesc::MippedSRGB);
+			break;
+	// case 1:
+	// 	model = std::make_unique<Model>(modelPath);
+	// 	Model::RegisterDiffuseTextures(*model, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 1:
+	// 	modelDoor = std::make_unique<Model>(modelDoorPath);
+	// 	Model::RegisterDiffuseTextures(*modelDoor, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 2:
+	// 	modelRustedKey = std::make_unique<Model>(modelRustedKeyPath);
+	// 	Model::RegisterDiffuseTextures(*modelRustedKey, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 3:
+	// 	modelIronKey = std::make_unique<Model>(modelIronKeyPath);
+	// 	Model::RegisterDiffuseTextures(*modelIronKey, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 4:
+	// 	modelBread = std::make_unique<Model>(modelBreadPath);
+	// 	Model::RegisterDiffuseTextures(*modelBread, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 5:
+	// 	modelPoker = std::make_unique<Model>(modelPokerPath);
+	// 	Model::RegisterDiffuseTextures(*modelPoker, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 6:
+	// 	modelDrawerChain = std::make_unique<Model>(modelDrawerChainPath);
+	// 	Model::RegisterDiffuseTextures(*modelDrawerChain, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 7:
+	// 	modelDrawerEye = std::make_unique<Model>(modelDrawerEyePath);
+	// 	Model::RegisterDiffuseTextures(*modelDrawerEye, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 8:
+	// 	modelDrawerFeather = std::make_unique<Model>(modelDrawerFeatherPath);
+	// 	Model::RegisterDiffuseTextures(*modelDrawerFeather, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 9:
+	// 	modelDrawerFlower = std::make_unique<Model>(modelDrawerFlowerPath);
+	// 	Model::RegisterDiffuseTextures(*modelDrawerFlower, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 10:
+	// 	//modelDrawerNon = std::make_unique<Model>(modelDrawerNonPath);
+	// 	//Model::RegisterDiffuseTextures(*modelDrawerNon, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 11:
+	// 	modelDrawerSnake = std::make_unique<Model>(modelDrawerSnakePath);
+	// 	Model::RegisterDiffuseTextures(*modelDrawerSnake, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 12:
+	// 	modelShelf = std::make_unique<Model>(modelShelfPath);
+	// 	Model::RegisterDiffuseTextures(*modelShelf, TextureDesc::MippedSRGB);
+	// 	break;
 	case 1:
-		modelDoor = std::make_unique<Model>(modelDoorPath);
-		Model::RegisterDiffuseTextures(*modelDoor, TextureDesc::MippedSRGB);
-		break;
-	case 2:
-		modelRustedKey = std::make_unique<Model>(modelRustedKeyPath);
-		Model::RegisterDiffuseTextures(*modelRustedKey, TextureDesc::MippedSRGB);
-		break;
-	case 3:
-		modelIronKey = std::make_unique<Model>(modelIronKeyPath);
-		Model::RegisterDiffuseTextures(*modelIronKey, TextureDesc::MippedSRGB);
-		break;
-	case 4:
-		modelBread = std::make_unique<Model>(modelBreadPath);
-		Model::RegisterDiffuseTextures(*modelBread, TextureDesc::MippedSRGB);
-		break;
-	case 5:
-		modelPoker = std::make_unique<Model>(modelPokerPath);
-		Model::RegisterDiffuseTextures(*modelPoker, TextureDesc::MippedSRGB);
-		break;
-	case 6:
-		modelDrawerChain = std::make_unique<Model>(modelDrawerChainPath);
-		Model::RegisterDiffuseTextures(*modelDrawerChain, TextureDesc::MippedSRGB);
-		break;
-	case 7:
-		modelDrawerEye = std::make_unique<Model>(modelDrawerEyePath);
-		Model::RegisterDiffuseTextures(*modelDrawerEye, TextureDesc::MippedSRGB);
-		break;
-	case 8:
-		modelDrawerFeather = std::make_unique<Model>(modelDrawerFeatherPath);
-		Model::RegisterDiffuseTextures(*modelDrawerFeather, TextureDesc::MippedSRGB);
-		break;
-	case 9:
-		modelDrawerFlower = std::make_unique<Model>(modelDrawerFlowerPath);
-		Model::RegisterDiffuseTextures(*modelDrawerFlower, TextureDesc::MippedSRGB);
-		break;
-	case 10:
-		//modelDrawerNon = std::make_unique<Model>(modelDrawerNonPath);
-		//Model::RegisterDiffuseTextures(*modelDrawerNon, TextureDesc::MippedSRGB);
-		break;
-	case 11:
-		modelDrawerSnake = std::make_unique<Model>(modelDrawerSnakePath);
-		Model::RegisterDiffuseTextures(*modelDrawerSnake, TextureDesc::MippedSRGB);
-		break;
-	case 12:
-		modelShelf = std::make_unique<Model>(modelShelfPath);
-		Model::RegisterDiffuseTextures(*modelShelf, TextureDesc::MippedSRGB);
-		break;
-	case 13:
 		modelExclamationMark = std::make_unique<Model>(modelExclamationMarkPath);
 		Model::RegisterDiffuseTextures(*modelExclamationMark, TextureDesc::MippedSRGB);
 		break;
-	case 14:
-		modelParchment = std::make_unique<Model>(modelParchmentPath);
-		Model::RegisterDiffuseTextures(*modelParchment, TextureDesc::MippedSRGB);
-		break;
-	case 15:
-		modelHanger = std::make_unique<Model>(modelHangerPath);
-		Model::RegisterDiffuseTextures(*modelHanger, TextureDesc::MippedSRGB);
-		break;
-	case 16:
-		modelDirtyCloth = std::make_unique<Model>(modelDirtyClothPath);
-		Model::RegisterDiffuseTextures(*modelDirtyCloth, TextureDesc::MippedSRGB);
-		break;
-	case 17:
-		modelMemo = std::make_unique<Model>(modelMemoPath);
-		Model::RegisterDiffuseTextures(*modelMemo, TextureDesc::MippedSRGB);
-		break;
-	case 18:
-		modelStoneBase = std::make_unique<Model>(modelStoneBasePath);
-		Model::RegisterDiffuseTextures(*modelStoneBase, TextureDesc::MippedSRGB);
-		break;
-	case 19:
-		modelStoneBlue = std::make_unique<Model>(modelStoneBluePath);
-		Model::RegisterDiffuseTextures(*modelStoneBlue, TextureDesc::MippedSRGB);
-		break;
-	case 20:
-		modelStoneGreen = std::make_unique<Model>(modelStoneGreenPath);
-		Model::RegisterDiffuseTextures(*modelStoneGreen, TextureDesc::MippedSRGB);
-		break;
-	case 21:
-		modelStoneRed = std::make_unique<Model>(modelStoneRedPath);
-		Model::RegisterDiffuseTextures(*modelStoneRed, TextureDesc::MippedSRGB);
-		break;
-	case 22:
-		modelStoneYellow = std::make_unique<Model>(modelStoneYellowPath);
-		Model::RegisterDiffuseTextures(*modelStoneYellow, TextureDesc::MippedSRGB);
-		break;
-	case 23:
-		dummyTextView(Text);
-		break;
-	case 24:
-		dummyTextView(itemText);
-		break;
-	case 25:
-		dummyTextView(itemNameText);
-		break;
-	case 26:
-		dummyTextView(memoText);
-		break;
-	case 27:
-		dummyTextView(toastedParchmentText);
-		break;
-	case 28:
-		dummyTextView(prologueText);
-		break;
-	case 29:
-		// BGMの読み込み
-		AudioAsset(U"BGM").setVolume(0.0);
-		AudioAsset(U"BGM").play();
-		AudioAsset(U"BGM").stop();
-		break;
-	case 30:
-		AudioAsset(U"bonfire").setVolume(0.0);
-		AudioAsset(U"bonfire").play();
-		AudioAsset(U"bonfire").stop();
-		break;
-	case 31:
-		AudioAsset(U"footsteps1").setVolume(0.0);
-		AudioAsset(U"footsteps1").play();
-		AudioAsset(U"footsteps1").stop();
-		break;
-	case 32:
-		AudioAsset(U"footsteps2").setVolume(0.0);
-		AudioAsset(U"footsteps2").play();
-		AudioAsset(U"footsteps2").stop();
-		break;
-	case 33:
-		AudioAsset(U"drawer_open").setVolume(0.0);
-		AudioAsset(U"drawer_open").play();
-		AudioAsset(U"drawer_open").stop();
-		break;
-	case 34:
-		AudioAsset(U"drawer_close").setVolume(0.0);
-		AudioAsset(U"drawer_close").play();
-		AudioAsset(U"drawer_close").stop();
-		break;
-	case 35:
-		AudioAsset(U"GET").setVolume(0.0);
-		AudioAsset(U"GET").play();
-		AudioAsset(U"GET").stop();
-		break;
-	case 36:
-		AudioAsset(U"IronDoor_Close").setVolume(0.0);
-		AudioAsset(U"IronDoor_Close").play();
-		AudioAsset(U"IronDoor_Close").stop();
-		break;
-	case 37:
-		AudioAsset(U"WoodDoor_Close").setVolume(0.0);
-		AudioAsset(U"WoodDoor_Close").play();
-		AudioAsset(U"WoodDoor_Close").stop();
-		break;
-	case 38:
-		AudioAsset(U"Item").setVolume(0.0);
-		AudioAsset(U"Item").play();
-		AudioAsset(U"Item").stop();
-		break;
-	case 39:
-		AudioAsset(U"Paper").setVolume(0.0);
-		AudioAsset(U"Paper").play();
-		AudioAsset(U"Paper").stop();
-		break;
-	case 40:
-		// これは鳴らしているのでやらない
-		//AudioAsset(U"Title").setVolume(0.0);
-		//AudioAsset(U"Title").play();
-		//AudioAsset(U"Title").stop();
-		break;
-	case 41:
-		AudioAsset(U"Water").setVolume(0.0);
-		AudioAsset(U"Water").play();
-		AudioAsset(U"Water").stop();
-		break;
-	case 42:
-		AudioAsset(U"Inventory").setVolume(0.0);
-		AudioAsset(U"Inventory").play();
-		AudioAsset(U"Inventory").stop();
-		break;
-	case 43:
-		//for (int itemId = 0; itemId < ItemIdMAX; itemId++)
-		//{
-		//	drawMiniItem(itemId, 0, 0);
-		//	drawBigItem(itemId, 0, 0);
-		//}
-		break;
-	case 44:
-	//	billboard.draw(camera.billboard(markPosition, markSize), uvChecker);
-		break;
-	case 45:
-		AudioAsset(U"牢屋の扉を開ける").setVolume(0.0);
-		AudioAsset(U"牢屋の扉を開ける").play();
-		AudioAsset(U"牢屋の扉を開ける").stop();
-		break;
-	case 46:
-		dummyTextView(clothText);
-		break;
-	case 47:
-	//	modelDrawerTest = std::make_unique<Model>(modelDrawerTestPath);
-	//	Model::RegisterDiffuseTextures(*modelDrawerTest, TextureDesc::MippedSRGB);
-		break;
+	// case 14:
+	// 	modelParchment = std::make_unique<Model>(modelParchmentPath);
+	// 	Model::RegisterDiffuseTextures(*modelParchment, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 15:
+	// 	modelHanger = std::make_unique<Model>(modelHangerPath);
+	// 	Model::RegisterDiffuseTextures(*modelHanger, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 16:
+	// 	modelDirtyCloth = std::make_unique<Model>(modelDirtyClothPath);
+	// 	Model::RegisterDiffuseTextures(*modelDirtyCloth, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 17:
+	// 	modelMemo = std::make_unique<Model>(modelMemoPath);
+	// 	Model::RegisterDiffuseTextures(*modelMemo, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 18:
+	// 	modelStoneBase = std::make_unique<Model>(modelStoneBasePath);
+	// 	Model::RegisterDiffuseTextures(*modelStoneBase, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 19:
+	// 	modelStoneBlue = std::make_unique<Model>(modelStoneBluePath);
+	// 	Model::RegisterDiffuseTextures(*modelStoneBlue, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 20:
+	// 	modelStoneGreen = std::make_unique<Model>(modelStoneGreenPath);
+	// 	Model::RegisterDiffuseTextures(*modelStoneGreen, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 21:
+	// 	modelStoneRed = std::make_unique<Model>(modelStoneRedPath);
+	// 	Model::RegisterDiffuseTextures(*modelStoneRed, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 22:
+	// 	modelStoneYellow = std::make_unique<Model>(modelStoneYellowPath);
+	// 	Model::RegisterDiffuseTextures(*modelStoneYellow, TextureDesc::MippedSRGB);
+	// 	break;
+	// case 23:
+	// 	dummyTextView(Text);
+	// 	break;
+	// case 24:
+	// 	dummyTextView(itemText);
+	// 	break;
+	// case 25:
+	// 	dummyTextView(itemNameText);
+	// 	break;
+	// case 26:
+	// 	dummyTextView(memoText);
+	// 	break;
+	// case 27:
+	// 	dummyTextView(toastedParchmentText);
+	// 	break;
+	// case 28:
+	// 	dummyTextView(prologueText);
+	// 	break;
+	// case 29:
+	// 	// BGMの読み込み
+	// 	AudioAsset(U"BGM").setVolume(0.0);
+	// 	AudioAsset(U"BGM").play();
+	// 	AudioAsset(U"BGM").stop();
+	// 	break;
+	// case 30:
+	// 	AudioAsset(U"bonfire").setVolume(0.0);
+	// 	AudioAsset(U"bonfire").play();
+	// 	AudioAsset(U"bonfire").stop();
+	// 	break;
+	// case 31:
+	// 	AudioAsset(U"footsteps1").setVolume(0.0);
+	// 	AudioAsset(U"footsteps1").play();
+	// 	AudioAsset(U"footsteps1").stop();
+	// 	break;
+	// case 32:
+	// 	AudioAsset(U"footsteps2").setVolume(0.0);
+	// 	AudioAsset(U"footsteps2").play();
+	// 	AudioAsset(U"footsteps2").stop();
+	// 	break;
+	// case 33:
+	// 	AudioAsset(U"drawer_open").setVolume(0.0);
+	// 	AudioAsset(U"drawer_open").play();
+	// 	AudioAsset(U"drawer_open").stop();
+	// 	break;
+	// case 34:
+	// 	AudioAsset(U"drawer_close").setVolume(0.0);
+	// 	AudioAsset(U"drawer_close").play();
+	// 	AudioAsset(U"drawer_close").stop();
+	// 	break;
+	// case 35:
+	// 	AudioAsset(U"GET").setVolume(0.0);
+	// 	AudioAsset(U"GET").play();
+	// 	AudioAsset(U"GET").stop();
+	// 	break;
+	// case 36:
+	// 	AudioAsset(U"IronDoor_Close").setVolume(0.0);
+	// 	AudioAsset(U"IronDoor_Close").play();
+	// 	AudioAsset(U"IronDoor_Close").stop();
+	// 	break;
+	// case 37:
+	// 	AudioAsset(U"WoodDoor_Close").setVolume(0.0);
+	// 	AudioAsset(U"WoodDoor_Close").play();
+	// 	AudioAsset(U"WoodDoor_Close").stop();
+	// 	break;
+	// case 38:
+	// 	AudioAsset(U"Item").setVolume(0.0);
+	// 	AudioAsset(U"Item").play();
+	// 	AudioAsset(U"Item").stop();
+	// 	break;
+	// case 39:
+	// 	AudioAsset(U"Paper").setVolume(0.0);
+	// 	AudioAsset(U"Paper").play();
+	// 	AudioAsset(U"Paper").stop();
+	// 	break;
+	// case 40:
+	// 	// これは鳴らしているのでやらない
+	// 	//AudioAsset(U"Title").setVolume(0.0);
+	// 	//AudioAsset(U"Title").play();
+	// 	//AudioAsset(U"Title").stop();
+	// 	break;
+	// case 41:
+	// 	AudioAsset(U"Water").setVolume(0.0);
+	// 	AudioAsset(U"Water").play();
+	// 	AudioAsset(U"Water").stop();
+	// 	break;
+	// case 42:
+	// 	AudioAsset(U"Inventory").setVolume(0.0);
+	// 	AudioAsset(U"Inventory").play();
+	// 	AudioAsset(U"Inventory").stop();
+	// 	break;
+	// case 43:
+	// 	//for (int itemId = 0; itemId < ItemIdMAX; itemId++)
+	// 	//{
+	// 	//	drawMiniItem(itemId, 0, 0);
+	// 	//	drawBigItem(itemId, 0, 0);
+	// 	//}
+	// 	break;
+	// case 44:
+	// //	billboard.draw(camera.billboard(markPosition, markSize), uvChecker);
+	// 	break;
+	// case 45:
+	// 	AudioAsset(U"牢屋の扉を開ける").setVolume(0.0);
+	// 	AudioAsset(U"牢屋の扉を開ける").play();
+	// 	AudioAsset(U"牢屋の扉を開ける").stop();
+	// 	break;
+	// case 46:
+	// 	dummyTextView(clothText);
+	// 	break;
+	// case 47:
+	// //	modelDrawerTest = std::make_unique<Model>(modelDrawerTestPath);
+	// //	Model::RegisterDiffuseTextures(*modelDrawerTest, TextureDesc::MippedSRGB);
+	// 	break;
 	default:
 		bLoaded = true;	// リソースが読み込まれた
 		break;
@@ -420,6 +435,9 @@ void CameraTest::debug()
 
 		prologueCount = 9999;
 		messageCount = 9999;
+
+		// パンをスキップ
+		scenario = 3;
 	}
 
 
@@ -1471,17 +1489,17 @@ void CameraTest::update()
 		// モデルデータと判定する
 		lastCheckCollision = false;
 		bool checkCollision = false;
-		for (const auto& object : model->objects())
+		for (const auto& object : roomModel->objects())
 		{
 			const std::array<Vec3, 8> cube = object.boundingBox.getCorners();
 
 			for (int i = 0; i < 12; i++)
 			{
-				Triangle_ tri = {
-					Vec3_{cube[collisionTriangle[i][0]].x / 100, cube[collisionTriangle[i][0]].y / 100, cube[collisionTriangle[i][0]].z / 100},
-					Vec3_{cube[collisionTriangle[i][1]].x / 100, cube[collisionTriangle[i][1]].y / 100, cube[collisionTriangle[i][1]].z / 100},
-					Vec3_{cube[collisionTriangle[i][2]].x / 100, cube[collisionTriangle[i][2]].y / 100, cube[collisionTriangle[i][2]].z / 100}
-				};
+				// Triangle_ tri = {
+				// 	Vec3_{cube[collisionTriangle[i][0]].x / 100, cube[collisionTriangle[i][0]].y / 100, cube[collisionTriangle[i][0]].z / 100},
+				// 	Vec3_{cube[collisionTriangle[i][1]].x / 100, cube[collisionTriangle[i][1]].y / 100, cube[collisionTriangle[i][1]].z / 100},
+				// 	Vec3_{cube[collisionTriangle[i][2]].x / 100, cube[collisionTriangle[i][2]].y / 100, cube[collisionTriangle[i][2]].z / 100}
+				// };
 
 				HitResult hit;
 
@@ -1584,7 +1602,7 @@ void CameraTest::update()
 						toCameraPos.z + cameraNormal2.y / 2,
 					};
 
-					const auto& object2Temp = model->objects();
+					const auto& object2Temp = roomModel->objects();
 					for (const auto& object2 : object2Temp)
 					{
 						const std::array<Vec3, 8> cube2 = object2.boundingBox.getCorners();
@@ -2693,7 +2711,7 @@ void CameraTest::debugViewCollision()
 	// モデルのワイヤーフレーム表示
 	{
 		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(roomScale).translated(roomPos) };
-		const auto& objectTmp = model->objects();
+		const auto& objectTmp = roomModel->objects();
 		for (const auto& object : objectTmp)
 		{
 			if (bDebugViewFrame)
@@ -3353,177 +3371,182 @@ void CameraTest::viewModel()
 	constantBuffer->drawPointLightAsEmissiveSphere(1, 0.1);
 
 	// モデルを描画
+	// if (bDebugviewModel)
+	// {
+	// 	Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(roomScale).translated(roomPos) };
+	// 	model->draw();
+	// }
 	if (bDebugviewModel)
 	{
 		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(roomScale).translated(roomPos) };
-		model->draw();
+		roomModel->draw();
 	}
 
-	// 扉
-	{
-		Transformer3D t{
-			Mat4x4::RotateY(doorRot.y).scaled(roomScale).translated(doorPos)
-		};
-		modelDoor->draw();
-	}
+	// // 扉
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateY(doorRot.y).scaled(roomScale).translated(doorPos)
+	// 	};
+	// 	modelDoor->draw();
+	// }
 
-	// 扉２
-	{
-		Transformer3D t{
-			Mat4x4::RotateY(door2Rot.y).scaled(roomScale).translated(door2Pos)
-		};
-		modelDoor->draw();
-	}
+	// // 扉２
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateY(door2Rot.y).scaled(roomScale).translated(door2Pos)
+	// 	};
+	// 	modelDoor->draw();
+	// }
 
-	// パンの描画
-	if (bBreadHave == false)
-	{
-		Transformer3D t{
-			Mat4x4::RotateY(0_deg).scaled(0.01).translated(breadPos)
-		};
+	// // パンの描画
+	// if (bBreadHave == false)
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateY(0_deg).scaled(0.01).translated(breadPos)
+	// 	};
 
-		modelBread->draw();
-	}
+	// 	modelBread->draw();
+	// }
 
-	// 錆びた鍵の描画
-	if (bRustedKeyHave == false)
-	{
-		Transformer3D t{
-		//	Mat4x4::RotateZ(90_deg).scaled(0.015).translated(rustedKeyPos)
-			Mat4x4::RotateZ(180_deg).scaled(0.015).translated(rustedKeyPos)
-		};
-		modelRustedKey->draw();
-	}
+	// // 錆びた鍵の描画
+	// if (bRustedKeyHave == false)
+	// {
+	// 	Transformer3D t{
+	// 	//	Mat4x4::RotateZ(90_deg).scaled(0.015).translated(rustedKeyPos)
+	// 		Mat4x4::RotateZ(180_deg).scaled(0.015).translated(rustedKeyPos)
+	// 	};
+	// 	modelRustedKey->draw();
+	// }
 
-	// 鉄製の鍵の描画
-	if (bIronKeyHave == false)
-	{
-		Transformer3D t{
-			Mat4x4::RotateZ(0_deg).scaled(0.015).translated(IronkeyPos)
-		};
-		modelIronKey->draw();
-	}
+	// // 鉄製の鍵の描画
+	// if (bIronKeyHave == false)
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateZ(0_deg).scaled(0.015).translated(IronkeyPos)
+	// 	};
+	// 	modelIronKey->draw();
+	// }
 
-	// 火かき棒の描画
-	if (bPokerHave == false)
-	{
-		Transformer3D t{
-			Mat4x4::RotateZ(75_deg).scaled(0.01).translated(pokerPos)
-		};
+	// // 火かき棒の描画
+	// if (bPokerHave == false)
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateZ(75_deg).scaled(0.01).translated(pokerPos)
+	// 	};
 
-		modelPoker->draw();
-	}
+	// 	modelPoker->draw();
+	// }
 
-	// 引き出し
-	for (int i = 0; i < 7; i++) 
-	{
-		Transformer3D t{
-		//	Mat4x4::RotateY(0_deg).scaled(0.01).translated(Vec3{drawerPos[i].x, drawerPos[i].y, drawerPos[i].z})
-			Mat4x4::RotateY(0_deg).scaled(0.01).translated(drawerPos[i])
-		};
+	// // 引き出し
+	// for (int i = 0; i < 7; i++) 
+	// {
+	// 	Transformer3D t{
+	// 	//	Mat4x4::RotateY(0_deg).scaled(0.01).translated(Vec3{drawerPos[i].x, drawerPos[i].y, drawerPos[i].z})
+	// 		Mat4x4::RotateY(0_deg).scaled(0.01).translated(drawerPos[i])
+	// 	};
 
-		switch (i)
-		{
-		case 0:
-			modelShelf->draw();
-			break;
-		//case 1:
-		//	modelDrawerNon->draw();
-		//	break;
-		case 1:
-			modelDrawerFlower->draw();
-			break;
-		case 2:
-			modelDrawerChain->draw();
-			break;
-		case 3:
-			modelDrawerFeather->draw();
-			break;
-		case 4:
-			modelDrawerSnake->draw();
-			break;
-		case 5:
-			modelDrawerEye->draw();
-			break;
-		}
-	}
+	// 	switch (i)
+	// 	{
+	// 	case 0:
+	// 		modelShelf->draw();
+	// 		break;
+	// 	//case 1:
+	// 	//	modelDrawerNon->draw();
+	// 	//	break;
+	// 	case 1:
+	// 		modelDrawerFlower->draw();
+	// 		break;
+	// 	case 2:
+	// 		modelDrawerChain->draw();
+	// 		break;
+	// 	case 3:
+	// 		modelDrawerFeather->draw();
+	// 		break;
+	// 	case 4:
+	// 		modelDrawerSnake->draw();
+	// 		break;
+	// 	case 5:
+	// 		modelDrawerEye->draw();
+	// 		break;
+	// 	}
+	// }
 
-	// 引き出しテスト
-	//{
-	//	Transformer3D t{
-	//		Mat4x4::RotateY(0_deg).scaled(0.01).translated(drawerTestPos)
-	//	};
-	//	modelDrawerTest->draw();
-	//}
+	// // 引き出しテスト
+	// //{
+	// //	Transformer3D t{
+	// //		Mat4x4::RotateY(0_deg).scaled(0.01).translated(drawerTestPos)
+	// //	};
+	// //	modelDrawerTest->draw();
+	// //}
 
-	// 羊皮紙の描画
-	if (bParchmentHave == false)
-	{
-		Transformer3D t{
-			Mat4x4::RotateY(parchmentRot.y).scaled(0.01).translated(parchmentPos)
-		};
+	// // 羊皮紙の描画
+	// if (bParchmentHave == false)
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateY(parchmentRot.y).scaled(0.01).translated(parchmentPos)
+	// 	};
 
-		modelParchment->draw();
-	}
+	// 	modelParchment->draw();
+	// }
 
-	// ハンガーの描画
-	if (bHangerHave == false)
-	{
-		Transformer3D t{
-			Mat4x4::RotateY(hangerRot.y).scaled(0.01).translated(hangerPos)
-		};
+	// // ハンガーの描画
+	// if (bHangerHave == false)
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateY(hangerRot.y).scaled(0.01).translated(hangerPos)
+	// 	};
 
-		modelHanger->draw();
-	}
+	// 	modelHanger->draw();
+	// }
 
-	// 汚れた布の描画
-	if (bDirtyClothHave == false)
-	{
-		Transformer3D t{
-			Mat4x4::RotateY(0_deg).scaled(0.01).translated(dirtyClothPos)
-		};
+	// // 汚れた布の描画
+	// if (bDirtyClothHave == false)
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateY(0_deg).scaled(0.01).translated(dirtyClothPos)
+	// 	};
 
-		modelDirtyCloth->draw();
-	}
+	// 	modelDirtyCloth->draw();
+	// }
 
-	// 手記の描画
-	if (bMemoHave == false)
-	{
-		Transformer3D t{
-			Mat4x4::RotateY(memoRot.y).scaled(0.03).translated(memoPos)
-		};
+	// // 手記の描画
+	// if (bMemoHave == false)
+	// {
+	// 	Transformer3D t{
+	// 		Mat4x4::RotateY(memoRot.y).scaled(0.03).translated(memoPos)
+	// 	};
 
-		modelMemo->draw();
-	}
+	// 	modelMemo->draw();
+	// }
 
-	// 石板の描画
-	{
-		for (int i = 0; i < 5; i++)
-		{
-			Transformer3D t{
-				Mat4x4::RotateY(stoneRot.y).scaled(0.01).translated(stonePos[i])
-			};
+	// // 石板の描画
+	// {
+	// 	for (int i = 0; i < 5; i++)
+	// 	{
+	// 		Transformer3D t{
+	// 			Mat4x4::RotateY(stoneRot.y).scaled(0.01).translated(stonePos[i])
+	// 		};
 
-			switch (i)
-			{
-			case 0:
-				modelStoneBase->draw();
-				break;
-			case 1:
-				modelStoneBlue->draw();
-				break;
-			case 2:
-				modelStoneGreen->draw();
-				break;
-			case 3:
-				modelStoneRed->draw();
-				break;
-			case 4:
-				modelStoneYellow->draw();
-				break;
-			}
-		}
-	}
+	// 		switch (i)
+	// 		{
+	// 		case 0:
+	// 			modelStoneBase->draw();
+	// 			break;
+	// 		case 1:
+	// 			modelStoneBlue->draw();
+	// 			break;
+	// 		case 2:
+	// 			modelStoneGreen->draw();
+	// 			break;
+	// 		case 3:
+	// 			modelStoneRed->draw();
+	// 			break;
+	// 		case 4:
+	// 			modelStoneYellow->draw();
+	// 			break;
+	// 		}
+	// 	}
+	// }
 
 	// ビックリマークのビルボード
 	if (bLockon)
@@ -3568,6 +3591,55 @@ void CameraTest::lockon()
 	// アイテムのロックオンフラグのリセット
 	bLockon = false;
 
+	// 傲慢の椅子
+	if(!bLockon)
+	{
+		Vec3 temp = prideChairPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = prideChairController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = prideChairMessage;
+		}
+		if (isClick)
+		{
+			message = prideChairMessage;
+			priorityMessageCount = 0;
+		}
+
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 32;
+// 			bToilet2Lockon = true;
+// 		}
+// 		else
+// 		{
+// 			bToilet2Lockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 32;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		bToilet2Lockon = false;
+// 	}
+	}
+
 	// パン
 	if (!bLockon)
 	{
@@ -3608,1562 +3680,1562 @@ void CameraTest::lockon()
 		}
 	}
 
-	// 錆びた鍵
-	if (!bLockon && bRustedKeyHave == false && bTutorial == false)
-	{
-		// 座標の調整
-		Vec3 temp = rustedKeyPos;
-	//	temp.x -= 0.12;
-		temp.x -= 0.22;
-		temp.y += 0.2+ markHigh;
-		temp.z += 0.0;
+// 	// 錆びた鍵
+// 	if (!bLockon && bRustedKeyHave == false && bTutorial == false)
+// 	{
+// 		// 座標の調整
+// 		Vec3 temp = rustedKeyPos;
+// 	//	temp.x -= 0.12;
+// 		temp.x -= 0.22;
+// 		temp.y += 0.2+ markHigh;
+// 		temp.z += 0.0;
 
-		auto [a, b, c, d] = rustedKeyController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray, 
-			markPosition,
-			0, 
-			true
-		);
-		if (a == true)
-		{
-			// アイテムを取った
-			items << RustedKey;
-			bRustedKeyHave = true;
-			bgmStopCount = c;
-			scenario = 3;	// なし
+// 		auto [a, b, c, d] = rustedKeyController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray, 
+// 			markPosition,
+// 			0, 
+// 			true
+// 		);
+// 		if (a == true)
+// 		{
+// 			// アイテムを取った
+// 			items << RustedKey;
+// 			bRustedKeyHave = true;
+// 			bgmStopCount = c;
+// 			scenario = 3;	// なし
 
-			priorityMessage = 79;
-			priorityMessageCount = priorityMessageCountMax;
-		}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 52;
-		}
-		if (d)
-		{
-			message = 52;	// とってしまうので、使われない
-			priorityMessageCount = 0;
-		}
-	}
+// 			priorityMessage = 79;
+// 			priorityMessageCount = priorityMessageCountMax;
+// 		}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 52;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 52;	// とってしまうので、使われない
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
 
-	// 手記
-	if (!bLockon && bMemoHave == false && bTutorial == false)
-	{
-		Vec3 temp = memoPos;
-		temp.y += markHigh;
+// 	// 手記
+// 	if (!bLockon && bMemoHave == false && bTutorial == false)
+// 	{
+// 		Vec3 temp = memoPos;
+// 		temp.y += markHigh;
 
-		auto [a, b, c, d] = memoController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			//	ray, 
-			markPosition,
-			2,
-			true
-		);
-		if (a == true)
-		{
-			// 手記を取得
-			bMemoHave = true;
-			items << Memo;
-			bgmStopCount = c;
+// 		auto [a, b, c, d] = memoController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			//	ray, 
+// 			markPosition,
+// 			2,
+// 			true
+// 		);
+// 		if (a == true)
+// 		{
+// 			// 手記を取得
+// 			bMemoHave = true;
+// 			items << Memo;
+// 			bgmStopCount = c;
 
-			scenario = 3;	// なし
+// 			scenario = 3;	// なし
 
-			priorityMessage = 78;
-			priorityMessageCount = priorityMessageCountMax;
-		}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 51;
-		}
-		if (d)
-		{
-			message = 51;	// とってしまうので、使われない
-			priorityMessageCount = 0;
-		}
-	}
+// 			priorityMessage = 78;
+// 			priorityMessageCount = priorityMessageCountMax;
+// 		}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 51;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 51;	// とってしまうので、使われない
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
 
-	// ハンガー
-	if (!bLockon && bHangerHave == false && bTutorial == false)
-	{
-		Vec3 temp = hangerPos;
-		temp.y += markHigh;
-		temp.z -= 0.05;
+// 	// ハンガー
+// 	if (!bLockon && bHangerHave == false && bTutorial == false)
+// 	{
+// 		Vec3 temp = hangerPos;
+// 		temp.y += markHigh;
+// 		temp.z -= 0.05;
 
-		auto [a, b, c, d] = hangerController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			//	ray,
-			markPosition,
-			0,
-			true
-		);
-		if (a == true)
-		{
-			// ハンガーを取得
-			bHangerHave = true;
-			items << Hanger;
-			bgmStopCount = c;
+// 		auto [a, b, c, d] = hangerController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			//	ray,
+// 			markPosition,
+// 			0,
+// 			true
+// 		);
+// 		if (a == true)
+// 		{
+// 			// ハンガーを取得
+// 			bHangerHave = true;
+// 			items << Hanger;
+// 			bgmStopCount = c;
 
-			scenario = 3;	// なし
+// 			scenario = 3;	// なし
 
-			priorityMessage = 82;
-			priorityMessageCount = priorityMessageCountMax;
-		}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 22;
-		}
-		if (d)
-		{
-			message = 22;	// とってしまうので、使われない
-			priorityMessageCount = 0;
-		}
-	}
+// 			priorityMessage = 82;
+// 			priorityMessageCount = priorityMessageCountMax;
+// 		}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 22;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 22;	// とってしまうので、使われない
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
 
-	// 鉄製の鍵
-	if (!bLockon && bIronKeyHave == false)
-	{
-		Vec3 temp = IronkeyPos;
-		temp.y += markHigh;
+// 	// 鉄製の鍵
+// 	if (!bLockon && bIronKeyHave == false)
+// 	{
+// 		Vec3 temp = IronkeyPos;
+// 		temp.y += markHigh;
 
-		auto [a, b, c, d] = ironkeyController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 31;
-			bIronKeyLockon = true;
-		}
-		else
-		{
-			bIronKeyLockon = false;
-		}
-		if (d)
-		{
-			message = 31;
-			priorityMessageCount = 0;
-		}
-	}
-	else
-	{
-		bIronKeyLockon = false;
-	}
+// 		auto [a, b, c, d] = ironkeyController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 31;
+// 			bIronKeyLockon = true;
+// 		}
+// 		else
+// 		{
+// 			bIronKeyLockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 31;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		bIronKeyLockon = false;
+// 	}
 
-	// 火かき棒
-	if (!bLockon)
-	{
-		Vec3 temp = pokerPos;
-		temp.y += markHigh;
+// 	// 火かき棒
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = pokerPos;
+// 		temp.y += markHigh;
 
-		auto [a, b, c, d] = pokerController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray, 
-			markPosition,
-			0,
-			true
-		);
-		if (a == true && bPokerHave == false)
-		{
-			// アイテムを取った
-			items << Poker;
-			bPokerHave = a;
-			bgmStopCount = c;
+// 		auto [a, b, c, d] = pokerController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray, 
+// 			markPosition,
+// 			0,
+// 			true
+// 		);
+// 		if (a == true && bPokerHave == false)
+// 		{
+// 			// アイテムを取った
+// 			items << Poker;
+// 			bPokerHave = a;
+// 			bgmStopCount = c;
 
-			priorityMessage = 80;
-			priorityMessageCount = priorityMessageCountMax;
-		}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 53;
-		}
-		if (d)
-		{
-			message = 53;
-			priorityMessageCount = 0;
-		}
-	}
+// 			priorityMessage = 80;
+// 			priorityMessageCount = priorityMessageCountMax;
+// 		}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 53;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 53;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
 
-	// 扉
-	if (!bLockon && bDoorOpen[0] == false)
-	{
-		// 座標の調整
-		Vec3 temp = doorPos;
-		//temp.x += 0.70;	// 原点が端っこの時
-		temp.x += 0.0;
-		temp.y += 1.3+ markHigh;
-		temp.z += 0.2;
+// 	// 扉
+// 	if (!bLockon && bDoorOpen[0] == false)
+// 	{
+// 		// 座標の調整
+// 		Vec3 temp = doorPos;
+// 		//temp.x += 0.70;	// 原点が端っこの時
+// 		temp.x += 0.0;
+// 		temp.y += 1.3+ markHigh;
+// 		temp.z += 0.2;
 
-		//Print << U"扉";
+// 		//Print << U"扉";
 
-		Vec3 screenPos = camera.worldToScreenPoint(temp);
-		Vec3 focus = camera.getFocusPosition();
-		double distance = focus.distanceFrom(temp);
+// 		Vec3 screenPos = camera.worldToScreenPoint(temp);
+// 		Vec3 focus = camera.getFocusPosition();
+// 		double distance = focus.distanceFrom(temp);
 
-		//Print << U"screenPos=" << screenPos;
-		//Print << U"focus=" << focus;
-		//Print << U"distance=" << distance;
+// 		//Print << U"screenPos=" << screenPos;
+// 		//Print << U"focus=" << focus;
+// 		//Print << U"distance=" << distance;
 
-		//Print << U"(WINDOW_WIDTH / 2 - focusWidth)=" << (WINDOW_WIDTH / 2 - focusWidth);
-		//Print << U"(WINDOW_WIDTH / 2 + focusWidth)=" << (WINDOW_WIDTH / 2 + focusWidth);
-		//Print << U"(WINDOW_HEIGHT / 2 - focusHeight)=" << (WINDOW_HEIGHT / 2 - focusHeight);
-		//Print << U"(WINDOW_HEIGHT / 2 + focusHeight)=" << (WINDOW_HEIGHT / 2 + focusHeight);
+// 		//Print << U"(WINDOW_WIDTH / 2 - focusWidth)=" << (WINDOW_WIDTH / 2 - focusWidth);
+// 		//Print << U"(WINDOW_WIDTH / 2 + focusWidth)=" << (WINDOW_WIDTH / 2 + focusWidth);
+// 		//Print << U"(WINDOW_HEIGHT / 2 - focusHeight)=" << (WINDOW_HEIGHT / 2 - focusHeight);
+// 		//Print << U"(WINDOW_HEIGHT / 2 + focusHeight)=" << (WINDOW_HEIGHT / 2 + focusHeight);
 
-		auto [a, b, c, d] = doorController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
+// 		auto [a, b, c, d] = doorController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
 
-		//Print << U"扉END";
+// 		//Print << U"扉END";
 
-		// TODO インベントリから開ける
-		//if (a == true && bDoorOpen[0] == false && bWireKey)
-		//{
-		//	// 扉を開いた
-		//	bDoorOpen[0] = true;
-		////	toDoorRotY = 270_deg;	// 回転で開ける
-		////	toDoorPosX = -0.11;	// 移動で開ける
-		//	toDoorPosX = doorPos.x + 1.49;	// 移動で開ける
-		//	bgmStopCount = c;
+// 		// TODO インベントリから開ける
+// 		//if (a == true && bDoorOpen[0] == false && bWireKey)
+// 		//{
+// 		//	// 扉を開いた
+// 		//	bDoorOpen[0] = true;
+// 		////	toDoorRotY = 270_deg;	// 回転で開ける
+// 		////	toDoorPosX = -0.11;	// 移動で開ける
+// 		//	toDoorPosX = doorPos.x + 1.49;	// 移動で開ける
+// 		//	bgmStopCount = c;
 
-		//	scenario = 6;
-		//}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			//	if (bWireKey)
-			//	{
-			//		message = 20;
-			//	}
-			//	else
-			//	{
-			bookingMessage = 10;
-			//	}
-			bDoorLockon = true;
-		}
-		else
-		{
-			bDoorLockon = false;
-		}
-		if (d)
-		{
-			message = 10;
-			priorityMessageCount = 0;
-		}
-	}
-	else
-	{
-		bDoorLockon = false;
-	}
+// 		//	scenario = 6;
+// 		//}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			//	if (bWireKey)
+// 			//	{
+// 			//		message = 20;
+// 			//	}
+// 			//	else
+// 			//	{
+// 			bookingMessage = 10;
+// 			//	}
+// 			bDoorLockon = true;
+// 		}
+// 		else
+// 		{
+// 			bDoorLockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 10;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		bDoorLockon = false;
+// 	}
 
-	// 扉２
-	if (!bLockon && bDoorOpen[1] == false)
-	{
-		// 座標の調整
-		Vec3 temp = door2Pos;
-		temp.x += 0.0;
-		temp.y += 1.3 + markHigh;
-		temp.z -= 0.2;
+// 	// 扉２
+// 	if (!bLockon && bDoorOpen[1] == false)
+// 	{
+// 		// 座標の調整
+// 		Vec3 temp = door2Pos;
+// 		temp.x += 0.0;
+// 		temp.y += 1.3 + markHigh;
+// 		temp.z -= 0.2;
 
-		auto [a, b, c, d] = door2Controller.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		// TODO インベントリから開ける
-		//if (a == true && bDoorOpen[1] == false)
-		//{
-		//	// 扉を開いた
-		//	bDoorOpen[1] = true;
-		//	toDoor2PosX = door2Pos.x + 1.49;	// 移動で開ける
-		//	bgmStopCount = c;
-		//}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 33;
-			bDoor2Lockon = true;
-		}
-		else
-		{
-			bDoor2Lockon = false;
-		}
-		if (d)
-		{
-			message = 33;
-			priorityMessageCount = 0;
-		}
-	}
-	else
-	{
-		bDoor2Lockon = false;
-	}
+// 		auto [a, b, c, d] = door2Controller.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		// TODO インベントリから開ける
+// 		//if (a == true && bDoorOpen[1] == false)
+// 		//{
+// 		//	// 扉を開いた
+// 		//	bDoorOpen[1] = true;
+// 		//	toDoor2PosX = door2Pos.x + 1.49;	// 移動で開ける
+// 		//	bgmStopCount = c;
+// 		//}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 33;
+// 			bDoor2Lockon = true;
+// 		}
+// 		else
+// 		{
+// 			bDoor2Lockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 33;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		bDoor2Lockon = false;
+// 	}
 
-	// 扉３（木の扉）
-	if (!bLockon)
-	{
-		Vec3 temp = door3Pos;
-		temp.y += markHigh;
+// 	// 扉３（木の扉）
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = door3Pos;
+// 		temp.y += markHigh;
 
-		auto [a, b, c, d] = door3Controller.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			if (bStoneclear && bDrawerClear == false)
-			{
-				// 石板だけクリア
-				bookingMessage = 75;
-			}
-			else if (bStoneclear == false && bDrawerClear)
-			{
-				// 引き出しだけクリア
-				bookingMessage = 76;
-			}
-			else
-			{
-				// 何もクリアしていない
-				bookingMessage = 30;
-			}
-			bDoor3Lockon = true;
-		}
-		else
-		{
-			bDoor3Lockon = false;
-		}
-		if (d)
-		{
-			if (bStoneclear && bDrawerClear)
-			{
-				// メッセージを消す
-				message = 3;
+// 		auto [a, b, c, d] = door3Controller.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			if (bStoneclear && bDrawerClear == false)
+// 			{
+// 				// 石板だけクリア
+// 				bookingMessage = 75;
+// 			}
+// 			else if (bStoneclear == false && bDrawerClear)
+// 			{
+// 				// 引き出しだけクリア
+// 				bookingMessage = 76;
+// 			}
+// 			else
+// 			{
+// 				// 何もクリアしていない
+// 				bookingMessage = 30;
+// 			}
+// 			bDoor3Lockon = true;
+// 		}
+// 		else
+// 		{
+// 			bDoor3Lockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			if (bStoneclear && bDrawerClear)
+// 			{
+// 				// メッセージを消す
+// 				message = 3;
 
-			//	playSEandBGMStop(U"WoodDoor_Close");
-				playSEandBGMStop(U"WoodDoor_open01");
+// 			//	playSEandBGMStop(U"WoodDoor_Close");
+// 				playSEandBGMStop(U"WoodDoor_open01");
 				
-			//	inventoryOnOff();
-
-				// ゲームクリア（仮）
-				changeScene(State::ToBeContinued);
-			}
-			else if (bStoneclear && bDrawerClear == false)
-			{
-				// 石板だけクリア
-				message = 75;
-				if (messagePattern % 2 == 1 || messagePattern == -1)
-				{
-					playSE(U"WoodDoor_Close");
-				}
-			}
-			else if (bStoneclear == false && bDrawerClear)
-			{
-				// 引き出しだけクリア
-				message = 76;
-				if (messagePattern % 2 == 1 || messagePattern == -1)
-				{
-					playSE(U"WoodDoor_Close");
-				}
-			}
-			else
-			{
-				// 何もクリアしていない
-				message = 30;
-				if (messagePattern % 2 == 1 || messagePattern == -1)
-				{
-					playSE(U"WoodDoor_Close");
-				}
-			}
-			priorityMessageCount = 0;
-		}
-	}
-	else
-	{
-		bDoor3Lockon = false;
-	}
-
-	// 扉４（右上の部屋）
-	if (!bLockon)
-	{
-		Vec3 temp = door4Pos;
-		temp.y += markHigh;
-		temp.z += 0.05;
-
-		auto [a, b, c, d] = door2Controller.update(
-			temp,
-			camera,
-			curCameraPosition,
-			//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 33;
-		}
-		if (d)
-		{
-			message = 33;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 羊皮紙
-	if (!bLockon)
-	{
-		Vec3 temp = parchmentPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = parchmentController.update(
-			temp,
-			camera,
-			curCameraPosition, 
-		//	ray,
-			markPosition,
-			2,
-			true
-		);
-		if (a == true && bParchmentHave == false)
-		{
-			// アイテムを取った
-			items << Parchment;
-			bParchmentHave = a;
-			bgmStopCount = c;
-
-			priorityMessage = 81;
-			priorityMessageCount = priorityMessageCountMax;
-		}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 54;
-		}
-		if (d)
-		{
-			message = 54;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// トイレ２（左上の部屋）
-	if (!bLockon)
-	{
-		Vec3 temp = toilet2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = toiletController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 32;
-			bToilet2Lockon = true;
-		}
-		else
-		{
-			bToilet2Lockon = false;
-		}
-		if (d)
-		{
-			message = 32;
-			priorityMessageCount = 0;
-		}
-	}
-	else
-	{
-		bToilet2Lockon = false;
-	}
-
-	// 暖炉（火が弱い）
-	if (!bLockon && bFireplaceStrong == false)
-	{
-		Vec3 temp = fireplacePos;
-		temp.y += markHigh;
-
-		//	auto [a, b, c, d] = fireplaceController.update(fireplacePos, camera, m_eyePosition, ray, MarkPosition, 0, bPokerHave);
-		auto [a, b, c, d] = fireplaceController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			//	ray,
-			markPosition,
-			0,
-			false
-		);
-		//if (a == true)
-		//{
-		//	// 火が強くなった
-		//	bFireplaceStrong = true;
-		//}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 18;
-			bFireplaceLockon = true;
-		}
-		else
-		{
-			bFireplaceLockon = false;
-		}
-		if (d)
-		{
-			message = 18;
-			priorityMessageCount = 0;
-		}
-	}
-	else
-	{
-		bFireplaceLockon = false;
-	}
-
-	// 汚れた布
-	if (!bLockon && bDirtyClothHave == false)
-	{
-		Vec3 temp = dirtyClothPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = dirtyClothController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			//	ray, 
-			markPosition,
-			0,
-			true
-		);
-		if (a == true)
-		{
-			// 汚れた布を取得
-			bDirtyClothHave = true;
-			items << DirtyCloth;
-			bgmStopCount = c;
-
-			priorityMessage = 83;
-			priorityMessageCount = priorityMessageCountMax;
-		}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 26;
-		}
-		if (d)
-		{
-			message = 26;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 引き出し（本体）
-	if (!bLockon && bDrawerMode == false)
-	{
-		Vec3 temp = drawerPos[0];
-		temp.x += 0.0;
-		temp.y += 0.4 + markHigh;
-	//	temp.z -= 0.3;
-		temp.z -= 0.5;
-
-		auto [a, b, c, d] = drawerController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			0,
-			false
-		);
-
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-
-			if (bDrawerClear == false)
-			{
-				// クリアしていない
-				bookingMessage = 9;
-			}
-			else
-			{
-				// クリアしている
-				bookingMessage = 70;
-			}
-		}
-
-		if (d)
-		{
-			if (bDrawerClear == false)
-			{
-				// クリックした
-				bDrawerMode = true;
-
-				// カメラの座標と向きを調整
-				toCameraPos.x = 16.3;
-				//	toCameraPos.y = 0.65;
-				//	toCameraPos.y = 1.58;
-			//	toCameraPos.y = 1.1;
-			//	toCameraPos.y = 0.6;
-			//	toCameraPos.y = 0.8;
-				toCameraPos.y = 1;
-				//	toCameraPos.z = 0.3;
-				//	toCameraPos.z = 1.2;
-				//toCameraPos.z = 0.55;
-				toCameraPos.z = 0.4;
-
-				//	to_m_focusY = 0;
-				//to_m_focusY = -0.53;
-			//	to_m_focusY = -0.2;
-				to_m_focusY = -0.6;
-				phiController.setCameraPosition(toCameraPos);
-				phiController.setFocusPosition(drawerPos[0]);
-
-				priorityMessage = 88;
-				priorityMessageCount = priorityMessageCountMax;
-
-				drawerIndex = 0;
-			}
-			else
-			{
-				// クリア後
-				message = 70;
-				priorityMessageCount = 0;
-			}
-		}
-	}
-
-	// 石板（本体）
-	if (!bLockon && bStoneMode == false)
-	{
-		Vec3 temp = stonePos[0];
-		temp.x -= 0.22;
-		//temp.y += markHigh;
-		temp.y += 0.1;
-		//	temp.y += 0.5;
-		//	temp.z -= 0.3;
-
-		auto [a, b, c, d] = stoneController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			0,
-			false
-		);
-
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			if (bStoneclear == false)
-			{
-				// クリアしていない
-				bookingMessage = 59;
-			}
-			else
-			{
-				// クリアしている
-				bookingMessage = 70;
-			}
-		}
-
-		if (d)
-		{
-			if (bStoneclear == false)
-			{
-				// クリアしていない
-
-				// クリックした
-				bStoneMode = true;
-
-				// カメラの座標と向きを調整
-				toCameraPos.x = 19.25;
-				toCameraPos.y = 1.5;
-				toCameraPos.z = -2.18;
-
-				to_m_focusY = -0.53;
-
-				phiController.setCameraPosition(toCameraPos);
-				phiController.setFocusPosition(stonePos[0]);
-
-				priorityMessage = 90;
-				priorityMessageCount = priorityMessageCountMax;
-
-				stoneIndex = 0;
-			}
-			else
-			{
-				// クリアしている
-				message = 70;
-				priorityMessageCount = 0;
-			}
-		}
-	}
-
-	//=======================
-	// ↓優先度低め
-	//=======================
-
-	// 自分のベッド
-	if (!bLockon)
-	{
-		Vec3 temp = bedPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = bedController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 11;
-		}
-		if (d)
-		{
-			message = 11;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 他人のベッド2
-	if (!bLockon)
-	{
-		Vec3 temp = bed2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = bed2Controller.update(
-			temp,
-			camera,
-			curCameraPosition, 
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 14;
-		}
-		if (d)
-		{
-			message = 14;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 他人のベッド3
-	if (!bLockon)
-	{
-		Vec3 temp = bed3Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = bed3Controller.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray, 
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 14;
-		}
-		if (d)
-		{
-			message = 14;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 他人のベッド4
-	if (!bLockon)
-	{
-		Vec3 temp = bed4Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = bed4Controller.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 14;
-		}
-		if (d)
-		{
-			message = 14;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 古いベッド
-	if (!bLockon)
-	{
-		Vec3 temp = oldBedPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = oldBedController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1, 
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 15;
-		}
-		if (d)
-		{
-			message = 15;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// トイレ
-	if (!bLockon)
-	{
-		Vec3 temp = toiletPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = toiletController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 12;
-		}
-		if (d)
-		{
-			message = 12;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 棚
-	if (!bLockon)
-	{
-		Vec3 temp = shelfPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = shelfController.update(
-			temp,
-			camera, 
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1, 
-			false
-		);
-		//if (a == true && bWire == false)
-		//{
-		//	// 針金が取れる
-		////	items << Shelf;
-		//	bWire = true;
-		//	bgmStopCount = c;
-		//	scenario = 4;
-		//	bHangerFind = true;
-		//}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			//if (bKeyHave)
-			//{
-			//	// 鍵を持っている
-			//	message = 17;
-			//}
-			//else
-			//{
-				// 鍵を持っていない
-			bookingMessage = 13;
-			//}
-		}
-		if (d)
-		{
-			message = 13;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 壁
-	//if (!bLockon && !bWall && scenario == 2)
-	//{
-	//	auto [a, b, c, d] = wallController.update(wallPos, camera, m_eyePosition, ray, markPosition, 0, true);
-	//	if (a == true && bParchmentHave == false)
-	//	{
-	//		// 鍵が現れる
-	//		bWall = true;
-	//		bgmStopCount = c;
-	//	}
-	//	if (b)
-	//	{
-	//		// 見ている
-	//		bLockon = b;
-	//		message = 16;
-	//	}
-	//}
-
-	// 暖炉（火が強い）
-	// オミット
-	//if (!bLockon && bFireplaceStrong)
-	//{
-	//	auto [a, b, c, d] = fireplaceStrongController.update(fireplacePos, camera, m_eyePosition, ray, markPosition, -1, false);
-	//	if (b)
-	//	{
-	//		// 見ている
-	//		bLockon = b;
-	//		message = 21;
-	//		bFireplaceStrongLockon = true;
-	//	}
-	//	else
-	//	{
-	//		bFireplaceStrongLockon = false;
-	//	}
-	//}
-	//else
-	//{
-	//	bFireplaceStrongLockon = false;
-	//}
-
-	// 樽
-	if (!bLockon)
-	{
-		Vec3 temp = barrelPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = barrelController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 25;
-		}
-		if (d)
-		{
-			message = 25;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 樽2
-	if (!bLockon)
-	{
-		Vec3 temp = barrel2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = barrelController.update(
-			temp,
-			camera, 
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 25;
-		}
-		if (d)
-		{
-			message = 25;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 樽3
-	if (!bLockon)
-	{
-		Vec3 temp = barrel3Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = barrelController.update(
-			temp,
-			camera, 
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1, 
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 25;
-			//	message = 27;
-
-			//	bBarrel3Lockon = true;
-		}
-		else
-		{
-			//	bBarrel3Lockon = false;
-		}
-		if (d)
-		{
-			message = 25;
-			priorityMessageCount = 0;
-		}
-	}
-	else
-	{
-		//	bBarrel3Lockon = false;
-	}
-
-	// 教団の紋章
-	if (!bLockon)
-	{
-		Vec3 temp = emblemPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = barrelController.update(
-			temp,
-			camera,
-			curCameraPosition,
-		//	ray,
-			markPosition,
-			-1, 
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 23;
-		}
-		if (d)
-		{
-			message = 23;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 暖炉上の絵画
-	if (!bLockon)
-	{
-		Vec3 temp = painting2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = paintingController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			//	ray,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 92;
-		}
-		if (d)
-		{
-			message = 92;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 詰所の壁際の椅子1
-	if (!bLockon)
-	{
-		Vec3 temp = chairPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 65;
-		}
-		if (d)
-		{
-			message = 65;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 詰所の壁際の椅子2
-	if (!bLockon)
-	{
-		Vec3 temp = chair2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 65;
-		}
-		if (d)
-		{
-			message = 65;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 詰所の壁際の椅子3
-	if (!bLockon)
-	{
-		Vec3 temp = chair3Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 65;
-		}
-		if (d)
-		{
-			message = 65;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 詰所の壁際の椅子4
-	if (!bLockon)
-	{
-		Vec3 temp = chair4Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 65;
-		}
-		if (d)
-		{
-			message = 65;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 詰所のテーブル
-	if (!bLockon)
-	{
-		Vec3 temp = tablePos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 66;
-		}
-		if (d)
-		{
-			message = 66;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 木箱
-	if (!bLockon)
-	{
-		Vec3 temp = woodenBoxPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 67;
-		}
-		if (d)
-		{
-			message = 67;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 木箱2
-	if (!bLockon)
-	{
-		Vec3 temp = woodenBox2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 67;
-		}
-		if (d)
-		{
-			message = 67;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 木箱3
-	if (!bLockon)
-	{
-		Vec3 temp = woodenBox3Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = chairController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 67;
-		}
-		if (d)
-		{
-			message = 67;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 手錠1
-	if (!bLockon)
-	{
-		Vec3 temp = handcuffsPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = handcuffsController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 72;
-		}
-		if (d)
-		{
-			message = 72;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 手錠2
-	if (!bLockon)
-	{
-		Vec3 temp = handcuffs2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = handcuffsController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 72;
-		}
-		if (d)
-		{
-			message = 72;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 絵画
-	if (!bLockon)
-	{
-		Vec3 temp = paintingPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = paintingController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 73;
-		}
-		if (d)
-		{
-			message = 73;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 小さい棚
-	if (!bLockon)
-	{
-		Vec3 temp = smallShelfPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = smallShelfController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 74;
-		}
-		if (d)
-		{
-			message = 74;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 小さい棚2
-	if (!bLockon)
-	{
-		Vec3 temp = smallShelf2Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = smallShelfController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 74;
-		}
-		if (d)
-		{
-			message = 74;
-			priorityMessageCount = 0;
-		}
-	}
-
-	// 小さい棚3
-	if (!bLockon)
-	{
-		Vec3 temp = smallShelf3Pos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = smallShelfController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 74;
-		}
-		if (d)
-		{
-			message = 74;
-			priorityMessageCount = 0;
-		}
-	}
-
-	//  脱出の扉の左にボード
-	if (!bLockon)
-	{
-		Vec3 temp = boardPos;
-		temp.y += markHigh;
-
-		auto [a, b, c, d] = boardController.update(
-			temp,
-			camera,
-			curCameraPosition,
-			markPosition,
-			-1,
-			false
-		);
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 93;
-		}
-		if (d)
-		{
-			message = 93;
-			priorityMessageCount = 0;
-		}
-	}
+// 			//	inventoryOnOff();
+
+// 				// ゲームクリア（仮）
+// 				changeScene(State::ToBeContinued);
+// 			}
+// 			else if (bStoneclear && bDrawerClear == false)
+// 			{
+// 				// 石板だけクリア
+// 				message = 75;
+// 				if (messagePattern % 2 == 1 || messagePattern == -1)
+// 				{
+// 					playSE(U"WoodDoor_Close");
+// 				}
+// 			}
+// 			else if (bStoneclear == false && bDrawerClear)
+// 			{
+// 				// 引き出しだけクリア
+// 				message = 76;
+// 				if (messagePattern % 2 == 1 || messagePattern == -1)
+// 				{
+// 					playSE(U"WoodDoor_Close");
+// 				}
+// 			}
+// 			else
+// 			{
+// 				// 何もクリアしていない
+// 				message = 30;
+// 				if (messagePattern % 2 == 1 || messagePattern == -1)
+// 				{
+// 					playSE(U"WoodDoor_Close");
+// 				}
+// 			}
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		bDoor3Lockon = false;
+// 	}
+
+// 	// 扉４（右上の部屋）
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = door4Pos;
+// 		temp.y += markHigh;
+// 		temp.z += 0.05;
+
+// 		auto [a, b, c, d] = door2Controller.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 33;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 33;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 羊皮紙
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = parchmentPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = parchmentController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition, 
+// 		//	ray,
+// 			markPosition,
+// 			2,
+// 			true
+// 		);
+// 		if (a == true && bParchmentHave == false)
+// 		{
+// 			// アイテムを取った
+// 			items << Parchment;
+// 			bParchmentHave = a;
+// 			bgmStopCount = c;
+
+// 			priorityMessage = 81;
+// 			priorityMessageCount = priorityMessageCountMax;
+// 		}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 54;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 54;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// トイレ２（左上の部屋）
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = toilet2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = toiletController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 32;
+// 			bToilet2Lockon = true;
+// 		}
+// 		else
+// 		{
+// 			bToilet2Lockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 32;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		bToilet2Lockon = false;
+// 	}
+
+// 	// 暖炉（火が弱い）
+// 	if (!bLockon && bFireplaceStrong == false)
+// 	{
+// 		Vec3 temp = fireplacePos;
+// 		temp.y += markHigh;
+
+// 		//	auto [a, b, c, d] = fireplaceController.update(fireplacePos, camera, m_eyePosition, ray, MarkPosition, 0, bPokerHave);
+// 		auto [a, b, c, d] = fireplaceController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			//	ray,
+// 			markPosition,
+// 			0,
+// 			false
+// 		);
+// 		//if (a == true)
+// 		//{
+// 		//	// 火が強くなった
+// 		//	bFireplaceStrong = true;
+// 		//}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 18;
+// 			bFireplaceLockon = true;
+// 		}
+// 		else
+// 		{
+// 			bFireplaceLockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 18;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		bFireplaceLockon = false;
+// 	}
+
+// 	// 汚れた布
+// 	if (!bLockon && bDirtyClothHave == false)
+// 	{
+// 		Vec3 temp = dirtyClothPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = dirtyClothController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			//	ray, 
+// 			markPosition,
+// 			0,
+// 			true
+// 		);
+// 		if (a == true)
+// 		{
+// 			// 汚れた布を取得
+// 			bDirtyClothHave = true;
+// 			items << DirtyCloth;
+// 			bgmStopCount = c;
+
+// 			priorityMessage = 83;
+// 			priorityMessageCount = priorityMessageCountMax;
+// 		}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 26;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 26;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 引き出し（本体）
+// 	if (!bLockon && bDrawerMode == false)
+// 	{
+// 		Vec3 temp = drawerPos[0];
+// 		temp.x += 0.0;
+// 		temp.y += 0.4 + markHigh;
+// 	//	temp.z -= 0.3;
+// 		temp.z -= 0.5;
+
+// 		auto [a, b, c, d] = drawerController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			0,
+// 			false
+// 		);
+
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+
+// 			if (bDrawerClear == false)
+// 			{
+// 				// クリアしていない
+// 				bookingMessage = 9;
+// 			}
+// 			else
+// 			{
+// 				// クリアしている
+// 				bookingMessage = 70;
+// 			}
+// 		}
+
+// 		if (d)
+// 		{
+// 			if (bDrawerClear == false)
+// 			{
+// 				// クリックした
+// 				bDrawerMode = true;
+
+// 				// カメラの座標と向きを調整
+// 				toCameraPos.x = 16.3;
+// 				//	toCameraPos.y = 0.65;
+// 				//	toCameraPos.y = 1.58;
+// 			//	toCameraPos.y = 1.1;
+// 			//	toCameraPos.y = 0.6;
+// 			//	toCameraPos.y = 0.8;
+// 				toCameraPos.y = 1;
+// 				//	toCameraPos.z = 0.3;
+// 				//	toCameraPos.z = 1.2;
+// 				//toCameraPos.z = 0.55;
+// 				toCameraPos.z = 0.4;
+
+// 				//	to_m_focusY = 0;
+// 				//to_m_focusY = -0.53;
+// 			//	to_m_focusY = -0.2;
+// 				to_m_focusY = -0.6;
+// 				phiController.setCameraPosition(toCameraPos);
+// 				phiController.setFocusPosition(drawerPos[0]);
+
+// 				priorityMessage = 88;
+// 				priorityMessageCount = priorityMessageCountMax;
+
+// 				drawerIndex = 0;
+// 			}
+// 			else
+// 			{
+// 				// クリア後
+// 				message = 70;
+// 				priorityMessageCount = 0;
+// 			}
+// 		}
+// 	}
+
+// 	// 石板（本体）
+// 	if (!bLockon && bStoneMode == false)
+// 	{
+// 		Vec3 temp = stonePos[0];
+// 		temp.x -= 0.22;
+// 		//temp.y += markHigh;
+// 		temp.y += 0.1;
+// 		//	temp.y += 0.5;
+// 		//	temp.z -= 0.3;
+
+// 		auto [a, b, c, d] = stoneController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			0,
+// 			false
+// 		);
+
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			if (bStoneclear == false)
+// 			{
+// 				// クリアしていない
+// 				bookingMessage = 59;
+// 			}
+// 			else
+// 			{
+// 				// クリアしている
+// 				bookingMessage = 70;
+// 			}
+// 		}
+
+// 		if (d)
+// 		{
+// 			if (bStoneclear == false)
+// 			{
+// 				// クリアしていない
+
+// 				// クリックした
+// 				bStoneMode = true;
+
+// 				// カメラの座標と向きを調整
+// 				toCameraPos.x = 19.25;
+// 				toCameraPos.y = 1.5;
+// 				toCameraPos.z = -2.18;
+
+// 				to_m_focusY = -0.53;
+
+// 				phiController.setCameraPosition(toCameraPos);
+// 				phiController.setFocusPosition(stonePos[0]);
+
+// 				priorityMessage = 90;
+// 				priorityMessageCount = priorityMessageCountMax;
+
+// 				stoneIndex = 0;
+// 			}
+// 			else
+// 			{
+// 				// クリアしている
+// 				message = 70;
+// 				priorityMessageCount = 0;
+// 			}
+// 		}
+// 	}
+
+// 	//=======================
+// 	// ↓優先度低め
+// 	//=======================
+
+// 	// 自分のベッド
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = bedPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = bedController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 11;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 11;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 他人のベッド2
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = bed2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = bed2Controller.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition, 
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 14;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 14;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 他人のベッド3
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = bed3Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = bed3Controller.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray, 
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 14;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 14;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 他人のベッド4
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = bed4Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = bed4Controller.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 14;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 14;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 古いベッド
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = oldBedPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = oldBedController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1, 
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 15;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 15;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// トイレ
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = toiletPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = toiletController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 12;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 12;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 棚
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = shelfPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = shelfController.update(
+// 			temp,
+// 			camera, 
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1, 
+// 			false
+// 		);
+// 		//if (a == true && bWire == false)
+// 		//{
+// 		//	// 針金が取れる
+// 		////	items << Shelf;
+// 		//	bWire = true;
+// 		//	bgmStopCount = c;
+// 		//	scenario = 4;
+// 		//	bHangerFind = true;
+// 		//}
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			//if (bKeyHave)
+// 			//{
+// 			//	// 鍵を持っている
+// 			//	message = 17;
+// 			//}
+// 			//else
+// 			//{
+// 				// 鍵を持っていない
+// 			bookingMessage = 13;
+// 			//}
+// 		}
+// 		if (d)
+// 		{
+// 			message = 13;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 壁
+// 	//if (!bLockon && !bWall && scenario == 2)
+// 	//{
+// 	//	auto [a, b, c, d] = wallController.update(wallPos, camera, m_eyePosition, ray, markPosition, 0, true);
+// 	//	if (a == true && bParchmentHave == false)
+// 	//	{
+// 	//		// 鍵が現れる
+// 	//		bWall = true;
+// 	//		bgmStopCount = c;
+// 	//	}
+// 	//	if (b)
+// 	//	{
+// 	//		// 見ている
+// 	//		bLockon = b;
+// 	//		message = 16;
+// 	//	}
+// 	//}
+
+// 	// 暖炉（火が強い）
+// 	// オミット
+// 	//if (!bLockon && bFireplaceStrong)
+// 	//{
+// 	//	auto [a, b, c, d] = fireplaceStrongController.update(fireplacePos, camera, m_eyePosition, ray, markPosition, -1, false);
+// 	//	if (b)
+// 	//	{
+// 	//		// 見ている
+// 	//		bLockon = b;
+// 	//		message = 21;
+// 	//		bFireplaceStrongLockon = true;
+// 	//	}
+// 	//	else
+// 	//	{
+// 	//		bFireplaceStrongLockon = false;
+// 	//	}
+// 	//}
+// 	//else
+// 	//{
+// 	//	bFireplaceStrongLockon = false;
+// 	//}
+
+// 	// 樽
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = barrelPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = barrelController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 25;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 25;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 樽2
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = barrel2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = barrelController.update(
+// 			temp,
+// 			camera, 
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 25;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 25;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 樽3
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = barrel3Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = barrelController.update(
+// 			temp,
+// 			camera, 
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1, 
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 25;
+// 			//	message = 27;
+
+// 			//	bBarrel3Lockon = true;
+// 		}
+// 		else
+// 		{
+// 			//	bBarrel3Lockon = false;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 25;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+// 	else
+// 	{
+// 		//	bBarrel3Lockon = false;
+// 	}
+
+// 	// 教団の紋章
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = emblemPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = barrelController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 		//	ray,
+// 			markPosition,
+// 			-1, 
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 23;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 23;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 暖炉上の絵画
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = painting2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = paintingController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			//	ray,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 92;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 92;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 詰所の壁際の椅子1
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = chairPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 65;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 65;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 詰所の壁際の椅子2
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = chair2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 65;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 65;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 詰所の壁際の椅子3
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = chair3Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 65;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 65;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 詰所の壁際の椅子4
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = chair4Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 65;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 65;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 詰所のテーブル
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = tablePos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 66;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 66;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 木箱
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = woodenBoxPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 67;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 67;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 木箱2
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = woodenBox2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 67;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 67;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 木箱3
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = woodenBox3Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = chairController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 67;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 67;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 手錠1
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = handcuffsPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = handcuffsController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 72;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 72;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 手錠2
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = handcuffs2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = handcuffsController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 72;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 72;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 絵画
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = paintingPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = paintingController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 73;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 73;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 小さい棚
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = smallShelfPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = smallShelfController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 74;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 74;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 小さい棚2
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = smallShelf2Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = smallShelfController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 74;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 74;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	// 小さい棚3
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = smallShelf3Pos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = smallShelfController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 74;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 74;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
+
+// 	//  脱出の扉の左にボード
+// 	if (!bLockon)
+// 	{
+// 		Vec3 temp = boardPos;
+// 		temp.y += markHigh;
+
+// 		auto [a, b, c, d] = boardController.update(
+// 			temp,
+// 			camera,
+// 			curCameraPosition,
+// 			markPosition,
+// 			-1,
+// 			false
+// 		);
+// 		if (b)
+// 		{
+// 			// 見ている
+// 			bLockon = b;
+// 			bookingMessage = 93;
+// 		}
+// 		if (d)
+// 		{
+// 			message = 93;
+// 			priorityMessageCount = 0;
+// 		}
+// 	}
 
 }

@@ -222,19 +222,15 @@ private:
 	// const Model modelMemo{ U"assets/models/Memo/memo.obj" };
 
 	// モデルのpath
+	const String roomModelPath = U"assets/obj/TestMap.obj";
+
+	// old
 	const String modelPath = U"assets/models/Room/EV_Room01.obj";
 	const String modelDoorPath = U"assets/models/Room/Gimmick_FenceDoor01.obj";
 	const String modelRustedKeyPath = U"assets/models/Key/Gimmick_RustedKey01.obj";
 	const String modelIronKeyPath = U"assets/models/Key/Gimmick_IronKey01.obj";
 	const String modelBreadPath = U"assets/models/Bread/Gimmick_bread01.obj";
 	const String modelPokerPath = U"assets/models/Poker/Gimmick_Poker01.obj";
-	//const String modelDrawerChainPath = U"assets/models/Drawer/Gimmick_Drawer01_Chain.obj";
-	//const String modelDrawerEyePath = U"assets/models/Drawer/Gimmick_Drawer01_Eye.obj";
-	//const String modelDrawerFeatherPath = U"assets/models/Drawer/Gimmick_Drawer01_Feather.obj";
-	//const String modelDrawerFlowerPath = U"assets/models/Drawer/Gimmick_Drawer01_Flower.obj";
-	//const String modelDrawerNonPath = U"assets/models/Drawer/Gimmick_Drawer01_Non.obj";
-	//const String modelDrawerSnakePath = U"assets/models/Drawer/Gimmick_Drawer01_Snake.obj";
-	//const String modelShelfPath = U"assets/models/Drawer/Gimmick_Shelf01.obj";
 	const String modelDrawerChainPath   = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Chain.obj";
 	const String modelDrawerEyePath     = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Eye.obj";
 	const String modelDrawerFeatherPath = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Feather.obj";
@@ -258,30 +254,33 @@ private:
 	const String modelDrawerTestPath = U"assets/models/Drawer/Gimmick_Drawer_Test.obj";
 
 	// modelの遅延ロード用ポインタ
-	mutable std::unique_ptr<Model> model;
-	mutable std::unique_ptr<Model> modelDoor;
-	mutable std::unique_ptr<Model> modelRustedKey;
-	mutable std::unique_ptr<Model> modelIronKey;
-	mutable std::unique_ptr<Model> modelBread;
-	mutable std::unique_ptr<Model> modelPoker;
-	mutable std::unique_ptr<Model> modelDrawerChain;
-	mutable std::unique_ptr<Model> modelDrawerEye;
-	mutable std::unique_ptr<Model> modelDrawerFeather;
-	mutable std::unique_ptr<Model> modelDrawerFlower;
-	mutable std::unique_ptr<Model> modelDrawerNon;
-	mutable std::unique_ptr<Model> modelDrawerSnake;
-	mutable std::unique_ptr<Model> modelShelf;
+	mutable std::unique_ptr<Model> roomModel;
+
+	// old
+	//mutable std::unique_ptr<Model> model;
+	// mutable std::unique_ptr<Model> modelDoor;
+	// mutable std::unique_ptr<Model> modelRustedKey;
+	// mutable std::unique_ptr<Model> modelIronKey;
+	// mutable std::unique_ptr<Model> modelBread;
+	// mutable std::unique_ptr<Model> modelPoker;
+	// mutable std::unique_ptr<Model> modelDrawerChain;
+	// mutable std::unique_ptr<Model> modelDrawerEye;
+	// mutable std::unique_ptr<Model> modelDrawerFeather;
+	// mutable std::unique_ptr<Model> modelDrawerFlower;
+	// mutable std::unique_ptr<Model> modelDrawerNon;
+	// mutable std::unique_ptr<Model> modelDrawerSnake;
+	// mutable std::unique_ptr<Model> modelShelf;
 	mutable std::unique_ptr<Model> modelExclamationMark;
-	mutable std::unique_ptr<Model> modelParchment;
-	mutable std::unique_ptr<Model> modelHanger;
-	mutable std::unique_ptr<Model> modelDirtyCloth;
-	mutable std::unique_ptr<Model> modelMemo;
-	mutable std::unique_ptr<Model> modelStoneBase;
-	mutable std::unique_ptr<Model> modelStoneBlue;
-	mutable std::unique_ptr<Model> modelStoneGreen;
-	mutable std::unique_ptr<Model> modelStoneRed;
-	mutable std::unique_ptr<Model> modelStoneYellow;
-	mutable std::unique_ptr<Model> modelDrawerTest;
+	// mutable std::unique_ptr<Model> modelParchment;
+	// mutable std::unique_ptr<Model> modelHanger;
+	// mutable std::unique_ptr<Model> modelDirtyCloth;
+	// mutable std::unique_ptr<Model> modelMemo;
+	// mutable std::unique_ptr<Model> modelStoneBase;
+	// mutable std::unique_ptr<Model> modelStoneBlue;
+	// mutable std::unique_ptr<Model> modelStoneGreen;
+	// mutable std::unique_ptr<Model> modelStoneRed;
+	// mutable std::unique_ptr<Model> modelStoneYellow;
+	// mutable std::unique_ptr<Model> modelDrawerTest;
 
 	mutable int loadCount = 0;	// リソースの読み込みカウント
 	mutable bool bLoaded = false;	// リソースが読み込まれたかどうかのフラグ
@@ -558,7 +557,16 @@ private:
 	// 脱出の扉の左にボード
 	Vec3 boardPos = {20.11, 1.44, 0.29};
 
+
+	// 大罪
+	Vec3 prideChairPos = { 0, 0.5, 11 };
+	Vec3 prideEmblemPos = { 16.39, 2.09, 1.63 };
+
 	// オブジェクトクラス
+	ObjectController prideChairController;
+	ObjectController prideEmblemController;
+
+	// old
 	ObjectController breadController;
 	ObjectController rustedKeyController;
 	ObjectController ironkeyController;
@@ -867,6 +875,10 @@ private:
 	const int MessagePatternMax = 3;
 
 //	Array<int> messageRead;
+
+	// message番号
+	const int prideChairMessage = 94;
+	const int prideEmblemMessage = 95;
 
 	// 画面下のテキスト
 	Array<String> Text =
@@ -1326,6 +1338,16 @@ private:
 		U"知と象徴、両輪の理解なしに、この扉を越えること能わず。",
 		U"",
 		U"",
+
+		// 94 傲慢の大罪の椅子
+		U"この椅子は、傲慢の大罪を象徴している。",
+		U"座る者に、特別な力を与えると言われている。",
+		U"しかし、その代償は大きい。",
+
+		// 95　傲慢の大罪のエンブレム
+		U"このエンブレムは、傲慢の大罪を象徴している。",
+		U"それは、過度な自尊心と自己中心的な行動を促すものだ。",
+		U"持つ者に、特別な力を与えると言われているが、その代償は大きい。",
 	};
 
 	// インベントリ用のテキスト
