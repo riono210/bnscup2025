@@ -189,24 +189,24 @@ void CameraTest::loadResources() const
 	// 	modelStoneYellow = std::make_unique<Model>(modelStoneYellowPath);
 	// 	Model::RegisterDiffuseTextures(*modelStoneYellow, TextureDesc::MippedSRGB);
 	// 	break;
-	// case 23:
-	// 	dummyTextView(Text);
-	// 	break;
-	// case 24:
-	// 	dummyTextView(itemText);
-	// 	break;
-	// case 25:
-	// 	dummyTextView(itemNameText);
-	// 	break;
-	// case 26:
-	// 	dummyTextView(memoText);
-	// 	break;
-	// case 27:
-	// 	dummyTextView(toastedParchmentText);
-	// 	break;
-	// case 28:
-	// 	dummyTextView(prologueText);
-	// 	break;
+	case 2:
+		dummyTextView(Text);
+		break;
+	case 3:
+		dummyTextView(itemText);
+		break;
+	case 4:
+		dummyTextView(itemNameText);
+		break;
+	case 5:
+		dummyTextView(memoText);
+		break;
+	case 6:
+		dummyTextView(toastedParchmentText);
+		break;
+	case 7:
+		dummyTextView(prologueText);
+		break;
 	// case 29:
 	// 	// BGMの読み込み
 	// 	AudioAsset(U"BGM").setVolume(0.0);
@@ -533,12 +533,6 @@ void CameraTest::debug()
 	//Print << U"[O][P]太陽光の明るさ：" << sunColor;
 
 	Print << U"[TAB]プロローグスキップ";
-
-	// 環境光
-	float globalAmbientColor = 0.01;
-
-	// 太陽光
-	float sunColor = 0.0;
 
 	//if (bDebugFlashingLight)
 	//{
@@ -3616,28 +3610,383 @@ void CameraTest::lockon()
 			message = prideChairMessage;
 			priorityMessageCount = 0;
 		}
+	}
 
-// 		if (b)
-// 		{
-// 			// 見ている
-// 			bLockon = b;
-// 			bookingMessage = 32;
-// 			bToilet2Lockon = true;
-// 		}
-// 		else
-// 		{
-// 			bToilet2Lockon = false;
-// 		}
-// 		if (d)
-// 		{
-// 			message = 32;
-// 			priorityMessageCount = 0;
-// 		}
-// 	}
-// 	else
-// 	{
-// 		bToilet2Lockon = false;
-// 	}
+	// 傲慢の絵
+	if(!bLockon)
+	{
+		Vec3 temp = pridePicturePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = pridePictureController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = pridePictureMessage;
+		}
+		if (isClick)
+		{
+			message = pridePictureMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 強欲の椅子
+	if(!bLockon)
+	{
+		Vec3 temp = greedChairPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = greedChairController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = greedChairMessage;
+		}
+		if (isClick)
+		{
+			message = greedChairMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 強欲の絵
+	if(!bLockon)
+	{
+		Vec3 temp = greedPicturePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = greedPictureController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = greedPictureMessage;
+		}
+		if (isClick)
+		{
+			message = greedPictureMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 嫉妬の椅子
+	if(!bLockon)
+	{
+		Vec3 temp = envyChairPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = envyChairController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = envyChairMessage;
+		}
+		if (isClick)
+		{
+			message = envyChairMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 嫉妬の絵
+	if(!bLockon)
+	{
+		Vec3 temp = envyPicturePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = envyPictureController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = envyPictureMessage;
+		}
+		if (isClick)
+		{
+			message = envyPictureMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 憤怒の椅子
+	if(!bLockon)
+	{
+		Vec3 temp = wrathChairPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = wrathChairController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = wrathChairMessage;
+		}
+		if (isClick)
+		{
+			message = wrathChairMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 憤怒の絵
+	if(!bLockon)
+	{
+		Vec3 temp = wrathPicturePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = wrathPictureController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = wrathPictureMessage;
+		}
+		if (isClick)
+		{
+			message = wrathPictureMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 色欲の椅子
+	if(!bLockon)
+	{
+		Vec3 temp = lustChairPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = lustChairController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = lustChairMessage;
+		}
+		if (isClick)
+		{
+			message = lustChairMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 色欲の絵
+	if(!bLockon)
+	{
+		Vec3 temp = lustPicturePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = lustPictureController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = lustPictureMessage;
+		}
+		if (isClick)
+		{
+			message = lustPictureMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 暴食の椅子
+	if(!bLockon)
+	{
+		Vec3 temp = gluttonyChairPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = gluttonyChairController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = gluttonyChairMessage;
+		}
+		if (isClick)
+		{
+			message = gluttonyChairMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 暴食の絵
+	if(!bLockon)
+	{
+		Vec3 temp = gluttonyPicturePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = gluttonyPictureController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = gluttonyPictureMessage;
+		}
+		if (isClick)
+		{
+			message = gluttonyPictureMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 怠惰の椅子
+	if(!bLockon)
+	{
+		Vec3 temp = slothChairPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = slothChairController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = slothChairMessage;
+		}
+		if (isClick)
+		{
+			message = slothChairMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
+	// 怠惰の絵
+	if(!bLockon)
+	{
+		Vec3 temp = slothPicturePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = slothPictureController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = slothPictureMessage;
+		}
+		if (isClick)
+		{
+			message = slothPictureMessage;
+			priorityMessageCount = 0;
+		}
+	}
+	
+	// 出口の扉
+	if (!bLockon)
+	{
+		Vec3 temp = exitDoorPos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = exitDoorController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = exitDoorMessage;
+		}
+		if (isClick)
+		{
+			message = exitDoorMessage;
+			priorityMessageCount = 0;
+		}
 	}
 
 	// パン

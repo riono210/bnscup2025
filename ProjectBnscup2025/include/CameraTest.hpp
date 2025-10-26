@@ -396,7 +396,7 @@ private:
 	float fireplaceB = 0;
 
 	// 環境光
-	float globalAmbientColor = -0.1;
+	float globalAmbientColor = 0.75;
 
 	// 太陽光
 	float sunColor = 0.0;
@@ -560,11 +560,44 @@ private:
 
 	// 大罪
 	Vec3 prideChairPos = { 0, 0.5, 11 };
-	Vec3 prideEmblemPos = { 16.39, 2.09, 1.63 };
+	Vec3 pridePicturePos = { 0, 1.8, 11.5 };
+
+	Vec3 greedChairPos = { 4.6, 0.5, 6.4 };
+	Vec3 greedPicturePos = { 4.6, 1.8, 6.4 };
+
+	Vec3 envyChairPos = { -4.6, 0.5, 6.4 };
+	Vec3 envyPicturePos = { -4.6, 1.8, 6.4 };
+
+	Vec3 wrathChairPos = { 4.6, 0.5, 1.3 };
+	Vec3 wrathPicturePos = { 4.6, 1.8, 1.3 };
+
+	Vec3 lustChairPos = { -4.6, 0.5, 1.3 };
+	Vec3 lustPicturePos = { -4.6, 1.8, 1.3 };
+
+	Vec3 gluttonyChairPos = { 4.6, 0.5, -3.68 };
+	Vec3 gluttonyPicturePos = { 4.6, 1.8, -3.68 };
+
+	Vec3 slothChairPos = { -4.6, 0.5, -3.68 };
+	Vec3 slothPicturePos = { -4.6, 1.8, -3.68 };
+
+	Vec3 exitDoorPos = { 0, 1, -13.5 };
 
 	// オブジェクトクラス
 	ObjectController prideChairController;
-	ObjectController prideEmblemController;
+	ObjectController pridePictureController;
+	ObjectController greedChairController;
+	ObjectController greedPictureController;
+	ObjectController envyChairController;
+	ObjectController envyPictureController;
+	ObjectController wrathChairController;
+	ObjectController wrathPictureController;
+	ObjectController lustChairController;
+	ObjectController lustPictureController;
+	ObjectController gluttonyChairController;
+	ObjectController gluttonyPictureController;
+	ObjectController slothChairController;
+	ObjectController slothPictureController;
+	ObjectController exitDoorController;
 
 	// old
 	ObjectController breadController;
@@ -878,7 +911,20 @@ private:
 
 	// message番号
 	const int prideChairMessage = 94;
-	const int prideEmblemMessage = 95;
+	const int pridePictureMessage = 95;
+	const int greedChairMessage = 96;
+	const int greedPictureMessage = 97;
+	const int envyChairMessage = 98;
+	const int envyPictureMessage = 99;
+	const int wrathChairMessage = 100;
+	const int wrathPictureMessage = 101;
+	const int lustChairMessage = 102;
+	const int lustPictureMessage = 103;
+	const int gluttonyChairMessage = 104;
+	const int gluttonyPictureMessage = 105;
+	const int slothChairMessage = 106;
+	const int slothPictureMessage = 107;
+	const int exitDoorMessage = 108;
 
 	// 画面下のテキスト
 	Array<String> Text =
@@ -1341,13 +1387,78 @@ private:
 
 		// 94 傲慢の大罪の椅子
 		U"この椅子は、傲慢の大罪を象徴している。",
-		U"座る者に、特別な力を与えると言われている。",
-		U"しかし、その代償は大きい。",
+		U"",
+		U"",
 
-		// 95　傲慢の大罪のエンブレム
-		U"このエンブレムは、傲慢の大罪を象徴している。",
-		U"それは、過度な自尊心と自己中心的な行動を促すものだ。",
-		U"持つ者に、特別な力を与えると言われているが、その代償は大きい。",
+		// 95　傲慢の大罪の絵
+		U"この絵画は、傲慢の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 96 強欲の大罪の椅子
+		U"この椅子は、強欲の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 97 強欲の大罪の絵
+		U"この絵画は、強欲の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 98 嫉妬の大罪の椅子
+		U"この椅子は、嫉妬の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 99 嫉妬の大罪の絵
+		U"この絵画は、嫉妬の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 100 憤怒の大罪の椅子
+		U"この椅子は、憤怒の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 101 憤怒の大罪の絵
+		U"この絵画は、憤怒の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 102 色欲の大罪の椅子
+		U"この椅子は、色欲の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 103 色欲の大罪の絵
+		U"この絵画は、色欲の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 104 暴食の大罪の椅子
+		U"この椅子は、暴食の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 105 暴食の大罪の絵
+		U"この絵画は、暴食の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 106 怠惰の大罪の椅子
+		U"この椅子は、怠惰の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 107 怠惰の大罪の絵
+		U"この絵画は、怠惰の大罪を象徴している。",
+		U"",
+		U"",
+
+		// 108 出口のドア
+		U"鉄製の大きな扉だ。固く閉ざされていて、びくともしない。",
+		U"ここが開ければ外に出られるのだろうか。",
+		U"",
 	};
 
 	// インベントリ用のテキスト
