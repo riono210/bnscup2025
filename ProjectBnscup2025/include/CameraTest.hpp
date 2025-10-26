@@ -222,7 +222,7 @@ private:
 	// const Model modelMemo{ U"assets/models/Memo/memo.obj" };
 
 	// モデルのpath
-	const String roomModelPath = U"assets/obj/TestMap.obj";
+	const String roomModelPath = U"assets/obj/EV_Map01.obj";
 
 	// old
 	const String modelPath = U"assets/models/Room/EV_Room01.obj";

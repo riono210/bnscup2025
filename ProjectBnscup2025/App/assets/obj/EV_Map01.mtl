@@ -1,0 +1,96 @@
+newmtl T_EV_BarrelSG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Barrel_D.png
+Ni 1.00
+newmtl T_EV_CeilSG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Ceil01_D.png
+Ni 1.00
+newmtl T_EV_Chair02SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Chair01_D.png
+Ni 1.00
+newmtl T_EV_Door01SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl T_EV_Floor01SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Floor01_D.png
+Ni 1.00
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert2SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Wall01_D.png
+Ni 1.00
+newmtl lambert2SG1
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_WoodBox02_D.png
+Ni 1.00
+newmtl lambert3SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_WoodBox01_D.png
+Ni 1.00
+newmtl lambert6SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Carpet01_D.png
+Ni 1.00
+newmtl lambert8SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_WallShelf01_D.png
+Ni 1.00
+newmtl lambert9SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Picture01_D.png
+Ni 1.00
+newmtl lambert10SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Vase01_D.png
+Ni 1.00
+newmtl lambert11SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_EV_Board01_D.png
+Ni 1.00
