@@ -3989,46 +3989,45 @@ void CameraTest::lockon()
 		}
 	}
 
-	// パン
-	if (!bLockon)
-	{
-		Vec3 temp = breadPos;
-		temp.y += markHigh;
+	// // パン
+	// if (!bLockon)
+	// {
+	// 	Vec3 temp = breadPos;
+	// 	temp.y += markHigh;
 
-		auto [a, b, c, d] = breadController.update(
-			temp,
-			camera,
-			curCameraPosition, 
-		//	ray,
-			markPosition,
-			0,
-			true
-		);
-		if (a == true && bBreadHave == false)
-		{
-			// アイテムを取った
-			items << Bread;
-			bBreadHave = a;
-			bgmStopCount = c;
+	// 	auto [a, b, c, d] = breadController.update(
+	// 		temp,
+	// 		camera,
+	// 		curCameraPosition, 
+	// 	//	ray,
+	// 		markPosition,
+	// 		0,
+	// 		true
+	// 	);
+	// 	if (a == true && bBreadHave == false)
+	// 	{
+	// 		// アイテムを取った
+	// 		items << Bread;
+	// 		bBreadHave = a;
+	// 		bgmStopCount = c;
 
-			scenario = 1;	// パンを取った後
+	// 		scenario = 1;	// パンを取った後
 
-			priorityMessage = 77;
-			priorityMessageCount = priorityMessageCountMax;
-		}
-		if (b)
-		{
-			// 見ている
-			bLockon = b;
-			bookingMessage = 50;
-		}
-		if (d)
-		{
-			message = 50;	// パンをとってしまうので、使われない
-			priorityMessageCount = 0;
-		}
-	}
-
+	// 		priorityMessage = 77;
+	// 		priorityMessageCount = priorityMessageCountMax;
+	// 	}
+	// 	if (b)
+	// 	{
+	// 		// 見ている
+	// 		bLockon = b;
+	// 		bookingMessage = 50;
+	// 	}
+	// 	if (d)
+	// 	{
+	// 		message = 50;	// パンをとってしまうので、使われない
+	// 		priorityMessageCount = 0;
+	// 	}
+	// }
 // 	// 錆びた鍵
 // 	if (!bLockon && bRustedKeyHave == false && bTutorial == false)
 // 	{
