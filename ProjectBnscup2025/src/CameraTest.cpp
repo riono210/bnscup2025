@@ -3990,6 +3990,32 @@ void CameraTest::lockon()
 		}
 	}
 
+	// 出口の扉のプレート
+	if (!bLockon)
+	{
+		Vec3 temp = exitDoorPlatePos;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = exitDoorPlateController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			-1,
+			false
+		);
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = exitDoorPlateMessage;
+		}
+		if (isClick)
+		{
+			message = exitDoorPlateMessage;
+			priorityMessageCount = 0;
+		}
+	}
+
 	// // パン
 	// if (!bLockon)
 	// {

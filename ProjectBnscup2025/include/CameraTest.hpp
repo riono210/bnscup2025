@@ -559,28 +559,29 @@ private:
 
 
 	// 大罪
-	Vec3 prideChairPos = { 0, 0.5, 11 };
-	Vec3 pridePicturePos = { 0, 1.8, 11.5 };
+	Vec3 prideChairPos = { 0.04, 0.8, 11.3 };
+	Vec3 pridePicturePos = { 0, 1.45, 11.6 };
 
-	Vec3 greedChairPos = { 4.6, 0.5, 6.4 };
-	Vec3 greedPicturePos = { 4.6, 1.8, 6.4 };
+	Vec3 greedChairPos = { 4.6, 0.8, 6.38 };
+	Vec3 greedPicturePos = { 5, 1.45, 6.38 };
 
-	Vec3 envyChairPos = { -4.6, 0.5, 6.4 };
-	Vec3 envyPicturePos = { -4.6, 1.8, 6.4 };
+	Vec3 envyChairPos = { -4.6, 0.8, 6.37 };
+	Vec3 envyPicturePos = { -5, 1.45, 6.37 };
 
-	Vec3 wrathChairPos = { 4.6, 0.5, 1.3 };
-	Vec3 wrathPicturePos = { 4.6, 1.8, 1.3 };
+	Vec3 wrathChairPos = { 4.6, 0.8, 1.32 };
+	Vec3 wrathPicturePos = { 5, 1.45, 1.31 };
 
-	Vec3 lustChairPos = { -4.6, 0.5, 1.3 };
-	Vec3 lustPicturePos = { -4.6, 1.8, 1.3 };
+	Vec3 lustChairPos = { -4.6, 0.8, 1.30 };
+	Vec3 lustPicturePos = { -5, 1.45, 1.32 };
 
-	Vec3 gluttonyChairPos = { 4.6, 0.5, -3.68 };
-	Vec3 gluttonyPicturePos = { 4.6, 1.8, -3.68 };
+	Vec3 gluttonyChairPos = { 4.6, 0.8, -3.64 };
+	Vec3 gluttonyPicturePos = { 5, 1.45, -3.64 };
 
-	Vec3 slothChairPos = { -4.6, 0.5, -3.68 };
-	Vec3 slothPicturePos = { -4.6, 1.8, -3.68 };
+	Vec3 slothChairPos = { -4.6, 0.8, -3.64 };
+	Vec3 slothPicturePos = { -5, 1.45, -3.65 };
 
 	Vec3 exitDoorPos = { 0, 1, -13.5 };
+	Vec3 exitDoorPlatePos = { -1.88, 1.2, -13.7};
 
 	// オブジェクトクラス
 	ObjectController prideChairController;
@@ -598,6 +599,7 @@ private:
 	ObjectController slothChairController;
 	ObjectController slothPictureController;
 	ObjectController exitDoorController;
+	ObjectController exitDoorPlateController;
 
 	// old
 	ObjectController breadController;
@@ -925,6 +927,7 @@ private:
 	const int slothChairMessage = 106;
 	const int slothPictureMessage = 107;
 	const int exitDoorMessage = 108;
+	const int exitDoorPlateMessage = 109;
 
 	// 画面下のテキスト
 	Array<String> Text =
@@ -1458,6 +1461,11 @@ private:
 		// 108 出口のドア
 		U"鉄製の大きな扉だ。固く閉ざされていて、びくともしない。",
 		U"ここが開ければ外に出られるのだろうか。",
+		U"",
+
+		// 108 出口のドアのプレート
+		U"扉を開けるヒントがここに記されている。",
+		U"",
 		U"",
 	};
 
