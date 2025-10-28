@@ -3563,6 +3563,7 @@ void CameraTest::viewModel()
 		//Print << U"distance" << distance;
 		//Print << U"tempSize" << tempSize;
 #endif
+		const ScopedRenderStates3D blend{ BlendState::NonPremultiplied };
 		// ビルボードの表示
 		const Mat4x4 billboardMat = camera.getInvView();
 		billboard.draw(camera.billboard(markPosition, tempSize), uvChecker);
