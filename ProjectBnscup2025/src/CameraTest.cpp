@@ -2401,12 +2401,18 @@ void CameraTest::draw() const
 
 		// TODO 共通化する
 		double lineSpacing = 96; // 行間（フォントサイズより少し大きめ）
+		double adjustLineSpacing = 64; // 2行連続の場合の行間
 
 		// 今、表示するための文字数
 		int prologueIndex = prologueCount*5;
 
 		// テキストのアルファ値
 		float a = prologueCount * 5 - (float)prologueIndex;
+
+		// 描画位置の高さ
+		double height = 0;
+
+		int emptyLineCount = 1;
 
 		for (int i = 0; i < prologueText.size(); ++i)
 		{
@@ -2415,9 +2421,44 @@ void CameraTest::draw() const
 				break;
 			}
 
+			// 空行はスキップ
+			if (prologueText[i].isEmpty())
+			{
+				emptyLineCount++;
+				continue;
+			}
+
 			double x = center.x;
-		//	double y = center.y + lineSpacing * (i - (int)prologueText.size() / 2) + 38;	// TODO 38は高さ調整のため
-			double y = center.y + lineSpacing * (i - (int)prologueText.size() / 2);
+			double spacing = adjustLineSpacing;
+
+			if (i > 0 && emptyLineCount >= 1)
+			{
+				// 改行が含まれる場合
+				spacing = lineSpacing * emptyLineCount;
+			}
+
+			if (i == 0)
+			{
+				// 最初の行は中央基準で計算
+				// 空文字列を除いた行数を計算
+				int nonEmptyLines = 0;
+				for (const auto& text : prologueText)
+				{
+					if (!text.isEmpty()) nonEmptyLines++;
+				}
+				
+				// 全体の高さを計算（文字がある行の間は半分の行間）
+				double totalHeight = lineSpacing * (nonEmptyLines - 1) / 2.0;
+				double topMargin = 40;
+				height = center.y - totalHeight + topMargin;
+			}
+			else if (i > 0)
+			{
+				height += spacing;
+			}
+
+			emptyLineCount = 0;
+			double y = height;
 
 			int num = 0;
 			int sub = 0;
