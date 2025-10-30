@@ -207,6 +207,9 @@ void CameraTest::loadResources() const
 	case 7:
 		dummyTextView(prologueText);
 		break;
+	case 8:
+		dummyTextView(pictureText);
+		break;
 	// case 29:
 	// 	// BGMの読み込み
 	// 	AudioAsset(U"BGM").setVolume(0.0);
@@ -823,7 +826,7 @@ void CameraTest::update()
 			Cursor::SetPos(center.x, center.y);
 		}
 	}
-	else if (bInventory == false)
+	else if (!bInventory || !bWatchPicture)
 	{
 		// インベントリを表示していない（通常時）
 
@@ -2187,6 +2190,19 @@ void CameraTest::update()
 		// インベントリ表示
 		viewInventory();
 	}
+	else if (bWatchPicture)
+	{
+		// 絵画を開いてから1フレーム待つ
+		if (pictureOpenFrameCount > 0)
+		{
+			pictureOpenFrameCount--;
+		}
+		else if (MouseL.down() || xboxController.buttonA.down())
+		{
+			// 閉じる
+			bWatchPicture = false;
+		}
+	}
 	else
 	{
 #if _DEBUG
@@ -2702,6 +2718,28 @@ void CameraTest::draw() const
 			double y = center.y + lineSpacing * (i - (int)clothText.size() / 2);
 
 			boldFont(clothText[i]).drawAt(
+				28,
+				{ x, y },
+				ColorF{ 1, 1, 1, 1 }
+			);
+		}
+	}
+
+	// 絵画
+	if (bWatchPicture)
+	{
+		// 半透明の黒い画像
+		Rect{ 0, 0, Scene::Width(), Scene::Height() }.draw(ColorF{ 0.0, 0.5 });
+
+		// TODO 共通化する
+		double lineSpacing = 40.0; // 行間（フォントサイズより少し大きめ）
+
+		for (int i = 0; i < pictureText[pictureIndex].size(); ++i)
+		{
+			double x = center.x;
+			double y = center.y + lineSpacing * (i - (int)pictureText[pictureIndex].size() / 2);
+
+			boldFont(pictureText[pictureIndex][i]).drawAt(
 				28,
 				{ x, y },
 				ColorF{ 1, 1, 1, 1 }
@@ -3638,7 +3676,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -3665,19 +3704,21 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = pridePictureMessage;
 		}
 		if (isClick)
 		{
-			message = pridePictureMessage;
+			bWatchPicture = true;
+			pictureIndex = 0;
 			priorityMessageCount = 0;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 
@@ -3692,7 +3733,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -3719,19 +3761,21 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = greedPictureMessage;
 		}
 		if (isClick)
 		{
-			message = greedPictureMessage;
+			bWatchPicture = true;
+			pictureIndex = 1;
 			priorityMessageCount = 0;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 
@@ -3746,7 +3790,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -3773,19 +3818,21 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = envyPictureMessage;
 		}
 		if (isClick)
 		{
-			message = envyPictureMessage;
+			bWatchPicture = true;
+			pictureIndex = 2;
 			priorityMessageCount = 0;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 
@@ -3800,7 +3847,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -3827,19 +3875,21 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = wrathPictureMessage;
 		}
 		if (isClick)
 		{
-			message = wrathPictureMessage;
+			bWatchPicture = true;
+			pictureIndex = 3;
 			priorityMessageCount = 0;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 
@@ -3854,7 +3904,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -3881,19 +3932,21 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = lustPictureMessage;
 		}
 		if (isClick)
 		{
-			message = lustPictureMessage;
+			bWatchPicture = true;
+			pictureIndex = 4;
 			priorityMessageCount = 0;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 
@@ -3908,7 +3961,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -3935,19 +3989,21 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = gluttonyPictureMessage;
 		}
 		if (isClick)
 		{
-			message = gluttonyPictureMessage;
+			bWatchPicture = true;
+			pictureIndex = 5;
 			priorityMessageCount = 0;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 
@@ -3962,7 +4018,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -3989,7 +4046,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 
 		if (isLockon)
@@ -4000,8 +4058,10 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = slothPictureMessage;
+			bWatchPicture = true;
+			pictureIndex = 6;
 			priorityMessageCount = 0;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 	
@@ -4016,7 +4076,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 		if (isLockon)
 		{
@@ -4042,7 +4103,8 @@ void CameraTest::lockon()
 			curCameraPosition,
 			markPosition,
 			-1,
-			false
+			false,
+			bWatchPicture
 		);
 		if (isLockon)
 		{

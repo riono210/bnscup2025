@@ -13,7 +13,8 @@ public:
 	//	Ray ray,
 		Vec3& MarkPosition,
 		int bgmNo,
-		bool bHave
+		bool bHave,
+		bool bWatchText
 	);
 
 private:

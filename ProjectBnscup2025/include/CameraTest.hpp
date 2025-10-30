@@ -819,6 +819,11 @@ private:
 	// シナリオ番号
 	int scenario = 0;
 
+	bool bWatchPicture = false; // 絵画を見ているかどうかのフラグ
+	int pictureIndex = -1;  // 見ている絵画の番号
+	int pictureOpenFrameCount = 0;  // 絵画を開いてからのフレーム数
+
+	// old
 	// 錆びた鍵を持っている
 	bool bRustedKeyHave = false;
 
@@ -915,19 +920,19 @@ private:
 	const int exitDoorMessage = 94;
 	const int exitDoorPlateMessage = 95;
 
-	const int prideChairMessage = 94;
+	const int prideChairMessage = 96;
 	const int pridePictureMessage = 95;
 	const int greedChairMessage = 96;
 	const int greedPictureMessage = 97;
-	const int envyChairMessage = 98;
+	const int envyChairMessage = 96;
 	const int envyPictureMessage = 99;
-	const int wrathChairMessage = 100;
+	const int wrathChairMessage = 96;
 	const int wrathPictureMessage = 101;
-	const int lustChairMessage = 102;
+	const int lustChairMessage = 96;
 	const int lustPictureMessage = 103;
-	const int gluttonyChairMessage = 104;
+	const int gluttonyChairMessage = 96;
 	const int gluttonyPictureMessage = 105;
-	const int slothChairMessage = 106;
+	const int slothChairMessage = 96;
 	const int slothPictureMessage = 107;
 
 
@@ -1399,6 +1404,11 @@ private:
 		U"扉を開けるヒントがここに記されている。",
 		U"",
 		U"",
+
+		// 96　椅子の共通メッセージ
+		U"古びた椅子が、静かに佇んでいる。誰かが座っていた気配だけが、まだ残っている。",
+		U"",
+		U"",
 	};
 
 	// インベントリ用のテキスト
@@ -1575,6 +1585,80 @@ private:
 		U"",
 		U"",
 		U"　　「魂を、座に戻せ。」　　",
+	};
+
+	Array<Array<String>> pictureText =
+	{
+		// 0 傲慢
+		{
+			U"ここには、かつて自分を王だと信じた者がいた。\n",
+			U"彼の声は誰よりも高く、命令は絶対だった。\n",
+			U"だが、やがて臣下は去り、讃える声も消えた。\n",
+			U"\n",
+			U"残されたのは、空の椅子と、\n",
+			U"自分の影にさえ背を向けた男の沈黙だけだった。\n",
+		},
+
+		// 1 強欲
+		{
+			U"ここには、金を抱えたまま眠れなかった者がいた。\n",
+			U"宝は積まれ、指先は輝きに埋もれていった。\n",
+			U"けれど、その眼は決して閉じなかった。\n",
+			U"\n",
+			U"朝が来ても、誰も座ることのない椅子だけが残り、\n",
+			U"金庫の中では、鍵がひとりでに転がっていた。\n",
+		},
+
+		// 2 嫉妬
+		{
+			U"この部屋には、もう一人いた。\n",
+			U"その人の笑顔を、壁の隙間から何度も見た。\n",
+			U"どうしてあの光は、自分には向かないのだろう。\n",
+			U"\n",
+			U"いつしか、影の中が居場所になった。\n",
+			U"そして、見つめることだけが、生きる理由になった。\n",
+		},
+
+		// 3 憤怒
+		{
+			U"ここには、壁の向こうから返事を待つ男が座っていた。\n",
+			U"誰も答えない夜が続き、\n",
+			U"やがて拳だけが言葉になった。\n",
+			U"\n",
+			U"壁は沈黙を守り、\n",
+			U"男の中で何かが壊れた。\n",
+		},
+
+		// 4 色欲
+		{
+			U"ここには、美しさを讃えられた女が座っていた。\n",
+			U"彼女は愛されるたびに、\n",
+			U"自分が削れていくのを感じていたという。\n",
+			U"\n",
+			U"それでも、誰かの眼差しがないと、\n",
+			U"生きていることさえ確かめられなかった。\n",
+		},
+
+		// 5 暴食
+		{
+			U"ここには、食べても食べても飢えていた者がいた。\n",
+			U"皿は山となり、机は崩れた。\n",
+			U"それでも、手は止まらなかった。\n",
+			U"\n",
+			U"最後に残った一口を見つめながら、\n",
+			U"彼はようやく気づいたという。\n",
+			U"――何を食べていたのか、思い出せないことに。\n",
+		},
+
+		// 6 怠惰
+		{
+			U"ここには、いつか起き上がるはずだった者がいた。\n",
+			U"ベッドは沈み、部屋は荒んでいる。\n",
+			U"この部屋の時は、とうに止まったままだ。\n",
+			U"\n",
+			U"それでも、窓の外では朝が来て、\n",
+			U"何事もなかったように、埃だけが光を受けていた。\n",
+		},
 	};
 
 	float prologueCount = 0;

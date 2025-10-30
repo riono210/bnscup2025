@@ -12,7 +12,8 @@ std::tuple<bool, bool, int, bool> ObjectController::update(
 //	Ray ray,
 	Vec3& MarkPosition,
 	int bgmNo,
-	bool bHave	// 取ることができるかどうか
+	bool bHave,	// 取ることができるかどうか
+	bool bWatchText
 )
 {
 	bool isLockon = false;
@@ -60,7 +61,7 @@ std::tuple<bool, bool, int, bool> ObjectController::update(
 		// マウスの当たり判定の描画
 	//	Box box = Box{ objPos, 0.3 }.drawFrame(ColorF{ 1, 1, 1, 1 });
 
-		if (KeyEnter.pressed() && bHave
+		if (KeyEnter.pressed() && bHave && !bWatchText
 		|| (
 		//	box.intersects(ray) &&	// Rayで取れるようにするのをやめてみる
 			MouseL.down()
