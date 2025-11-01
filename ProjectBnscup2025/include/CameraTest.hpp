@@ -941,6 +941,9 @@ private:
 	// 各要素のビット数
 	const int BITS_PER_CHAIR_CELL = 2;
 
+	// クリア判定用のマスク
+	const unsigned int ALL_COLLECTED_MASK = 0b10101010101010;
+
 	// 椅子の状態をまとめた変数
 	unsigned int chairStates = 0;
 	// どの椅子にレリックを配置したかをまとめた変数
@@ -950,6 +953,10 @@ private:
 	void setChairState(int chairIndex, ChairState state, ItemID relic);
 	ChairState getChairState(int chairIndex) const;
 	ItemID getRelicOnChair(int chairIndex) const;
+	bool clearCheck();
+
+	// クリアフラグ
+	bool bClear = false;
 
 	// old
 	// 錆びた鍵を持っている
@@ -1077,6 +1084,8 @@ private:
 	const int relicNotFrontOfChairMessage = 104;
 	const int relicCollectMessage = 105;
 	const int chairAlreadySetRelicMessage = 106;
+	const int allRelicPlacedMessage = 107;
+	const int gameClearMessage = 108;
 
 	// 画面下のテキスト
 	Array<String> Text =
@@ -1602,6 +1611,17 @@ private:
 		U"ここには別の遺物が置かれている。",
 		U"",
 		U"",
+
+		// 107 全て正しい椅子にレリックを配置した
+		U"遠くで扉が開く音が聞こえた。",
+		U"",
+		U"",
+
+		// 108 dummyクリア後扉
+		U"扉は既に開いている。",
+		U"",
+		U"",
+
 	};
 
 	// インベントリ用のテキスト

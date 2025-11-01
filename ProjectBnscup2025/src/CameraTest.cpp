@@ -3338,7 +3338,10 @@ void CameraTest::viewInventory()
 				relicRotY[prideRelicNum] = chairRotY[frontOfChairIndex] + 90_deg;
 
 				// インベントリを閉じる
-				inventoryOnOff();	
+				inventoryOnOff();
+
+				// クリア判定
+				bClear = clearCheck();
 			}
 			else
 			{
@@ -3377,7 +3380,10 @@ void CameraTest::viewInventory()
 				relicRotY[greedRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
-				inventoryOnOff();	
+				inventoryOnOff();
+
+				// クリア判定
+				bClear = clearCheck();
 			}
 			else
 			{
@@ -3416,7 +3422,10 @@ void CameraTest::viewInventory()
 				relicRotY[envyRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
-				inventoryOnOff();	
+				inventoryOnOff();
+
+				// クリア判定
+				bClear = clearCheck();
 			}
 			else
 			{
@@ -3455,7 +3464,10 @@ void CameraTest::viewInventory()
 				relicRotY[wrathRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
-				inventoryOnOff();	
+				inventoryOnOff();
+
+				// クリア判定
+				bClear = clearCheck();
 			}
 			else
 			{
@@ -3494,7 +3506,10 @@ void CameraTest::viewInventory()
 				relicRotY[lustRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
-				inventoryOnOff();	
+				inventoryOnOff();
+
+				// クリア判定
+				bClear = clearCheck();
 			}
 			else
 			{
@@ -3533,7 +3548,10 @@ void CameraTest::viewInventory()
 				relicRotY[gluttonyRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
-				inventoryOnOff();	
+				inventoryOnOff();
+
+				// クリア判定
+				bClear = clearCheck();
 			}
 			else
 			{
@@ -3555,7 +3573,7 @@ void CameraTest::viewInventory()
 					priorityMessageCount = priorityMessageCountMax;
 					return;
 				}
-				
+
 				int slothRelicNum = static_cast<int>(SlothRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = slothRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3572,7 +3590,10 @@ void CameraTest::viewInventory()
 				relicRotY[slothRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
-				inventoryOnOff();	
+				inventoryOnOff();
+
+				// クリア判定
+				bClear = clearCheck();
 			}
 			else
 			{
@@ -4130,6 +4151,21 @@ ChairState CameraTest::getChairState(int chairIndex) const
 ItemID CameraTest::getRelicOnChair(int chairIndex) const
 {
 	return relicsOnChairs[chairIndex];
+}
+
+bool CameraTest::clearCheck()
+{
+    // すべてのビットが1かチェック
+    bool isClear = (chairStates & ALL_COLLECTED_MASK) == ALL_COLLECTED_MASK;
+
+	// クリアメッセージ表示
+	if (isClear)
+	{
+		priorityMessage = allRelicPlacedMessage;
+		priorityMessageCount = priorityMessageCountMax;
+	}
+
+    return isClear;
 }
 
 
@@ -4793,8 +4829,15 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = exitDoorMessage;
-			priorityMessageCount = 0;
+			if (bClear){
+				priorityMessage = gameClearMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else
+			{
+				message = exitDoorMessage;
+				priorityMessageCount = 0;
+			}
 		}
 	}
 
