@@ -61,18 +61,26 @@ struct PSLighting
 // アイテムID
 enum ItemID
 {
-	Bread,	// 0 パン
-	Memo,	// 1 手記
-	RustedKey,	// 2 錆びた鍵
-	Poker,	// 3 火かき棒
-	Parchment, // 4 羊皮紙
-	Hanger, // 5 ハンガー
-	DirtyCloth,	// 6 汚れた布
-	Cloth,	// 7 布
-	ToastedParchment,	// 8 炙った羊皮紙
-	WireKey, // 9 針金製の鍵
-	IronKey,	// 10 鉄製の鍵
-	GoldKey,	// 11 黄金の鍵（仮）
+	PrideRelic = 0,	// 0 傲慢のレリック
+	GreedRelic,	// 1 強欲のレリック
+	EnvyRelic,	// 2 嫉妬のレリック
+	WrathRelic,	// 3 憤怒のレリック
+	LustRelic,	// 4 色欲のレリック
+	GluttonyRelic,	// 5 暴食のレリック
+	SlothRelic,	// 6 怠惰のレリック
+
+	// Bread,	// 0 パン
+	// Memo,	// 1 手記
+	// RustedKey,	// 2 錆びた鍵
+	// Poker,	// 3 火かき棒
+	// Parchment, // 4 羊皮紙
+	// Hanger, // 5 ハンガー
+	// DirtyCloth,	// 6 汚れた布
+	// Cloth,	// 7 布
+	// ToastedParchment,	// 8 炙った羊皮紙
+	// WireKey, // 9 針金製の鍵
+	// IronKey,	// 10 鉄製の鍵
+	// GoldKey,	// 11 黄金の鍵（仮）
 	ItemIdMAX,
 };
 
@@ -620,6 +628,14 @@ private:
 	ObjectController exitDoorController;
 	ObjectController exitDoorPlateController;
 
+	ObjectController prideRelicController;
+	ObjectController greedRelicController;
+	ObjectController envyRelicController;
+	ObjectController wrathRelicController;
+	ObjectController lustRelicController;
+	ObjectController gluttonyRelicController;
+	ObjectController slothRelicController;
+
 	// old
 	ObjectController breadController;
 	ObjectController rustedKeyController;
@@ -767,6 +783,15 @@ private:
 	const int inventoryBig = 140;
 
 	// スプライト
+	const Texture prideRelicUiSprite{ U"assets/sprites/UI_Relic_Pride.png"};
+	const Texture greedRelicUiSprite{ U"assets/sprites/UI_Relic_Greed.png" };
+	const Texture envyRelicUiSprite{ U"assets/sprites/UI_Relic_Envy.png" };
+	const Texture wrathRelicUiSprite{ U"assets/sprites/UI_Relic_Wrath.png" };
+	const Texture lustRelicUiSprite{ U"assets/sprites/UI_Relic_Lust.png" };
+	const Texture gluttonyRelicUiSprite{ U"assets/sprites/UI_Relic_Gluttony.png" };
+	const Texture slothRelicUiSprite{ U"assets/sprites/UI_Relic_Sloth.png" };
+
+	// old
 	const Texture inventorySprite{ U"assets/sprites/BG_Inventory01.png" };
 	const Texture breadMiniSprite{ U"assets/sprites/bread_mini.png" };
 	const Texture breadBigSprite{ U"assets/sprites/bread_big.png" };
@@ -816,7 +841,7 @@ private:
 //	float markSize = 0.2;
 	float markSize = 0.1;
 //	float markHigh = 0.2;
-	float markHigh = 0.15;
+	float markHigh = 0.3;
 
 	// 取得しているアイテム一覧
 	Array<int> items;
@@ -856,6 +881,14 @@ private:
 	bool bShowGluttonyRelic = true;
 	bool bShowRelicSloth = true;
 
+	// 怠惰のレリックを持っているかどうかのフラグ
+	bool bPrideRelicHave = false;
+	bool bGreedRelicHave = false;
+	bool bEnvyRelicHave = false;
+	bool bWrathRelicHave = false;
+	bool bLustRelicHave = false;
+	bool bGluttonyRelicHave = false;
+	bool bSlothRelicHave = false;
 
 	// old
 	// 錆びた鍵を持っている
@@ -969,6 +1002,13 @@ private:
 	const int slothChairMessage = 96;
 	const int slothPictureMessage = 107;
 
+	const int prideRelicGetMessage = 97;
+	const int greedRelicGetMessage = 98;
+	const int envyRelicGetMessage = 99;
+	const int wrathRelicGetMessage = 100;
+	const int lustRelicGetMessage = 101;
+	const int gluttonyRelicGetMessage = 102;
+	const int slothRelicGetMessage = 103;
 
 	// 画面下のテキスト
 	Array<String> Text =
@@ -1443,9 +1483,46 @@ private:
 		U"古びた椅子が、静かに佇んでいる。誰かが座っていた気配だけが、まだ残っている。",
 		U"",
 		U"",
+		
+		// インベントリ用のテキスト
+		// 97 傲慢のレリック
+		U"【割れた王冠】を入手した",
+		U"",
+		U"",
+
+		// 98 強欲のレリック
+		U"【金で縁取られた小箱】を入手した",
+		U"",
+		U"",
+
+		// 99 嫉妬のレリック
+		U"【歪んだ天秤】を入手した",
+		U"",
+		U"",
+
+		// 100 憤怒のレリック
+		U"【引きちぎられた鎖】を入手した",
+		U"",
+		U"",
+
+		// 101 色欲のレリック
+		U"【香水の瓶】を入手した",
+		U"",
+		U"",
+
+		// 102 暴食のレリック
+		U"【欠けた皿】を入手した",
+		U"",
+		U"",
+
+		// 103 怠惰のレリック
+		U"【止まった懐中時計】を入手した",
+		U"",
+		U"",
 	};
 
 	// インベントリ用のテキスト
+	// ItemIDに対応
 	Array<Array<String>> itemText =
 	{
 		// 0 パン
@@ -1455,11 +1532,10 @@ private:
 			U"最後に噛みしめたのか。　　　　　　",
 		},
 
-		// 1 手記
+		// 1 強欲のレリック
 		{
-			U"誰かが書いた手記だ。　　　　　　　",
-			U"読んでみようか…。　　　　　　　　",
-			U"",
+			U"どれほど詰め込んでも、満たされることはなかった。",
+			U"掌に乗るほど小さいのに、持つ者の心を重くする。　",
 		},
 
 		// 2 鍵
@@ -1534,11 +1610,12 @@ private:
 	};
 
 	// インベントリ用のテキスト（アイテム名）
+	// ItemIDに対応
 	Array<String> itemNameText =
 	{
 		// アイテム系
 		U"パン",	// 0 
-		U"手記",	// 1 
+		U"金で縁取られた小箱",	// 1 
 		U"錆びた鍵",	// 2 
 		U"火かき棒",	// 3 
 		U"羊皮紙",	// 4 

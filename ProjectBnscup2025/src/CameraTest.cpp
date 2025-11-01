@@ -600,54 +600,62 @@ void CameraTest::drawMiniItem(
 {
 	switch (itemId)
 	{
-	case Bread:
-		// パン
-		breadMiniSprite.draw(x, y);
-		break;
-	case Memo:
-		// 手記
-		memoSprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case RustedKey:
-		// 錆びた鍵
-		rustedKeySprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case Poker:
-		// 火かき棒
-		pokerSprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case Parchment:
-		// 羊皮紙
-		parchmentSprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case Hanger:
-		// 針金
-		hangerSprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case DirtyCloth:
-		// 汚れた布
-		dirtyClothSprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case Cloth:
-		// 布
-		clothSprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case ToastedParchment:
-		// 炙った羊皮紙
-		toastedParchmentSprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case WireKey:
-		// 針金の鍵
-		wireKeySprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
-	case IronKey:
-		// 鉄製の鍵
-		ironKeyMiniSprite.draw(x, y);
-		break;
-	case GoldKey:
-		// 黄金の鍵
-		goldKeySprite.resized(inventoryMini, inventoryMini).draw(x, y);
-		break;
+		case PrideRelic:
+			// 傲慢の遺物
+			prideRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+			break;
+		case GreedRelic:
+			// 強欲の遺物
+			greedRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+			break;
+	// case Bread:
+	// 	// パン
+	// 	breadMiniSprite.draw(x, y);
+	// 	break;
+	// case Memo:
+	// 	// 手記
+	// 	memoSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case RustedKey:
+	// 	// 錆びた鍵
+	// 	rustedKeySprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case Poker:
+	// 	// 火かき棒
+	// 	pokerSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case Parchment:
+	// 	// 羊皮紙
+	// 	parchmentSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case Hanger:
+	// 	// 針金
+	// 	hangerSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case DirtyCloth:
+	// 	// 汚れた布
+	// 	dirtyClothSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case Cloth:
+	// 	// 布
+	// 	clothSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case ToastedParchment:
+	// 	// 炙った羊皮紙
+	// 	toastedParchmentSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case WireKey:
+	// 	// 針金の鍵
+	// 	wireKeySprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
+	// case IronKey:
+	// 	// 鉄製の鍵
+	// 	ironKeyMiniSprite.draw(x, y);
+	// 	break;
+	// case GoldKey:
+	// 	// 黄金の鍵
+	// 	goldKeySprite.resized(inventoryMini, inventoryMini).draw(x, y);
+	// 	break;
 	}
 }
 
@@ -659,54 +667,62 @@ void CameraTest::drawBigItem(
 {
 	switch (itemId)
 	{
-	case Bread:
-		// パン
-		breadBigSprite.draw(x, y);
-		break;
-	case Memo:
-		// 手記
-		memoSprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case RustedKey:
-		// 錆びた鍵
-		rustedKeySprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case Poker:
-		// 火かき棒
-		pokerSprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case Parchment:
-		// 羊皮紙
-		parchmentSprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case Hanger:
-		// ハンガー
-		hangerSprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case DirtyCloth:
-		// 汚れた布
-		dirtyClothSprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case Cloth:
-		// 布
-		clothSprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case ToastedParchment:
-		// 炙った羊皮紙
-		toastedParchmentSprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case WireKey:
-		// 針金の鍵
-		wireKeySprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
-	case IronKey:
-		// 鉄製の鍵
-		ironKeyBigSprite.draw(x, y);
-		break;
-	case GoldKey:
-		// 黄金の鍵
-		goldKeySprite.resized(inventoryBig, inventoryBig).draw(x, y);
-		break;
+		case PrideRelic:
+			// 傲慢の遺物
+			prideRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+			break;
+		case GreedRelic:
+			// 強欲の遺物
+			greedRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+			break;
+	// case Bread:
+	// 	// パン
+	// 	breadBigSprite.draw(x, y);
+	// 	break;
+	// case Memo:
+	// 	// 手記
+	// 	memoSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case RustedKey:
+	// 	// 錆びた鍵
+	// 	rustedKeySprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case Poker:
+	// 	// 火かき棒
+	// 	pokerSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case Parchment:
+	// 	// 羊皮紙
+	// 	parchmentSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case Hanger:
+	// 	// ハンガー
+	// 	hangerSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case DirtyCloth:
+	// 	// 汚れた布
+	// 	dirtyClothSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case Cloth:
+	// 	// 布
+	// 	clothSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case ToastedParchment:
+	// 	// 炙った羊皮紙
+	// 	toastedParchmentSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case WireKey:
+	// 	// 針金の鍵
+	// 	wireKeySprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
+	// case IronKey:
+	// 	// 鉄製の鍵
+	// 	ironKeyBigSprite.draw(x, y);
+	// 	break;
+	// case GoldKey:
+	// 	// 黄金の鍵
+	// 	goldKeySprite.resized(inventoryBig, inventoryBig).draw(x, y);
+	// 	break;
 	}
 }
 
@@ -2653,11 +2669,17 @@ void CameraTest::draw() const
 		for (int i = 0; i < itemText[itemMessage].size(); ++i)
 		{
 			double x = center.x;
-		//	double y = center.y + 345 + lineSpacing * (i - (int)itemText.size() / 2);
-			double y = center.y + 145 + lineSpacing * i;
+			double y = center.y + 150 + lineSpacing * i;
+			int fontSize = 28;
+
+			// 長すぎる説明文だった場合はフォントサイズを小さくする
+			if (itemText[itemMessage][0].size() > 16)
+			{
+				fontSize = 20;
+			}
 
 			boldFont(itemText[itemMessage][i]).drawAt(
-				28,
+				fontSize,
 				{ x, y },
 				ColorF{ 1, 1, 1, 1 }
 			);
@@ -3202,11 +3224,11 @@ void CameraTest::viewInventory()
 
 		drawBigItem(items[selectItem], itemBigX, itemBigY);
 
-		if (items[selectItem] != RustedKey)
-		{
-			// 錆びた鍵を使ったフラグをリセット
-			bRustedKeyUse = false;
-		}
+		// if (items[selectItem] != RustedKey)
+		// {
+		// 	// 錆びた鍵を使ったフラグをリセット
+		// 	bRustedKeyUse = false;
+		// }
 	}
 	else
 	{
@@ -3228,243 +3250,243 @@ void CameraTest::viewInventory()
 		{
 			// アイテムのない場所は処理しない
 		}
-		else if (items[selectItem] == Bread)
-		{
-			// パンを食べる
-			items.remove_at(selectItem);
+		// else if (items[selectItem] == Bread)
+		// {
+		// 	// パンを食べる
+		// 	items.remove_at(selectItem);
 
-			// シナリオを進める
-			scenario = 2;	// パンを食べた後
+		// 	// シナリオを進める
+		// 	scenario = 2;	// パンを食べた後
 
-			// SEを鳴らす
-		//	playSE(U"GET");
-			playSEandBGMStop(U"Item");
+		// 	// SEを鳴らす
+		// //	playSE(U"GET");
+		// 	playSEandBGMStop(U"Item");
 
-			// チュートリアル終了
-			bTutorial = false;
-		}
-		else if (items[selectItem] == Memo)
-		{
-			// 手記を使った
-			if (synthesisIndex == -1)	// 合成アイテムを選択していない状態
-			{
-				bMemo = true;
-				playSEandBGMStop(U"Paper");
-			}
-		}
-		else if (items[selectItem] == RustedKey)
-		{
-			// 錆びた鍵
+		// 	// チュートリアル終了
+		// 	bTutorial = false;
+		// }
+		// else if (items[selectItem] == Memo)
+		// {
+		// 	// 手記を使った
+		// 	if (synthesisIndex == -1)	// 合成アイテムを選択していない状態
+		// 	{
+		// 		bMemo = true;
+		// 		playSEandBGMStop(U"Paper");
+		// 	}
+		// }
+		// else if (items[selectItem] == RustedKey)
+		// {
+		// 	// 錆びた鍵
 
-			if (synthesisIndex == -1)
-			{
-				if (bDoorLockon)
-				{
-					// 扉の前で使う
-					message = 69;
-					bRustedKeyUse = true;
-				}
-			}
-			else if (items[synthesisIndex] == Hanger)
-			{
-				// ハンガーを針金製の鍵にする
-				items[synthesisIndex] = WireKey;
+		// 	if (synthesisIndex == -1)
+		// 	{
+		// 		if (bDoorLockon)
+		// 		{
+		// 			// 扉の前で使う
+		// 			message = 69;
+		// 			bRustedKeyUse = true;
+		// 		}
+		// 	}
+		// 	else if (items[synthesisIndex] == Hanger)
+		// 	{
+		// 		// ハンガーを針金製の鍵にする
+		// 		items[synthesisIndex] = WireKey;
 
-				bWireKey = true;
+		// 		bWireKey = true;
 
-				synthesisIndex = -1;	// 選択を解除
+		// 		synthesisIndex = -1;	// 選択を解除
 
-				// SEを鳴らす
-			//	playSE(U"GET");
-				playSEandBGMStop(U"Item");
+		// 		// SEを鳴らす
+		// 	//	playSE(U"GET");
+		// 		playSEandBGMStop(U"Item");
 
-				//if (scenario == 1)	// パンを食べた後
-				//{
-				//	scenario = 2;	// なし
-				//}
+		// 		//if (scenario == 1)	// パンを食べた後
+		// 		//{
+		// 		//	scenario = 2;	// なし
+		// 		//}
 
-				priorityMessage = 86;
-				priorityMessageCount = priorityMessageCountMax;
-			}
-		}
-		else if (items[selectItem] == Hanger)
-		{
-			// ハンガー
-			if (synthesisIndex == -1)
-			{
-				// カーソルを緑にする
-				synthesisIndex = selectItem;
-			}
-			else if (items[synthesisIndex] == Hanger)
-			{
-				// キャンセル
-				synthesisIndex = -1;
-			}
+		// 		priorityMessage = 86;
+		// 		priorityMessageCount = priorityMessageCountMax;
+		// 	}
+		// }
+		// else if (items[selectItem] == Hanger)
+		// {
+		// 	// ハンガー
+		// 	if (synthesisIndex == -1)
+		// 	{
+		// 		// カーソルを緑にする
+		// 		synthesisIndex = selectItem;
+		// 	}
+		// 	else if (items[synthesisIndex] == Hanger)
+		// 	{
+		// 		// キャンセル
+		// 		synthesisIndex = -1;
+		// 	}
 
-			//else if (items[synthesisIndex] == RustedKey)
-			//{
-			//	// ハンガーを針金製の鍵にする
-			//	items[selectItem] = WireKey;
+		// 	//else if (items[synthesisIndex] == RustedKey)
+		// 	//{
+		// 	//	// ハンガーを針金製の鍵にする
+		// 	//	items[selectItem] = WireKey;
 
-			//	bWireKey = true;
+		// 	//	bWireKey = true;
 
-			//	synthesisIndex = -1;	// 選択を解除
+		// 	//	synthesisIndex = -1;	// 選択を解除
 
-			//	// SEを鳴らす
-			//	playSE(U"GET");
+		// 	//	// SEを鳴らす
+		// 	//	playSE(U"GET");
 
-			//	if (scenario == 1)	// パンを食べた後
-			//	{
-			//		scenario = 2;	// なし
-			//	}
-			//}
+		// 	//	if (scenario == 1)	// パンを食べた後
+		// 	//	{
+		// 	//		scenario = 2;	// なし
+		// 	//	}
+		// 	//}
 
-			// 錆びた鍵を持っているかどうか
-			//if (bRustedKeyHave)
-			//{
-			//	// 錆びた鍵を持っている状態で針金を使う
-			//	items[selectItem] = WireKey;
-			//	bWireKey = true;
+		// 	// 錆びた鍵を持っているかどうか
+		// 	//if (bRustedKeyHave)
+		// 	//{
+		// 	//	// 錆びた鍵を持っている状態で針金を使う
+		// 	//	items[selectItem] = WireKey;
+		// 	//	bWireKey = true;
 
-			//	// SEを鳴らす
-			//	playSE(U"GET");
+		// 	//	// SEを鳴らす
+		// 	//	playSE(U"GET");
 
-			//	if (scenario == 1)	// パンを食べた後
-			//	{
-			//		scenario = 2;	// なし
-			//	}
-			//}
-		}
-		else if (items[selectItem] == WireKey)
-		{
-			if (bDoorLockon)
-			{
-				// 扉の前で使う
+		// 	//	if (scenario == 1)	// パンを食べた後
+		// 	//	{
+		// 	//		scenario = 2;	// なし
+		// 	//	}
+		// 	//}
+		// }
+		// else if (items[selectItem] == WireKey)
+		// {
+		// 	if (bDoorLockon)
+		// 	{
+		// 		// 扉の前で使う
 
-				// 扉を開いた
-				bDoorOpen[0] = true;
-				toDoorPosX = doorPos.x + 1.49;	// 移動で開ける
+		// 		// 扉を開いた
+		// 		bDoorOpen[0] = true;
+		// 		toDoorPosX = doorPos.x + 1.49;	// 移動で開ける
 				
-				//if (scenario == 1)	// パンを食べた後
-				//{
-				//	scenario = 2;	// なし
-				//}
+		// 		//if (scenario == 1)	// パンを食べた後
+		// 		//{
+		// 		//	scenario = 2;	// なし
+		// 		//}
 
-				// SEを鳴らす
-			//	playSE(U"牢屋の扉を開ける");
-			//	playSEandBGMStop(U"Cancellation");
-				playSEandBGMStop(U"IronDoor_Close");
+		// 		// SEを鳴らす
+		// 	//	playSE(U"牢屋の扉を開ける");
+		// 	//	playSEandBGMStop(U"Cancellation");
+		// 		playSEandBGMStop(U"IronDoor_Close");
 
-				inventoryOnOff();
-			}
-		}
-		else if (items[selectItem] == IronKey)
-		{
-			if (bDoor2Lockon)
-			{
-				// 扉２の前で使う
+		// 		inventoryOnOff();
+		// 	}
+		// }
+		// else if (items[selectItem] == IronKey)
+		// {
+		// 	if (bDoor2Lockon)
+		// 	{
+		// 		// 扉２の前で使う
 
-				// 扉２を開いた
-				bDoorOpen[1] = true;
-				toDoor2PosX = door2Pos.x + 1.49;	// 移動で開ける
+		// 		// 扉２を開いた
+		// 		bDoorOpen[1] = true;
+		// 		toDoor2PosX = door2Pos.x + 1.49;	// 移動で開ける
 
-				// SEを鳴らす
-			//	playSE(U"牢屋の扉を開ける");
-			//	playSEandBGMStop(U"Cancellation");
-				playSEandBGMStop(U"IronDoor_Close");
+		// 		// SEを鳴らす
+		// 	//	playSE(U"牢屋の扉を開ける");
+		// 	//	playSEandBGMStop(U"Cancellation");
+		// 		playSEandBGMStop(U"IronDoor_Close");
 
-				inventoryOnOff();
-			}
-		}
-		//else if (items[selectItem] == GoldKey)
-		//{
-		//	if (bDoor3Lockon)
-		//	{
-		//		// 扉３の前で使う
+		// 		inventoryOnOff();
+		// 	}
+		// }
+		// //else if (items[selectItem] == GoldKey)
+		// //{
+		// //	if (bDoor3Lockon)
+		// //	{
+		// //		// 扉３の前で使う
 
-		//		// SEを鳴らす
-		//		playSEandBGMStop(U"WoodDoor_Close");
+		// //		// SEを鳴らす
+		// //		playSEandBGMStop(U"WoodDoor_Close");
 
-		//		inventoryOnOff();
+		// //		inventoryOnOff();
 
-		//		// ゲームクリア（仮）
-		//		changeScene(State::ToBeContinued);
-		//	}
-		//}
-		else if (items[selectItem] == Poker)
-		{
-			// 鉄製の鍵のところで使う
-			if (bIronKeyLockon)
-			{
-				// 鉄製の鍵を入手
-				items << IronKey;
-				bIronKeyHave = true;
+		// //		// ゲームクリア（仮）
+		// //		changeScene(State::ToBeContinued);
+		// //	}
+		// //}
+		// else if (items[selectItem] == Poker)
+		// {
+		// 	// 鉄製の鍵のところで使う
+		// 	if (bIronKeyLockon)
+		// 	{
+		// 		// 鉄製の鍵を入手
+		// 		items << IronKey;
+		// 		bIronKeyHave = true;
 
-				inventoryOnOff();
+		// 		inventoryOnOff();
 
-				// SEを鳴らす
-			//	playSE(U"GET");
-			//	playSEandBGMStop(U"Item");
-				playSEandBGMStop(U"KeyGimmick01");
+		// 		// SEを鳴らす
+		// 	//	playSE(U"GET");
+		// 	//	playSEandBGMStop(U"Item");
+		// 		playSEandBGMStop(U"KeyGimmick01");
 
-				// 火かき棒で鍵をとった時のメッセージを表示する時間
-				priorityMessage = 71;
-				priorityMessageCount = priorityMessageCountMax;
-			}
-		}
-		else if (items[selectItem] == Parchment)
-		{
-			// 火が強くなった暖炉の近くで使う（オミット）
-			// 暖炉で使う
-			if (bFireplaceLockon)
-			{
-				// 暖炉で羊皮紙を使う 
-				items[selectItem] = ToastedParchment;
+		// 		// 火かき棒で鍵をとった時のメッセージを表示する時間
+		// 		priorityMessage = 71;
+		// 		priorityMessageCount = priorityMessageCountMax;
+		// 	}
+		// }
+		// else if (items[selectItem] == Parchment)
+		// {
+		// 	// 火が強くなった暖炉の近くで使う（オミット）
+		// 	// 暖炉で使う
+		// 	if (bFireplaceLockon)
+		// 	{
+		// 		// 暖炉で羊皮紙を使う 
+		// 		items[selectItem] = ToastedParchment;
 
-				// SEを鳴らす
-			//	playSE(U"GET");
-				playSEandBGMStop(U"Item");
+		// 		// SEを鳴らす
+		// 	//	playSE(U"GET");
+		// 		playSEandBGMStop(U"Item");
 
-				priorityMessage = 85;
-				priorityMessageCount = priorityMessageCountMax;
-			}
-		}
-		else if (items[selectItem] == ToastedParchment)
-		{
-			// 炙った羊皮紙を使った
-			if (synthesisIndex == -1)	// 合成アイテムを選択していない状態
-			{
-				bToastedParchmentRead = true;
-				playSEandBGMStop(U"Paper");
-			}
+		// 		priorityMessage = 85;
+		// 		priorityMessageCount = priorityMessageCountMax;
+		// 	}
+		// }
+		// else if (items[selectItem] == ToastedParchment)
+		// {
+		// 	// 炙った羊皮紙を使った
+		// 	if (synthesisIndex == -1)	// 合成アイテムを選択していない状態
+		// 	{
+		// 		bToastedParchmentRead = true;
+		// 		playSEandBGMStop(U"Paper");
+		// 	}
 
-		}
-		else if (items[selectItem] == DirtyCloth)
-		{
-			// 汚れた布
+		// }
+		// else if (items[selectItem] == DirtyCloth)
+		// {
+		// 	// 汚れた布
 
-			// トイレの近くで使う
-			if (bToilet2Lockon)
-			{
-				items[selectItem] = Cloth;
+		// 	// トイレの近くで使う
+		// 	if (bToilet2Lockon)
+		// 	{
+		// 		items[selectItem] = Cloth;
 
-				// SEを鳴らす
-			//	playSE(U"GET");
-				playSEandBGMStop(U"Water");
+		// 		// SEを鳴らす
+		// 	//	playSE(U"GET");
+		// 		playSEandBGMStop(U"Water");
 
-				priorityMessage = 84;
-				priorityMessageCount = priorityMessageCountMax;
-			}
-		}
-		else if (items[selectItem] == Cloth)
-		{
-			// 布を使った
-			if (synthesisIndex == -1)	// 合成アイテムを選択していない状態
-			{
-				bClothRead = true;
-			//	playSE(U"Item");
-			}
-		}
+		// 		priorityMessage = 84;
+		// 		priorityMessageCount = priorityMessageCountMax;
+		// 	}
+		// }
+		// else if (items[selectItem] == Cloth)
+		// {
+		// 	// 布を使った
+		// 	if (synthesisIndex == -1)	// 合成アイテムを選択していない状態
+		// 	{
+		// 		bClothRead = true;
+		// 	//	playSE(U"Item");
+		// 	}
+		// }
 
 		// ニュートラルの位置に戻す
 	//	selectItem = -1;
@@ -4182,6 +4204,45 @@ void CameraTest::lockon()
 		}
 	}
 
+	// 強欲のレリック
+	if (!bLockon)
+	{
+		Vec3 temp = greedRelicCurrentPos;
+		temp.y += markHigh;
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = greedRelicController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			0,
+			true,
+			false
+		);
+		if (isHave && !bGreedRelicHave)
+		{
+			// アイテムを取った
+			items << GreedRelic;
+			bGreedRelicHave = isHave;
+			bShowGreedRelic = false;
+			bgmStopCount = bgmStopCount;
+
+			priorityMessage = greedRelicGetMessage;
+			priorityMessageCount = priorityMessageCountMax;
+		}
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+			bookingMessage = 88;
+		}
+		// if (isClick)
+		// {
+		// 	message = 88;	// レリックをとってしまうので、使われない
+		// 	priorityMessageCount = 0;
+		// }
+	}
+	
 	// // パン
 	// if (!bLockon)
 	// {
@@ -4195,7 +4256,8 @@ void CameraTest::lockon()
 	// 	//	ray,
 	// 		markPosition,
 	// 		0,
-	// 		true
+	// 		true,
+	// 		false
 	// 	);
 	// 	if (a == true && bBreadHave == false)
 	// 	{
