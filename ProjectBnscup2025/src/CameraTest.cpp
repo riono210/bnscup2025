@@ -826,7 +826,19 @@ void CameraTest::update()
 			Cursor::SetPos(center.x, center.y);
 		}
 	}
-	else if (!bInventory || !bWatchPicture)
+	else if (bWatchPicture)
+	{
+		// 絵画かパネルを見ている
+		if (Window::GetState().focused)
+		{
+			// マウスカーソルを非表示
+			Cursor::RequestStyle(CursorStyle::Hidden);
+
+			// カーソルを強制的に中央に戻す
+			Cursor::SetPos(center.x, center.y);
+		}
+	}
+	else if (!bInventory)
 	{
 		// インベントリを表示していない（通常時）
 

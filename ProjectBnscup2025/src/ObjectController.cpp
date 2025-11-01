@@ -61,13 +61,7 @@ std::tuple<bool, bool, int, bool> ObjectController::update(
 		// マウスの当たり判定の描画
 	//	Box box = Box{ objPos, 0.3 }.drawFrame(ColorF{ 1, 1, 1, 1 });
 
-		if (KeyEnter.pressed() && bHave && !bWatchText
-		|| (
-		//	box.intersects(ray) &&	// Rayで取れるようにするのをやめてみる
-			MouseL.down()
-			|| controller.buttonA.down()
-			)
-		)
+		if (KeyEnter.pressed() && bHave || (MouseL.down() || controller.buttonA.down()))
 		{
 			// 取れるオブジェクトかどうか
 			if (bHave)
@@ -118,6 +112,11 @@ std::tuple<bool, bool, int, bool> ObjectController::update(
 					break;
 				}
 
+			}
+			else if (bWatchText)
+			{
+				// テキスト閲覧中はクリック無効
+				isClick = false;
 			}
 			else 
 			{
