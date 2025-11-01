@@ -3256,10 +3256,12 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
-				setChairState(static_cast<int>(GreedRelic), ChairState::Placed, GreedRelic);
+				int greedRelicNum = static_cast<int>(GreedRelic);
+				// 椅子の番号では？
+				setChairState(frontOfChairIndex, ChairState::Placed, GreedRelic);
 				// 再描画処理とインベントリから削除適用
-				bGreedRelicHave = false;
-				bShowGreedRelic = true;
+				bShowRelicArray[greedRelicNum] = true;
+				bRelicHaveArray[greedRelicNum] = false;
 				bGreedRelicPlaced = true;
 				items.remove_at(selectItem);
 
@@ -3554,14 +3556,14 @@ void CameraTest::viewModel()
 	}
 
 	// 強欲のレリック
-	if (bShowGreedRelic)
+	if (bShowRelicArray[static_cast<int>(GreedRelic)])
 	{
 		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(greedRelicCurrentPos) };
 		greedRelicModel->draw();
 	}
 	
 	// 暴食のレリック
-	if (bShowGluttonyRelic)
+	if (bShowRelicArray[static_cast<int>(GluttonyRelic)])
 	{
 		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(gluttonyRelicCurrentPos) };
 		gluttonyRelicModel->draw();
@@ -3798,11 +3800,13 @@ void CameraTest::lockon()
 	bLockon = false;
 	bFrontOfChair = false;
 	// ロックオン中の椅子のindexリセット?
+	frontOfChairIndex = -1;
 
 	// 傲慢の椅子
 	if(!bLockon)
 	{
 		Vec3 temp = prideChairPos;
+		int prideChairIndex = static_cast<int>(PrideRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = prideChairController.update(
 			temp,
@@ -3820,6 +3824,7 @@ void CameraTest::lockon()
 			bLockon = isLockon;
 			bookingMessage = prideChairMessage;
 			bFrontOfChair = true;
+			frontOfChairIndex = prideChairIndex;
 		}
 		if (isClick)
 		{
@@ -3861,6 +3866,7 @@ void CameraTest::lockon()
 	if(!bLockon)
 	{
 		Vec3 temp = greedChairPos;
+		int greedChairIndex = static_cast<int>(GreedRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = greedChairController.update(
 			temp,
@@ -3878,10 +3884,10 @@ void CameraTest::lockon()
 			bLockon = isLockon;
 			bookingMessage = greedChairMessage;
 			bFrontOfChair = true;
+			frontOfChairIndex = greedChairIndex;
 		}
 		if (isClick)
 		{
-			int greedChairIndex = static_cast<int>(GreedRelic);
 			auto getChaireState = getChairState(greedChairIndex);
 			// レリックが配置されている
 			if(bGreedRelicPlaced && getChaireState == ChairState::Placed || getChaireState == ChairState::Collect)
@@ -3892,13 +3898,13 @@ void CameraTest::lockon()
 				// アイテムを取った
 				items << relicOnChair;
 				// 下の二つも対象のレリックに変更する
-				bGreedRelicHave = true;
-				bShowGreedRelic = false;
+				bShowRelicArray[relicOnChair] = false;
+				bRelicHaveArray[relicOnChair] = true;
 				bgmStopCount = bgmStopCount;
 				setChairState(greedChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
 
 				// 対象のレリックのメッセージにする
-				priorityMessage = greedRelicGetMessage;
+				priorityMessage = relicGetMessageArray[relicOnChair];
 				priorityMessageCount = priorityMessageCountMax;
 			}
 			else
@@ -3942,6 +3948,7 @@ void CameraTest::lockon()
 	if(!bLockon)
 	{
 		Vec3 temp = envyChairPos;
+		int envyChairIndex = static_cast<int>(EnvyRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = envyChairController.update(
 			temp,
@@ -3959,6 +3966,7 @@ void CameraTest::lockon()
 			bLockon = isLockon;
 			bookingMessage = envyChairMessage;
 			bFrontOfChair = true;
+			frontOfChairIndex = envyChairIndex;
 		}
 		if (isClick)
 		{
@@ -4000,6 +4008,7 @@ void CameraTest::lockon()
 	if(!bLockon)
 	{
 		Vec3 temp = wrathChairPos;
+		int wrathChairIndex = static_cast<int>(WrathRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = wrathChairController.update(
 			temp,
@@ -4017,6 +4026,7 @@ void CameraTest::lockon()
 			bLockon = isLockon;
 			bookingMessage = wrathChairMessage;
 			bFrontOfChair = true;
+			frontOfChairIndex = wrathChairIndex;
 		}
 		if (isClick)
 		{
@@ -4058,6 +4068,7 @@ void CameraTest::lockon()
 	if(!bLockon)
 	{
 		Vec3 temp = lustChairPos;
+		int lustChairIndex = static_cast<int>(LustRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = lustChairController.update(
 			temp,
@@ -4075,6 +4086,7 @@ void CameraTest::lockon()
 			bLockon = isLockon;
 			bookingMessage = lustChairMessage;
 			bFrontOfChair = true;
+			frontOfChairIndex = lustChairIndex;
 		}
 		if (isClick)
 		{
@@ -4116,6 +4128,7 @@ void CameraTest::lockon()
 	if(!bLockon)
 	{
 		Vec3 temp = gluttonyChairPos;
+		int gluttonyChairIndex = static_cast<int>(GluttonyRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = gluttonyChairController.update(
 			temp,
@@ -4133,6 +4146,7 @@ void CameraTest::lockon()
 			bLockon = isLockon;
 			bookingMessage = gluttonyChairMessage;
 			bFrontOfChair = true;
+			frontOfChairIndex = gluttonyChairIndex;
 		}
 		if (isClick)
 		{
@@ -4174,6 +4188,7 @@ void CameraTest::lockon()
 	if(!bLockon)
 	{
 		Vec3 temp = slothChairPos;
+		int slothChairIndex = static_cast<int>(SlothRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = slothChairController.update(
 			temp,
@@ -4191,6 +4206,7 @@ void CameraTest::lockon()
 			bLockon = isLockon;
 			bookingMessage = slothChairMessage;
 			bFrontOfChair = true;
+			frontOfChairIndex = slothChairIndex;
 		}
 		if (isClick)
 		{
@@ -4287,6 +4303,7 @@ void CameraTest::lockon()
 	{
 		Vec3 temp = greedRelicCurrentPos;
 		temp.y += markHigh;
+		int greedRelicIndex = static_cast<int>(GreedRelic);
 
 		auto [isHave, isLockon, bgmStopCount, isClick] = greedRelicController.update(
 			temp,
@@ -4298,15 +4315,15 @@ void CameraTest::lockon()
 			false
 		);
 
-		if (isHave && !bGreedRelicHave && !bGreedRelicPlaced)
+		if (isHave && !bRelicHaveArray[greedRelicIndex] && !bGreedRelicPlaced)
 		{
 			// アイテムを取った
 			items << GreedRelic;
-			bGreedRelicHave = isHave;
-			bShowGreedRelic = false;
+			bRelicHaveArray[greedRelicIndex] = isHave;
+			bShowRelicArray[greedRelicIndex] = false;
 			bgmStopCount = bgmStopCount;
 
-			priorityMessage = greedRelicGetMessage;
+			priorityMessage = relicGetMessageArray[greedRelicIndex];
 			priorityMessageCount = priorityMessageCountMax;
 		}
 

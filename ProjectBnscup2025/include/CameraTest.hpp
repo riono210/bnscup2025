@@ -882,26 +882,29 @@ private:
 	bool bWatchExitPlate = false;
 
 	// 大罪の遺物を描画するかどうかのフラグ
-	bool bShowPrideRelic = true;
-	bool bShowGreedRelic = true;
-	bool bShowEnvyRelic = true;
-	bool bShowWrathRelic = true;
-	bool bShowLustRelic = true;
-	bool bShowGluttonyRelic = true;
-	bool bShowRelicSloth = true;
+	// bool bShowPrideRelic = true;
+	// bool bShowGreedRelic = true;
+	// bool bShowEnvyRelic = true;
+	// bool bShowWrathRelic = true;
+	// bool bShowLustRelic = true;
+	// bool bShowGluttonyRelic = true;
+	// bool bShowRelicSloth = true;
+	Array<bool> bShowRelicArray = { true, true, true, true, true, true, true };
 
 	// レリックを持っているかどうかのフラグ
-	bool bPrideRelicHave = false;
-	bool bGreedRelicHave = false;
-	bool bEnvyRelicHave = false;
-	bool bWrathRelicHave = false;
-	bool bLustRelicHave = false;
-	bool bGluttonyRelicHave = false;
-	bool bSlothRelicHave = false;
+	// bool bPrideRelicHave = false;
+	// bool bGreedRelicHave = false;
+	// bool bEnvyRelicHave = false;
+	// bool bWrathRelicHave = false;
+	// bool bLustRelicHave = false;
+	// bool bGluttonyRelicHave = false;
+	// bool bSlothRelicHave = false;
+	Array<bool> bRelicHaveArray = { false, false, false, false, false, false, false };
 
 	bool bGreedRelicPlaced = false;
 
 	bool bFrontOfChair = false;
+	int frontOfChairIndex = -1;
 
 	// 各要素のビット数
 	const int BITS_PER_CHAIR_CELL = 2;
@@ -1036,6 +1039,15 @@ private:
 	const int lustRelicGetMessage = 101;
 	const int gluttonyRelicGetMessage = 102;
 	const int slothRelicGetMessage = 103;
+	Array<int> relicGetMessageArray = {
+		prideRelicGetMessage,
+		greedRelicGetMessage,
+		envyRelicGetMessage,
+		wrathRelicGetMessage,
+		lustRelicGetMessage,
+		gluttonyRelicGetMessage,
+		slothRelicGetMessage
+	};
 
 	// 画面下のテキスト
 	Array<String> Text =
