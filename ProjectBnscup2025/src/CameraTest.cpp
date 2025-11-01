@@ -210,6 +210,9 @@ void CameraTest::loadResources() const
 	case 8:
 		dummyTextView(pictureText);
 		break;
+	case 9:
+		dummyTextView(exitPlateText);
+		break;
 	// case 29:
 	// 	// BGMの読み込み
 	// 	AudioAsset(U"BGM").setVolume(0.0);
@@ -826,7 +829,7 @@ void CameraTest::update()
 			Cursor::SetPos(center.x, center.y);
 		}
 	}
-	else if (bWatchPicture)
+	else if (bWatchPicture || bWatchExitPlate)
 	{
 		// 絵画かパネルを見ている
 		if (Window::GetState().focused)
@@ -1395,9 +1398,7 @@ void CameraTest::update()
 
 	// インベントリの表示・非表示
 //	if (KeyI.down()
-	if (KeySpace.down()
-		|| xboxController.buttonY.down()
-	)
+	if ((!bWatchPicture && !bWatchExitPlate) && (KeySpace.down() || xboxController.buttonY.down()))
 	{
 		inventoryOnOff();
 	}
@@ -2202,9 +2203,9 @@ void CameraTest::update()
 		// インベントリ表示
 		viewInventory();
 	}
-	else if (bWatchPicture)
+	else if (bWatchPicture || bWatchExitPlate)
 	{
-		// 絵画を開いてから1フレーム待つ
+		// テキストを開いてから1フレーム待つ
 		if (pictureOpenFrameCount > 0)
 		{
 			pictureOpenFrameCount--;
@@ -2213,6 +2214,7 @@ void CameraTest::update()
 		{
 			// 閉じる
 			bWatchPicture = false;
+			bWatchExitPlate = false;
 		}
 	}
 	else
@@ -2752,6 +2754,27 @@ void CameraTest::draw() const
 			double y = center.y + lineSpacing * (i - (int)pictureText[pictureIndex].size() / 2);
 
 			boldFont(pictureText[pictureIndex][i]).drawAt(
+				28,
+				{ x, y },
+				ColorF{ 1, 1, 1, 1 }
+			);
+		}
+	}
+
+	if (bWatchExitPlate)
+	{
+		// 半透明の黒い画像
+		Rect{ 0, 0, Scene::Width(), Scene::Height() }.draw(ColorF{ 0.0, 0.5 });
+
+		// TODO 共通化する
+		double lineSpacing = 40.0; // 行間（フォントサイズより少し大きめ）
+
+		for (int i = 0; i < exitPlateText.size(); ++i)
+		{
+			double x = center.x;
+			double y = center.y + lineSpacing * (i - (int)exitPlateText.size() / 2);
+
+			boldFont(exitPlateText[i]).drawAt(
 				28,
 				{ x, y },
 				ColorF{ 1, 1, 1, 1 }
@@ -4066,7 +4089,6 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = slothPictureMessage;
 		}
 		if (isClick)
 		{
@@ -4089,7 +4111,7 @@ void CameraTest::lockon()
 			markPosition,
 			-1,
 			false,
-			bWatchPicture
+			false
 		);
 		if (isLockon)
 		{
@@ -4116,18 +4138,18 @@ void CameraTest::lockon()
 			markPosition,
 			-1,
 			false,
-			bWatchPicture
+			bWatchExitPlate
 		);
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = exitDoorPlateMessage;
 		}
 		if (isClick)
 		{
-			message = exitDoorPlateMessage;
 			priorityMessageCount = 0;
+			bWatchExitPlate = true;
+			pictureOpenFrameCount = 1; // 1フレーム待つ
 		}
 	}
 

@@ -823,6 +823,8 @@ private:
 	int pictureIndex = -1;  // 見ている絵画の番号
 	int pictureOpenFrameCount = 0;  // 絵画を開いてからのフレーム数
 
+	bool bWatchExitPlate = false; // 脱出扉のプレートを見ているかどうかのフラグ
+
 	// old
 	// 錆びた鍵を持っている
 	bool bRustedKeyHave = false;
@@ -1585,6 +1587,18 @@ private:
 		U"",
 		U"",
 		U"　　「魂を、座に戻せ。」　　",
+	};
+
+	Array<String> exitPlateText =
+	{
+		U"七つの座が、罪を抱いて沈黙している。",
+		U"それぞれの椅子には、かつて誰かが座っていた。",
+		U"",
+		U"魂を見つけ、戻しなさい。",
+		U"それが、ここを出る唯一の道。",
+		U"",
+		U"すべての座が満たされたとき、",
+		U"扉は静かに開くだろう。",
 	};
 
 	Array<Array<String>> pictureText =
