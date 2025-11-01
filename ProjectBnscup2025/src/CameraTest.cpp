@@ -623,6 +623,27 @@ void CameraTest::drawMiniItem(
 			// 強欲の遺物
 			greedRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
 			break;
+		case EnvyRelic:
+			// 嫉妬の遺物
+			envyRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+			break;
+		case WrathRelic:
+			// 憤怒の遺物
+			wrathRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+			break;
+		case LustRelic:
+			// 色欲の遺物
+			lustRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+			break;
+		case GluttonyRelic:
+			// 暴食の遺物
+			gluttonyRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+			break;
+		case SlothRelic:
+			// 怠惰の遺物
+			slothRelicUiSprite.resized(inventoryMini, inventoryMini).draw(x, y);
+			break;
+
 	// case Bread:
 	// 	// パン
 	// 	breadMiniSprite.draw(x, y);
@@ -690,6 +711,27 @@ void CameraTest::drawBigItem(
 			// 強欲の遺物
 			greedRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
 			break;
+		case EnvyRelic:
+			// 嫉妬の遺物
+			envyRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+			break;
+		case WrathRelic:
+			// 憤怒の遺物
+			wrathRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+			break;
+		case LustRelic:
+			// 色欲の遺物
+			lustRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+			break;
+		case GluttonyRelic:
+			// 暴食の遺物
+			gluttonyRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+			break;
+		case SlothRelic:
+			// 怠惰の遺物
+			slothRelicUiSprite.resized(inventoryBig, inventoryBig).draw(x, y);
+			break;
+
 	// case Bread:
 	// 	// パン
 	// 	breadBigSprite.draw(x, y);
@@ -3265,6 +3307,34 @@ void CameraTest::viewInventory()
 		{
 			// アイテムのない場所は処理しない
 		}
+		else if (items[selectItem] == PrideRelic)
+		{
+			// 椅子の前で使う
+			if (bFrontOfChair)
+			{
+				int prideRelicNum = static_cast<int>(PrideRelic);
+				// レリックと椅子のNumが同じか確認
+				ChairState setCurrentChairState = prideRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
+				setChairState(frontOfChairIndex, setCurrentChairState, PrideRelic);
+				// 再描画処理とインベントリから削除適用
+				bShowRelicArray[prideRelicNum] = true;
+				bRelicHaveArray[prideRelicNum] = false;
+				bRelicPlacedArray[prideRelicNum] = true;
+				items.remove_at(selectItem);
+				selectItem = -1; // アイテムがなくなったので選択解除
+
+				// 対象の椅子の位置に置く
+				prideRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+
+				// インベントリを閉じる
+				inventoryOnOff();	
+			}
+			else
+			{
+				// 椅子の前でない場合
+				// 何かしらのメッセージ
+			}
+		}
 		else if (items[selectItem] == GreedRelic)
 		{
 			// 椅子の前で使う
@@ -3279,6 +3349,7 @@ void CameraTest::viewInventory()
 				bRelicHaveArray[greedRelicNum] = false;
 				bRelicPlacedArray[greedRelicNum] = true;
 				items.remove_at(selectItem);
+				selectItem = -1; // アイテムがなくなったので選択解除
 
 				// 対象の椅子の位置に置く
 				greedRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
@@ -3292,6 +3363,147 @@ void CameraTest::viewInventory()
 				// 何かしらのメッセージ
 			}
 		}
+		else if (items[selectItem] == EnvyRelic)
+		{
+			// 椅子の前で使う
+			if (bFrontOfChair)
+			{
+				int envyRelicNum = static_cast<int>(EnvyRelic);
+				// レリックと椅子のNumが同じか確認
+				ChairState setCurrentChairState = envyRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
+				setChairState(frontOfChairIndex, setCurrentChairState, EnvyRelic);
+				// 再描画処理とインベントリから削除適用
+				bShowRelicArray[envyRelicNum] = true;
+				bRelicHaveArray[envyRelicNum] = false;
+				bRelicPlacedArray[envyRelicNum] = true;
+				items.remove_at(selectItem);
+				selectItem = -1; // アイテムがなくなったので選択解除
+
+				// 対象の椅子の位置に置く
+				envyRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+
+				// インベントリを閉じる
+				inventoryOnOff();	
+			}
+			else
+			{
+				// 椅子の前でない場合
+				// 何かしらのメッセージ
+			}
+		}
+		else if (items[selectItem] == WrathRelic)
+		{
+			// 椅子の前で使う
+			if (bFrontOfChair)
+			{
+				int wrathRelicNum = static_cast<int>(WrathRelic);
+				// レリックと椅子のNumが同じか確認
+				ChairState setCurrentChairState = wrathRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
+				setChairState(frontOfChairIndex, setCurrentChairState, WrathRelic);
+				// 再描画処理とインベントリから削除適用
+				bShowRelicArray[wrathRelicNum] = true;
+				bRelicHaveArray[wrathRelicNum] = false;
+				bRelicPlacedArray[wrathRelicNum] = true;
+				items.remove_at(selectItem);
+				selectItem = -1; // アイテムがなくなったので選択解除
+
+				// 対象の椅子の位置に置く
+				wrathRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+
+				// インベントリを閉じる
+				inventoryOnOff();	
+			}
+			else
+			{
+				// 椅子の前でない場合
+				// 何かしらのメッセージ
+			}
+		}
+		else if (items[selectItem] == LustRelic)
+		{
+			// 椅子の前で使う
+			if (bFrontOfChair)
+			{
+				int lustRelicNum = static_cast<int>(LustRelic);
+				// レリックと椅子のNumが同じか確認
+				ChairState setCurrentChairState = lustRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
+				setChairState(frontOfChairIndex, setCurrentChairState, LustRelic);
+				// 再描画処理とインベントリから削除適用
+				bShowRelicArray[lustRelicNum] = true;
+				bRelicHaveArray[lustRelicNum] = false;
+				bRelicPlacedArray[lustRelicNum] = true;
+				items.remove_at(selectItem);
+				selectItem = -1; // アイテムがなくなったので選択解除
+
+				// 対象の椅子の位置に置く
+				lustRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+
+				// インベントリを閉じる
+				inventoryOnOff();	
+			}
+			else
+			{
+				// 椅子の前でない場合
+				// 何かしらのメッセージ
+			}
+		}
+		else if (items[selectItem] == GluttonyRelic)
+		{
+			// 椅子の前で使う
+			if (bFrontOfChair)
+			{
+				int gluttonyRelicNum = static_cast<int>(GluttonyRelic);
+				// レリックと椅子のNumが同じか確認
+				ChairState setCurrentChairState = gluttonyRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
+				setChairState(frontOfChairIndex, setCurrentChairState, GluttonyRelic);
+				// 再描画処理とインベントリから削除適用
+				bShowRelicArray[gluttonyRelicNum] = true;
+				bRelicHaveArray[gluttonyRelicNum] = false;
+				bRelicPlacedArray[gluttonyRelicNum] = true;
+				items.remove_at(selectItem);
+				selectItem = -1; // アイテムがなくなったので選択解除
+
+				// 対象の椅子の位置に置く
+				gluttonyRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+
+				// インベントリを閉じる
+				inventoryOnOff();	
+			}
+			else
+			{
+				// 椅子の前でない場合
+				// 何かしらのメッセージ
+			}
+		}
+		else if (items[selectItem] == SlothRelic)
+		{
+			// 椅子の前で使う
+			if (bFrontOfChair)
+			{
+				int slothRelicNum = static_cast<int>(SlothRelic);
+				// レリックと椅子のNumが同じか確認
+				ChairState setCurrentChairState = slothRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
+				setChairState(frontOfChairIndex, setCurrentChairState, SlothRelic);
+				// 再描画処理とインベントリから削除適用
+				bShowRelicArray[slothRelicNum] = true;
+				bRelicHaveArray[slothRelicNum] = false;
+				bRelicPlacedArray[slothRelicNum] = true;
+				items.remove_at(selectItem);
+				selectItem = -1; // アイテムがなくなったので選択解除
+
+				// 対象の椅子の位置に置く
+				slothRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+
+				// インベントリを閉じる
+				inventoryOnOff();	
+			}
+			else
+			{
+				// 椅子の前でない場合
+				// 何かしらのメッセージ
+			}
+		}
+
 		// else if (items[selectItem] == Bread)
 		// {
 		// 	// パンを食べる
@@ -4493,6 +4705,42 @@ void CameraTest::lockon()
 		}
 	}
 
+	// 傲慢のレリック
+	if (!bLockon)
+	{
+		Vec3 temp = prideRelicCurrentPos;
+		temp.y += markHigh;
+		int prideRelicIndex = static_cast<int>(PrideRelic);
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = prideRelicController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			0,
+			true,
+			false
+		);
+
+		if (isHave && !bRelicHaveArray[prideRelicIndex] && !bRelicPlacedArray[prideRelicIndex])
+		{
+			// アイテムを取った
+			items << PrideRelic;
+			bRelicHaveArray[prideRelicIndex] = isHave;
+			bShowRelicArray[prideRelicIndex] = false;
+			bgmStopCount = bgmStopCount;
+
+			priorityMessage = relicGetMessageArray[prideRelicIndex];
+			priorityMessageCount = priorityMessageCountMax;
+		}
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+		}
+	}
+
 	// 強欲のレリック
 	if (!bLockon)
 	{
@@ -4526,7 +4774,186 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
-			bookingMessage = 88;
+		}
+	}
+
+	// 嫉妬のレリック
+	if (!bLockon)
+	{
+		Vec3 temp = envyRelicCurrentPos;
+		temp.y += markHigh;
+		int envyRelicIndex = static_cast<int>(EnvyRelic);
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = envyRelicController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			0,
+			true,
+			false
+		);
+
+		if (isHave && !bRelicHaveArray[envyRelicIndex] && !bRelicPlacedArray[envyRelicIndex])
+		{
+			// アイテムを取った
+			items << EnvyRelic;
+			bRelicHaveArray[envyRelicIndex] = isHave;
+			bShowRelicArray[envyRelicIndex] = false;
+			bgmStopCount = bgmStopCount;
+
+			priorityMessage = relicGetMessageArray[envyRelicIndex];
+			priorityMessageCount = priorityMessageCountMax;
+		}
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+		}
+	}
+
+	// 憤怒のレリック
+	if (!bLockon)
+	{
+		Vec3 temp = wrathRelicCurrentPos;
+		temp.y += markHigh;
+		int wrathRelicIndex = static_cast<int>(WrathRelic);
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = wrathRelicController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			0,
+			true,
+			false
+		);
+
+		if (isHave && !bRelicHaveArray[wrathRelicIndex] && !bRelicPlacedArray[wrathRelicIndex])
+		{
+			// アイテムを取った
+			items << WrathRelic;
+			bRelicHaveArray[wrathRelicIndex] = isHave;
+			bShowRelicArray[wrathRelicIndex] = false;
+			bgmStopCount = bgmStopCount;
+
+			priorityMessage = relicGetMessageArray[wrathRelicIndex];
+			priorityMessageCount = priorityMessageCountMax;
+		}
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+		}
+	}
+
+	// 色欲のレリック
+	if (!bLockon)
+	{
+		Vec3 temp = lustRelicCurrentPos;
+		temp.y += markHigh;
+		int lustRelicIndex = static_cast<int>(LustRelic);
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = lustRelicController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			0,
+			true,
+			false
+		);
+
+		if (isHave && !bRelicHaveArray[lustRelicIndex] && !bRelicPlacedArray[lustRelicIndex])
+		{
+			// アイテムを取った
+			items << LustRelic;
+			bRelicHaveArray[lustRelicIndex] = isHave;
+			bShowRelicArray[lustRelicIndex] = false;
+			bgmStopCount = bgmStopCount;
+
+			priorityMessage = relicGetMessageArray[lustRelicIndex];
+			priorityMessageCount = priorityMessageCountMax;
+		}
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+		}
+	}
+
+	// 暴食のレリック
+	if (!bLockon)
+	{
+		Vec3 temp = gluttonyRelicCurrentPos;
+		temp.y += markHigh;
+		int gluttonyRelicIndex = static_cast<int>(GluttonyRelic);
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = gluttonyRelicController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			0,
+			true,
+			false
+		);
+
+		if (isHave && !bRelicHaveArray[gluttonyRelicIndex] && !bRelicPlacedArray[gluttonyRelicIndex])
+		{
+			// アイテムを取った
+			items << GluttonyRelic;
+			bRelicHaveArray[gluttonyRelicIndex] = isHave;
+			bShowRelicArray[gluttonyRelicIndex] = false;
+			bgmStopCount = bgmStopCount;
+
+			priorityMessage = relicGetMessageArray[gluttonyRelicIndex];
+			priorityMessageCount = priorityMessageCountMax;
+		}
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
+		}
+	}
+
+	// 怠惰のレリック
+	if (!bLockon)
+	{
+		Vec3 temp = slothRelicCurrentPos;
+		temp.y += markHigh;
+		int slothRelicIndex = static_cast<int>(SlothRelic);
+
+		auto [isHave, isLockon, bgmStopCount, isClick] = slothRelicController.update(
+			temp,
+			camera,
+			curCameraPosition,
+			markPosition,
+			0,
+			true,
+			false
+		);
+
+		if (isHave && !bRelicHaveArray[slothRelicIndex] && !bRelicPlacedArray[slothRelicIndex])
+		{
+			// アイテムを取った
+			items << SlothRelic;
+			bRelicHaveArray[slothRelicIndex] = isHave;
+			bShowRelicArray[slothRelicIndex] = false;
+			bgmStopCount = bgmStopCount;
+
+			priorityMessage = relicGetMessageArray[slothRelicIndex];
+			priorityMessageCount = priorityMessageCountMax;
+		}
+
+		if (isLockon)
+		{
+			// 見ている
+			bLockon = isLockon;
 		}
 	}
 
