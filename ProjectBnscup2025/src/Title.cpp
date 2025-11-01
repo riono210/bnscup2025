@@ -137,7 +137,8 @@ void Title::draw() const
 	Scene::SetBackground(ColorF{ 0.2, 0.8, 0.4 });
 
 	// 背景
-	BG.draw(0, 0);
+	//BG.draw(0, 0);
+	BG.resized(WINDOW_WIDTH).draw(0, 0);
 
 	// タイトル描画
 	//FontAsset(U"TitleFont")(U"Siv3D脱出ゲーム")
