@@ -239,8 +239,13 @@ private:
 
 	// モデルのpath
 	const String roomModelPath = U"assets/obj/EV_Map01.obj";
+	const String relicPrideModelPath = U"assets/obj/Relic_Pride01.obj";
 	const String relicGluttonyModelPath = U"assets/obj/Relic_Gluttony01.obj";
+	const String relicEnvyModelPath = U"assets/obj/Relic_Envy01.obj";
+	const String relicWrathModelPath = U"assets/obj/Relic_Wrath01.obj";
+	const String relicLustModelPath = U"assets/obj/Relic_Lust01.obj";
 	const String relicGreedModelPath = U"assets/obj/Relic_Greed01.obj";
+	const String relicSlothModelPath = U"assets/obj/Relic_Sloth01.obj";
 
 	// old
 	const String modelPath = U"assets/models/Room/EV_Room01.obj";
@@ -273,8 +278,13 @@ private:
 
 	// modelの遅延ロード用ポインタ
 	mutable std::unique_ptr<Model> roomModel;
+	mutable std::unique_ptr<Model> prideRelicModel;
 	mutable std::unique_ptr<Model> greedRelicModel;
+	mutable std::unique_ptr<Model> envyRelicModel;
+	mutable std::unique_ptr<Model> wrathRelicModel;
+	mutable std::unique_ptr<Model> lustRelicModel;
 	mutable std::unique_ptr<Model> gluttonyRelicModel;
+	mutable std::unique_ptr<Model> slothRelicModel;
 
 	// old
 	//mutable std::unique_ptr<Model> model;
@@ -579,32 +589,33 @@ private:
 
 
 	// 大罪
+	float chairRelicPosY = 0.45f;
 	Vec3 prideChairPos = { 0.04, 0.8, 11.3 };
-	Vec3 prideRelicOnChairPos = { prideChairPos.x, 0.9, prideChairPos.z };
+	Vec3 prideRelicOnChairPos = { prideChairPos.x, chairRelicPosY, prideChairPos.z };
 	Vec3 pridePicturePos = { 0, 1.45, 11.6 };
 
-	Vec3 greedChairPos = { 4.6, 0.8, 6.38 };
-	Vec3 greedRelicOnChairPos = { greedChairPos.x, 0.9, greedChairPos.z };
+	Vec3 greedChairPos = { 4.7, 0.9, 6.37 };
+	Vec3 greedRelicOnChairPos = { greedChairPos.x, chairRelicPosY, greedChairPos.z };
 	Vec3 greedPicturePos = { 5, 1.45, 6.38 };
 
-	Vec3 envyChairPos = { -4.6, 0.8, 6.37 };
-	Vec3 envyRelicOnChairPos = { envyChairPos.x, 0.9, envyChairPos.z };
+	Vec3 envyChairPos = { -4.7, 0.9, 6.37 };
+	Vec3 envyRelicOnChairPos = { envyChairPos.x, chairRelicPosY, envyChairPos.z };
 	Vec3 envyPicturePos = { -5, 1.45, 6.37 };
 
-	Vec3 wrathChairPos = { 4.6, 0.8, 1.32 };
-	Vec3 wrathRelicOnChairPos = { wrathChairPos.x, 0.9, wrathChairPos.z };
+	Vec3 wrathChairPos = { 4.7, 0.9, 1.31 };
+	Vec3 wrathRelicOnChairPos = { wrathChairPos.x, chairRelicPosY, wrathChairPos.z };
 	Vec3 wrathPicturePos = { 5, 1.45, 1.31 };
 
-	Vec3 lustChairPos = { -4.6, 0.8, 1.30 };
-	Vec3 lustRelicOnChairPos = { lustChairPos.x, 0.9, lustChairPos.z };
+	Vec3 lustChairPos = { -4.7, 0.9, 1.30 };
+	Vec3 lustRelicOnChairPos = { lustChairPos.x, chairRelicPosY, lustChairPos.z };
 	Vec3 lustPicturePos = { -5, 1.45, 1.32 };
 
-	Vec3 gluttonyChairPos = { 4.6, 0.8, -3.64 };
-	Vec3 gluttonyRelicOnChairPos = { gluttonyChairPos.x, 0.9, gluttonyChairPos.z };
+	Vec3 gluttonyChairPos = { 4.7, 0.9, -3.65 };
+	Vec3 gluttonyRelicOnChairPos = { gluttonyChairPos.x, chairRelicPosY, gluttonyChairPos.z };
 	Vec3 gluttonyPicturePos = { 5, 1.45, -3.64 };
 
-	Vec3 slothChairPos = { -4.6, 0.8, -3.64 };
-	Vec3 slothRelicOnChairPos = { slothChairPos.x, 0.9, slothChairPos.z };
+	Vec3 slothChairPos = { -4.7, 0.9, -3.65 };
+	Vec3 slothRelicOnChairPos = { slothChairPos.x, chairRelicPosY, slothChairPos.z };
 	Vec3 slothPicturePos = { -5, 1.45, -3.65 };
 
 	Array<Vec3> relicOnChairPos = {
@@ -620,15 +631,13 @@ private:
 	// レリック
 	float relicBaseXPos = 4.7f;
 	float relicBaseYPos = 0.8f;
-	Vec3 prideRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11 };
-	Vec3 greedRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -10.8 };
-	Vec3 envyRelicCurrentPos = { relicBaseXPos, relicBaseYPos, 4.0 };
-	Vec3 wrathRelicCurrentPos = { relicBaseXPos, relicBaseYPos, 0.0 };
-	Vec3 lustRelicCurrentPos = { relicBaseXPos, relicBaseYPos, 0.0 };
-	Vec3 gluttonyRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.3 };
-	Vec3 slothRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -5.0 };
-
-	// 
+	Vec3 prideRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -10.8 };
+	Vec3 greedRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.3 };
+	Vec3 envyRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.8 };
+	Vec3 wrathRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -10.8 };
+	Vec3 lustRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -11.2 };
+	Vec3 gluttonyRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -11.6 };
+	Vec3 slothRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -12 };
 
 	// 脱出の扉
 	Vec3 exitDoorPos = { 0, 1, -13.5 };
@@ -897,32 +906,12 @@ private:
 	bool bWatchExitPlate = false;
 
 	// 大罪の遺物を描画するかどうかのフラグ
-	// bool bShowPrideRelic = true;
-	// bool bShowGreedRelic = true;
-	// bool bShowEnvyRelic = true;
-	// bool bShowWrathRelic = true;
-	// bool bShowLustRelic = true;
-	// bool bShowGluttonyRelic = true;
-	// bool bShowRelicSloth = true;
 	Array<bool> bShowRelicArray = { true, true, true, true, true, true, true };
 
 	// レリックを持っているかどうかのフラグ
-	// bool bPrideRelicHave = false;
-	// bool bGreedRelicHave = false;
-	// bool bEnvyRelicHave = false;
-	// bool bWrathRelicHave = false;
-	// bool bLustRelicHave = false;
-	// bool bGluttonyRelicHave = false;
-	// bool bSlothRelicHave = false;
 	Array<bool> bRelicHaveArray = { false, false, false, false, false, false, false };
 
-	// bool bPrideRelicPlaced = false;
-	// bool bGreedRelicPlaced = false;
-	// bool bEnvyRelicPlaced = false;
-	// bool bWrathRelicPlaced = false;
-	// bool bLustRelicPlaced = false;
-	// bool bGluttonyRelicPlaced = false;
-	// bool bSlothRelicPlaced = false;
+	// レリックを椅子に配置したかどうかのフラグ
 	Array<bool> bRelicPlacedArray = { false, false, false, false, false, false, false };
 
 	bool bFrontOfChair = false;

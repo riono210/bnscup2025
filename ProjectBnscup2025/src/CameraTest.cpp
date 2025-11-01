@@ -102,18 +102,32 @@ void CameraTest::loadResources() const
 			Model::RegisterDiffuseTextures(*modelExclamationMark, TextureDesc::MippedSRGB);
 			break;
 		case 2:
-			gluttonyRelicModel = std::make_unique<Model>(relicGluttonyModelPath);
-			Model::RegisterDiffuseTextures(*gluttonyRelicModel, TextureDesc::MippedSRGB);
+			prideRelicModel = std::make_unique<Model>(relicPrideModelPath);
+			Model::RegisterDiffuseTextures(*prideRelicModel, TextureDesc::MippedSRGB);
 			break;
 		case 3:
 			greedRelicModel = std::make_unique<Model>(relicGreedModelPath);
 			Model::RegisterDiffuseTextures(*greedRelicModel, TextureDesc::MippedSRGB);
 			break;
 		case 4:
+			envyRelicModel = std::make_unique<Model>(relicEnvyModelPath);
+			Model::RegisterDiffuseTextures(*envyRelicModel, TextureDesc::MippedSRGB);
+			break;
 		case 5:
+			wrathRelicModel = std::make_unique<Model>(relicWrathModelPath);
+			Model::RegisterDiffuseTextures(*wrathRelicModel, TextureDesc::MippedSRGB);
+			break;
 		case 6:
+			lustRelicModel = std::make_unique<Model>(relicLustModelPath);
+			Model::RegisterDiffuseTextures(*lustRelicModel, TextureDesc::MippedSRGB);
+			break;
 		case 7:
+			gluttonyRelicModel = std::make_unique<Model>(relicGluttonyModelPath);
+			Model::RegisterDiffuseTextures(*gluttonyRelicModel, TextureDesc::MippedSRGB);
+			break;
 		case 8:
+			slothRelicModel = std::make_unique<Model>(relicSlothModelPath);
+			Model::RegisterDiffuseTextures(*slothRelicModel, TextureDesc::MippedSRGB);
 			break;
 	// case 1:
 	// 	model = std::make_unique<Model>(modelPath);
@@ -3555,18 +3569,53 @@ void CameraTest::viewModel()
 		roomModel->draw();
 	}
 
+	// 傲慢のレリック
+	if (bShowRelicArray[static_cast<int>(PrideRelic)])
+	{
+		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.007).translated(prideRelicCurrentPos) };
+		prideRelicModel->draw();
+	}
+
 	// 強欲のレリック
 	if (bShowRelicArray[static_cast<int>(GreedRelic)])
 	{
 		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(greedRelicCurrentPos) };
 		greedRelicModel->draw();
 	}
+
+	// 嫉妬のレリック
+	if (bShowRelicArray[static_cast<int>(EnvyRelic)])
+	{
+		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(envyRelicCurrentPos) };
+		envyRelicModel->draw();
+	}
 	
+	// 憤怒のレリック
+	if (bShowRelicArray[static_cast<int>(WrathRelic)])
+	{
+		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(wrathRelicCurrentPos) };
+		wrathRelicModel->draw();
+	}
+
+	// 色欲のレリック
+	if (bShowRelicArray[static_cast<int>(LustRelic)])
+	{
+		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(lustRelicCurrentPos) };
+		lustRelicModel->draw();
+	}
+
 	// 暴食のレリック
 	if (bShowRelicArray[static_cast<int>(GluttonyRelic)])
 	{
 		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(gluttonyRelicCurrentPos) };
 		gluttonyRelicModel->draw();
+	}
+
+	// 怠惰のレリック
+	if (bShowRelicArray[static_cast<int>(SlothRelic)])
+	{
+		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(slothRelicCurrentPos) };
+		slothRelicModel->draw();
 	}
 
 	// // 扉
