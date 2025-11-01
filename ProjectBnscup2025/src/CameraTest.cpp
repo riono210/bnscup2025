@@ -3325,6 +3325,7 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				prideRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+				relicRotY[prideRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3353,6 +3354,7 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				greedRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+				relicRotY[greedRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3381,6 +3383,7 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				envyRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+				relicRotY[envyRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3409,6 +3412,7 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				wrathRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+				relicRotY[wrathRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3437,6 +3441,7 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				lustRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+				relicRotY[lustRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3465,6 +3470,7 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				gluttonyRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+				relicRotY[gluttonyRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3493,6 +3499,7 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				slothRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
+				relicRotY[slothRelicNum] = chairRotY[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3784,49 +3791,49 @@ void CameraTest::viewModel()
 	// 傲慢のレリック
 	if (bShowRelicArray[static_cast<int>(PrideRelic)])
 	{
-		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.007).translated(prideRelicCurrentPos) };
+		Transformer3D t{ Mat4x4::RotateY(relicRotY[static_cast<int>(PrideRelic)]).scaled(0.007).translated(prideRelicCurrentPos) };
 		prideRelicModel->draw();
 	}
 
 	// 強欲のレリック
 	if (bShowRelicArray[static_cast<int>(GreedRelic)])
 	{
-		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(greedRelicCurrentPos) };
+		Transformer3D t{ Mat4x4::RotateY(relicRotY[static_cast<int>(GreedRelic)]).scaled(0.01).translated(greedRelicCurrentPos) };
 		greedRelicModel->draw();
 	}
 
 	// 嫉妬のレリック
 	if (bShowRelicArray[static_cast<int>(EnvyRelic)])
 	{
-		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(envyRelicCurrentPos) };
+		Transformer3D t{ Mat4x4::RotateY(relicRotY[static_cast<int>(EnvyRelic)]).scaled(0.01).translated(envyRelicCurrentPos) };
 		envyRelicModel->draw();
 	}
 	
 	// 憤怒のレリック
 	if (bShowRelicArray[static_cast<int>(WrathRelic)])
 	{
-		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(wrathRelicCurrentPos) };
+		Transformer3D t{ Mat4x4::RotateY(relicRotY[static_cast<int>(WrathRelic)]).scaled(0.01).translated(wrathRelicCurrentPos) };
 		wrathRelicModel->draw();
 	}
 
 	// 色欲のレリック
 	if (bShowRelicArray[static_cast<int>(LustRelic)])
 	{
-		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(lustRelicCurrentPos) };
+		Transformer3D t{ Mat4x4::RotateY(relicRotY[static_cast<int>(LustRelic)]).scaled(0.01).translated(lustRelicCurrentPos) };
 		lustRelicModel->draw();
 	}
 
 	// 暴食のレリック
 	if (bShowRelicArray[static_cast<int>(GluttonyRelic)])
 	{
-		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(gluttonyRelicCurrentPos) };
+		Transformer3D t{ Mat4x4::RotateY(relicRotY[static_cast<int>(GluttonyRelic)]).scaled(0.01).translated(gluttonyRelicCurrentPos) };
 		gluttonyRelicModel->draw();
 	}
 
 	// 怠惰のレリック
 	if (bShowRelicArray[static_cast<int>(SlothRelic)])
 	{
-		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(slothRelicCurrentPos) };
+		Transformer3D t{ Mat4x4::RotateY(relicRotY[static_cast<int>(SlothRelic)]).scaled(0.01).translated(slothRelicCurrentPos) };
 		slothRelicModel->draw();
 	}
 

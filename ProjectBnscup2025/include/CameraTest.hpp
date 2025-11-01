@@ -639,6 +639,27 @@ private:
 	Vec3 gluttonyRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -11.6 };
 	Vec3 slothRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -12 };
 
+	// レリックの回転
+	Array<double> relicRotY = {
+		0_deg,
+		0_deg,
+		0_deg,
+		0_deg,
+		0_deg,
+		0_deg,
+		0_deg
+	};
+
+	Array<double> chairRotY = {
+		270_deg,
+		0_deg,
+		180_deg,
+		0_deg,
+		180_deg,
+		0_deg,
+		180_deg
+	};
+
 	// 脱出の扉
 	Vec3 exitDoorPos = { 0, 1, -13.5 };
 	Vec3 exitDoorPlatePos = { -1.88, 1.2, -13.7 };
