@@ -118,11 +118,16 @@ std::tuple<bool, bool, int, bool> ObjectController::update(
 				// テキスト閲覧中はクリック無効
 				isClick = false;
 			}
-			else 
-			{
-				// クリックしたかどうか
-				isClick = true;
-			}
+			// else 
+			// {
+			// 	// クリックしたかどうか
+			// 	isClick = true;
+			// }
+		}
+
+		if (MouseL.down() || controller.buttonA.down())
+		{
+			isClick = true;
 		}
 	}
 

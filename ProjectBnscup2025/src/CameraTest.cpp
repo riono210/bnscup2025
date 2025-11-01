@@ -583,6 +583,7 @@ void CameraTest::debug()
 
 	Print << U"bMouseL=" << bMouseL;
 
+	Print << U"ChairState=" << chairStates;
 #endif
 }
 
@@ -3236,9 +3237,9 @@ void CameraTest::viewInventory()
 		bRustedKeyUse = false;
 	}
 
+	// アイテムを使う
 	if (MouseL.down() || xboxController.buttonA.down())
 	{
-		// アイテムを使う
 		if (bMemo || bToastedParchmentRead || bClothRead)	// TODO 増えたら困る
 		{
 			// メッセージが表示されていたら閉じる系
@@ -3250,10 +3251,35 @@ void CameraTest::viewInventory()
 		{
 			// アイテムのない場所は処理しない
 		}
+		else if (items[selectItem] == GreedRelic)
+		{
+			// 椅子の前で使う
+			if (bFrontOfChair)
+			{
+				setChairState(static_cast<int>(GreedRelic), ChairState::Placed, GreedRelic);
+				// 再描画処理とインベントリから削除適用
+				bGreedRelicHave = false;
+				bShowGreedRelic = true;
+				bGreedRelicPlaced = true;
+				items.remove_at(selectItem);
+
+				// 対象の椅子の位置に置く
+				greedRelicCurrentPos = greedRelicOnChairPos;
+
+
+				// インベントリを閉じる
+				inventoryOnOff();	
+			}
+			else
+			{
+				// 椅子の前でない場合
+				// 何かしらのメッセージ
+			}
+		}
 		// else if (items[selectItem] == Bread)
 		// {
 		// 	// パンを食べる
-		// 	items.remove_at(selectItem);
+			// 	items.remove_at(selectItem);
 
 		// 	// シナリオを進める
 		// 	scenario = 2;	// パンを食べた後
@@ -3746,10 +3772,32 @@ void CameraTest::viewModel()
 #endif
 }
 
+void CameraTest::setChairState(int chairIndex, ChairState state, ItemID relic)
+{
+	// 指定した椅子の状態を設定
+	unsigned int chairMask = 0b11 << (chairIndex * BITS_PER_CHAIR_CELL);
+	chairStates = ( chairStates & ~chairMask ) | ( (static_cast<unsigned int>(state) << (chairIndex * BITS_PER_CHAIR_CELL)) );
+
+	relicsOnChairs[chairIndex] = relic;
+}
+
+ChairState CameraTest::getChairState(int chairIndex) const
+{
+	return static_cast<ChairState>(( chairStates >> (chairIndex * BITS_PER_CHAIR_CELL) ) & 0b11);
+}
+
+ItemID CameraTest::getRelicOnChair(int chairIndex) const
+{
+	return relicsOnChairs[chairIndex];
+}
+
+
 void CameraTest::lockon()
 {
 	// アイテムのロックオンフラグのリセット
 	bLockon = false;
+	bFrontOfChair = false;
+	// ロックオン中の椅子のindexリセット?
 
 	// 傲慢の椅子
 	if(!bLockon)
@@ -3771,6 +3819,7 @@ void CameraTest::lockon()
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = prideChairMessage;
+			bFrontOfChair = true;
 		}
 		if (isClick)
 		{
@@ -3828,11 +3877,35 @@ void CameraTest::lockon()
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = greedChairMessage;
+			bFrontOfChair = true;
 		}
 		if (isClick)
 		{
-			message = greedChairMessage;
-			priorityMessageCount = 0;
+			int greedChairIndex = static_cast<int>(GreedRelic);
+			auto getChaireState = getChairState(greedChairIndex);
+			// レリックが配置されている
+			if(bGreedRelicPlaced && getChaireState == ChairState::Placed || getChaireState == ChairState::Collect)
+			{
+				auto relicOnChair = getRelicOnChair(greedChairIndex);
+				bGreedRelicPlaced = false;
+
+				// アイテムを取った
+				items << relicOnChair;
+				// 下の二つも対象のレリックに変更する
+				bGreedRelicHave = true;
+				bShowGreedRelic = false;
+				bgmStopCount = bgmStopCount;
+				setChairState(greedChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
+
+				// 対象のレリックのメッセージにする
+				priorityMessage = greedRelicGetMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else
+			{
+				message = greedChairMessage;
+				priorityMessageCount = 0;
+			}
 		}
 	}
 
@@ -3885,6 +3958,7 @@ void CameraTest::lockon()
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = envyChairMessage;
+			bFrontOfChair = true;
 		}
 		if (isClick)
 		{
@@ -3942,6 +4016,7 @@ void CameraTest::lockon()
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = wrathChairMessage;
+			bFrontOfChair = true;
 		}
 		if (isClick)
 		{
@@ -3999,6 +4074,7 @@ void CameraTest::lockon()
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = lustChairMessage;
+			bFrontOfChair = true;
 		}
 		if (isClick)
 		{
@@ -4056,6 +4132,7 @@ void CameraTest::lockon()
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = gluttonyChairMessage;
+			bFrontOfChair = true;
 		}
 		if (isClick)
 		{
@@ -4113,6 +4190,7 @@ void CameraTest::lockon()
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = slothChairMessage;
+			bFrontOfChair = true;
 		}
 		if (isClick)
 		{
@@ -4219,7 +4297,8 @@ void CameraTest::lockon()
 			true,
 			false
 		);
-		if (isHave && !bGreedRelicHave)
+
+		if (isHave && !bGreedRelicHave && !bGreedRelicPlaced)
 		{
 			// アイテムを取った
 			items << GreedRelic;
@@ -4230,19 +4309,15 @@ void CameraTest::lockon()
 			priorityMessage = greedRelicGetMessage;
 			priorityMessageCount = priorityMessageCountMax;
 		}
+
 		if (isLockon)
 		{
 			// 見ている
 			bLockon = isLockon;
 			bookingMessage = 88;
 		}
-		// if (isClick)
-		// {
-		// 	message = 88;	// レリックをとってしまうので、使われない
-		// 	priorityMessageCount = 0;
-		// }
 	}
-	
+
 	// // パン
 	// if (!bLockon)
 	// {

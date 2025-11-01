@@ -81,7 +81,15 @@ enum ItemID
 	// WireKey, // 9 針金製の鍵
 	// IronKey,	// 10 鉄製の鍵
 	// GoldKey,	// 11 黄金の鍵（仮）
-	ItemIdMAX,
+	ItemIdMAX = 99,
+};
+
+// 椅子の状態
+enum ChairState
+{
+	Empty = 0b00,
+	Placed = 0b01,
+	Collect = 0b10,
 };
 
 // カメラの実験
@@ -572,10 +580,11 @@ private:
 
 	// 大罪
 	Vec3 prideChairPos = { 0.04, 0.8, 11.3 };
-	Vec3 prideRelicOnChairPos = { prideChairPos.x, 1.3, prideChairPos.z };
+	Vec3 prideRelicOnChairPos = { prideChairPos.x, 0.9, prideChairPos.z };
 	Vec3 pridePicturePos = { 0, 1.45, 11.6 };
 
 	Vec3 greedChairPos = { 4.6, 0.8, 6.38 };
+	Vec3 greedRelicOnChairPos = { greedChairPos.x, 0.9, greedChairPos.z };
 	Vec3 greedPicturePos = { 5, 1.45, 6.38 };
 
 	Vec3 envyChairPos = { -4.6, 0.8, 6.37 };
@@ -881,7 +890,7 @@ private:
 	bool bShowGluttonyRelic = true;
 	bool bShowRelicSloth = true;
 
-	// 怠惰のレリックを持っているかどうかのフラグ
+	// レリックを持っているかどうかのフラグ
 	bool bPrideRelicHave = false;
 	bool bGreedRelicHave = false;
 	bool bEnvyRelicHave = false;
@@ -889,6 +898,24 @@ private:
 	bool bLustRelicHave = false;
 	bool bGluttonyRelicHave = false;
 	bool bSlothRelicHave = false;
+
+	bool bGreedRelicPlaced = false;
+
+	bool bFrontOfChair = false;
+
+	// 各要素のビット数
+	const int BITS_PER_CHAIR_CELL = 2;
+	const int BITS_PER_RELIC_CELL = 3;
+
+	// 椅子の状態をまとめた変数
+	unsigned int chairStates = 0;
+	// どの椅子にレリックを配置したかをまとめた変数
+	Array<ItemID> relicsOnChairs = Array<ItemID>(7, ItemID::ItemIdMAX);
+
+	// 椅子の状態を設定・取得する関数
+	void setChairState(int chairIndex, ChairState state, ItemID relic);
+	ChairState getChairState(int chairIndex) const;
+	ItemID getRelicOnChair(int chairIndex) const;
 
 	// old
 	// 錆びた鍵を持っている
@@ -1532,7 +1559,7 @@ private:
 			U"最後に噛みしめたのか。　　　　　　",
 		},
 
-		// 1 強欲のレリック
+		// 1 強欲のレリック 24文字
 		{
 			U"どれほど詰め込んでも、満たされることはなかった。",
 			U"掌に乗るほど小さいのに、持つ者の心を重くする。　",
