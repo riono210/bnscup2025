@@ -641,7 +641,7 @@ private:
 
 	// レリックの回転
 	Array<double> relicRotY = {
-		0_deg,
+		90_deg,
 		0_deg,
 		0_deg,
 		0_deg,
@@ -1049,19 +1049,12 @@ private:
 	const int exitDoorPlateMessage = 95;
 
 	const int prideChairMessage = 96;
-	const int pridePictureMessage = 95;
 	const int greedChairMessage = 96;
-	const int greedPictureMessage = 97;
 	const int envyChairMessage = 96;
-	const int envyPictureMessage = 99;
 	const int wrathChairMessage = 96;
-	const int wrathPictureMessage = 101;
 	const int lustChairMessage = 96;
-	const int lustPictureMessage = 103;
 	const int gluttonyChairMessage = 96;
-	const int gluttonyPictureMessage = 105;
 	const int slothChairMessage = 96;
-	const int slothPictureMessage = 107;
 
 	const int prideRelicGetMessage = 97;
 	const int greedRelicGetMessage = 98;
@@ -1070,6 +1063,7 @@ private:
 	const int lustRelicGetMessage = 101;
 	const int gluttonyRelicGetMessage = 102;
 	const int slothRelicGetMessage = 103;
+
 	Array<int> relicGetMessageArray = {
 		prideRelicGetMessage,
 		greedRelicGetMessage,
@@ -1079,6 +1073,10 @@ private:
 		gluttonyRelicGetMessage,
 		slothRelicGetMessage
 	};
+
+	const int relicNotFrontOfChairMessage = 104;
+	const int relicCollectMessage = 105;
+	const int chairAlreadySetRelicMessage = 106;
 
 	// 画面下のテキスト
 	Array<String> Text =
@@ -1587,6 +1585,21 @@ private:
 
 		// 103 怠惰のレリック
 		U"【止まった懐中時計】を入手した",
+		U"",
+		U"",
+
+		/// 104 椅子の前にいないときにレリックを使用した
+		U"なにかに引き寄せられているような気がする。",
+		U"",
+		U"",
+
+		/// 105 正しい椅子にレリックを配置した
+		U"在るべき場所に還ったようだ。",
+		U"",
+		U"",
+
+		// 106 椅子にほかのレリックが置かれているときにレリックを使用した
+		U"ここには別の遺物が置かれている。",
 		U"",
 		U"",
 	};

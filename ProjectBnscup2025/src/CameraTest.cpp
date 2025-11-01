@@ -3312,6 +3312,15 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
+				auto chairState = getChairState(frontOfChairIndex);
+				if (chairState == ChairState::Placed || chairState == ChairState::Collect)
+				{
+					// すでにレリックが置かれている場合は置けない
+					priorityMessage = chairAlreadySetRelicMessage;
+					priorityMessageCount = priorityMessageCountMax;
+					return;
+				}
+
 				int prideRelicNum = static_cast<int>(PrideRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = prideRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3325,7 +3334,8 @@ void CameraTest::viewInventory()
 
 				// 対象の椅子の位置に置く
 				prideRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
-				relicRotY[prideRelicNum] = chairRotY[frontOfChairIndex];
+				// 王冠のみ90度ずれているので調整
+				relicRotY[prideRelicNum] = chairRotY[frontOfChairIndex] + 90_deg;
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3333,7 +3343,8 @@ void CameraTest::viewInventory()
 			else
 			{
 				// 椅子の前でない場合
-				// 何かしらのメッセージ
+				priorityMessage = relicNotFrontOfChairMessage;
+				priorityMessageCount = priorityMessageCountMax;
 			}
 		}
 		else if (items[selectItem] == GreedRelic)
@@ -3341,6 +3352,15 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
+				auto chairState = getChairState(frontOfChairIndex);
+				if (chairState == ChairState::Placed || chairState == ChairState::Collect)
+				{
+					// すでにレリックが置かれている場合は置けない
+					priorityMessage = chairAlreadySetRelicMessage;
+					priorityMessageCount = priorityMessageCountMax;
+					return;
+				}
+
 				int greedRelicNum = static_cast<int>(GreedRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = greedRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3362,7 +3382,8 @@ void CameraTest::viewInventory()
 			else
 			{
 				// 椅子の前でない場合
-				// 何かしらのメッセージ
+				priorityMessage = relicNotFrontOfChairMessage;
+				priorityMessageCount = priorityMessageCountMax;
 			}
 		}
 		else if (items[selectItem] == EnvyRelic)
@@ -3370,6 +3391,15 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
+				auto chairState = getChairState(frontOfChairIndex);
+				if (chairState == ChairState::Placed || chairState == ChairState::Collect)
+				{
+					// すでにレリックが置かれている場合は置けない
+					priorityMessage = chairAlreadySetRelicMessage;
+					priorityMessageCount = priorityMessageCountMax;
+					return;
+				}
+
 				int envyRelicNum = static_cast<int>(EnvyRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = envyRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3391,7 +3421,8 @@ void CameraTest::viewInventory()
 			else
 			{
 				// 椅子の前でない場合
-				// 何かしらのメッセージ
+				priorityMessage = relicNotFrontOfChairMessage;
+				priorityMessageCount = priorityMessageCountMax;
 			}
 		}
 		else if (items[selectItem] == WrathRelic)
@@ -3399,6 +3430,15 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
+				auto chairState = getChairState(frontOfChairIndex);
+				if (chairState == ChairState::Placed || chairState == ChairState::Collect)
+				{
+					// すでにレリックが置かれている場合は置けない
+					priorityMessage = chairAlreadySetRelicMessage;
+					priorityMessageCount = priorityMessageCountMax;
+					return;
+				}
+
 				int wrathRelicNum = static_cast<int>(WrathRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = wrathRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3420,7 +3460,8 @@ void CameraTest::viewInventory()
 			else
 			{
 				// 椅子の前でない場合
-				// 何かしらのメッセージ
+				priorityMessage = relicNotFrontOfChairMessage;
+				priorityMessageCount = priorityMessageCountMax;
 			}
 		}
 		else if (items[selectItem] == LustRelic)
@@ -3428,6 +3469,15 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
+				auto chairState = getChairState(frontOfChairIndex);
+				if (chairState == ChairState::Placed || chairState == ChairState::Collect)
+				{
+					// すでにレリックが置かれている場合は置けない
+					priorityMessage = chairAlreadySetRelicMessage;
+					priorityMessageCount = priorityMessageCountMax;
+					return;
+				}
+
 				int lustRelicNum = static_cast<int>(LustRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = lustRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3449,7 +3499,8 @@ void CameraTest::viewInventory()
 			else
 			{
 				// 椅子の前でない場合
-				// 何かしらのメッセージ
+				priorityMessage = relicNotFrontOfChairMessage;
+				priorityMessageCount = priorityMessageCountMax;
 			}
 		}
 		else if (items[selectItem] == GluttonyRelic)
@@ -3457,6 +3508,15 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
+				auto chairState = getChairState(frontOfChairIndex);
+				if (chairState == ChairState::Placed || chairState == ChairState::Collect)
+				{
+					// すでにレリックが置かれている場合は置けない
+					priorityMessage = chairAlreadySetRelicMessage;
+					priorityMessageCount = priorityMessageCountMax;
+					return;
+				}
+
 				int gluttonyRelicNum = static_cast<int>(GluttonyRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = gluttonyRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3478,7 +3538,8 @@ void CameraTest::viewInventory()
 			else
 			{
 				// 椅子の前でない場合
-				// 何かしらのメッセージ
+				priorityMessage = relicNotFrontOfChairMessage;
+				priorityMessageCount = priorityMessageCountMax;
 			}
 		}
 		else if (items[selectItem] == SlothRelic)
@@ -3486,6 +3547,15 @@ void CameraTest::viewInventory()
 			// 椅子の前で使う
 			if (bFrontOfChair)
 			{
+				auto chairState = getChairState(frontOfChairIndex);
+				if (chairState == ChairState::Placed || chairState == ChairState::Collect)
+				{
+					// すでにレリックが置かれている場合は置けない
+					priorityMessage = chairAlreadySetRelicMessage;
+					priorityMessageCount = priorityMessageCountMax;
+					return;
+				}
+				
 				int slothRelicNum = static_cast<int>(SlothRelic);
 				// レリックと椅子のNumが同じか確認
 				ChairState setCurrentChairState = slothRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
@@ -3507,7 +3577,8 @@ void CameraTest::viewInventory()
 			else
 			{
 				// 椅子の前でない場合
-				// 何かしらのメッセージ
+				priorityMessage = relicNotFrontOfChairMessage;
+				priorityMessageCount = priorityMessageCountMax;
 			}
 		}
 
@@ -4105,7 +4176,13 @@ void CameraTest::lockon()
 				message = prideChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			else if(chairState == ChairState::Collect)
+			{
+				// レリックを正しく配置した
+				priorityMessage = relicCollectMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed)
 			{
 				// レリックが配置されている
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4189,7 +4266,13 @@ void CameraTest::lockon()
 				message = greedChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			else if(chairState == ChairState::Collect)
+			{
+				// レリックを正しく配置した
+				priorityMessage = relicCollectMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed)
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4273,7 +4356,13 @@ void CameraTest::lockon()
 				message = envyChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			else if(chairState == ChairState::Collect)
+			{
+				// レリックを正しく配置した
+				priorityMessage = relicCollectMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed)
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4357,7 +4446,13 @@ void CameraTest::lockon()
 				message = wrathChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			else if(chairState == ChairState::Collect)
+			{
+				// レリックを正しく配置した
+				priorityMessage = relicCollectMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed)
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4441,7 +4536,13 @@ void CameraTest::lockon()
 				message = lustChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			else if(chairState == ChairState::Collect)
+			{
+				// レリックを正しく配置した
+				priorityMessage = relicCollectMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed)
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4525,7 +4626,13 @@ void CameraTest::lockon()
 				message = gluttonyChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			else if(chairState == ChairState::Collect)
+			{
+				// レリックを正しく配置した
+				priorityMessage = relicCollectMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed)
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4609,7 +4716,13 @@ void CameraTest::lockon()
 				message = slothChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			else if(chairState == ChairState::Collect)
+			{
+				// レリックを正しく配置した
+				priorityMessage = relicCollectMessage;
+				priorityMessageCount = priorityMessageCountMax;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed)
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
