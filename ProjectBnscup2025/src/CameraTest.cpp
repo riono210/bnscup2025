@@ -3257,17 +3257,17 @@ void CameraTest::viewInventory()
 			if (bFrontOfChair)
 			{
 				int greedRelicNum = static_cast<int>(GreedRelic);
-				// 椅子の番号では？
-				setChairState(frontOfChairIndex, ChairState::Placed, GreedRelic);
+				// レリックと椅子のNumが同じか確認
+				ChairState setCurrentChairState = greedRelicNum == frontOfChairIndex ? ChairState::Collect : ChairState::Placed;
+				setChairState(frontOfChairIndex, setCurrentChairState, GreedRelic);
 				// 再描画処理とインベントリから削除適用
 				bShowRelicArray[greedRelicNum] = true;
 				bRelicHaveArray[greedRelicNum] = false;
-				bGreedRelicPlaced = true;
+				bRelicPlacedArray[greedRelicNum] = true;
 				items.remove_at(selectItem);
 
 				// 対象の椅子の位置に置く
-				greedRelicCurrentPos = greedRelicOnChairPos;
-
+				greedRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
 
 				// インベントリを閉じる
 				inventoryOnOff();	
@@ -3828,8 +3828,32 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = prideChairMessage;
-			priorityMessageCount = 0;
+			auto chairState = getChairState(prideChairIndex);
+			auto relicOnChair = getRelicOnChair(prideChairIndex);
+			
+			if (relicOnChair == ItemID::ItemIdMAX)
+			{
+				// 何も置かれていない
+				message = prideChairMessage;
+				priorityMessageCount = 0;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			{
+				// レリックが配置されている
+				bRelicPlacedArray[relicOnChair] = false;
+
+				// アイテムを取った
+				items << relicOnChair;
+				// 下の二つも対象のレリックに変更する
+				bShowRelicArray[relicOnChair] = false;
+				bRelicHaveArray[relicOnChair] = true;
+				bgmStopCount = bgmStopCount;
+				setChairState(prideChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
+
+				// 対象のレリックのメッセージにする
+				priorityMessage = relicGetMessageArray[relicOnChair];
+				priorityMessageCount = priorityMessageCountMax;
+			}
 		}
 	}
 
@@ -3888,12 +3912,19 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			auto getChaireState = getChairState(greedChairIndex);
-			// レリックが配置されている
-			if(bGreedRelicPlaced && getChaireState == ChairState::Placed || getChaireState == ChairState::Collect)
+			auto chairState = getChairState(greedChairIndex);
+			auto relicOnChair = getRelicOnChair(greedChairIndex);
+			
+			if (relicOnChair == ItemID::ItemIdMAX)
 			{
-				auto relicOnChair = getRelicOnChair(greedChairIndex);
-				bGreedRelicPlaced = false;
+				// 何も置かれていない
+				message = greedChairMessage;
+				priorityMessageCount = 0;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			{
+				// レリックが配置されている	
+				bRelicPlacedArray[relicOnChair] = false;
 
 				// アイテムを取った
 				items << relicOnChair;
@@ -3906,11 +3937,6 @@ void CameraTest::lockon()
 				// 対象のレリックのメッセージにする
 				priorityMessage = relicGetMessageArray[relicOnChair];
 				priorityMessageCount = priorityMessageCountMax;
-			}
-			else
-			{
-				message = greedChairMessage;
-				priorityMessageCount = 0;
 			}
 		}
 	}
@@ -3970,8 +3996,32 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = envyChairMessage;
-			priorityMessageCount = 0;
+			auto chairState = getChairState(envyChairIndex);
+			auto relicOnChair = getRelicOnChair(envyChairIndex);
+
+			if (relicOnChair == ItemID::ItemIdMAX)
+			{
+				// 何も置かれていない
+				message = envyChairMessage;
+				priorityMessageCount = 0;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			{
+				// レリックが配置されている	
+				bRelicPlacedArray[relicOnChair] = false;
+
+				// アイテムを取った
+				items << relicOnChair;
+				// 下の二つも対象のレリックに変更する
+				bShowRelicArray[relicOnChair] = false;
+				bRelicHaveArray[relicOnChair] = true;
+				bgmStopCount = bgmStopCount;
+				setChairState(envyChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
+
+				// 対象のレリックのメッセージにする
+				priorityMessage = relicGetMessageArray[relicOnChair];
+				priorityMessageCount = priorityMessageCountMax;
+			}
 		}
 	}
 
@@ -4030,8 +4080,32 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = wrathChairMessage;
-			priorityMessageCount = 0;
+			auto chairState = getChairState(wrathChairIndex);
+			auto relicOnChair = getRelicOnChair(wrathChairIndex);
+
+			if (relicOnChair == ItemID::ItemIdMAX)
+			{
+				// 何も置かれていない
+				message = wrathChairMessage;
+				priorityMessageCount = 0;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			{
+				// レリックが配置されている	
+				bRelicPlacedArray[relicOnChair] = false;
+
+				// アイテムを取った
+				items << relicOnChair;
+				// 下の二つも対象のレリックに変更する
+				bShowRelicArray[relicOnChair] = false;
+				bRelicHaveArray[relicOnChair] = true;
+				bgmStopCount = bgmStopCount;
+				setChairState(wrathChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
+
+				// 対象のレリックのメッセージにする
+				priorityMessage = relicGetMessageArray[relicOnChair];
+				priorityMessageCount = priorityMessageCountMax;
+			}
 		}
 	}
 
@@ -4090,8 +4164,32 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = lustChairMessage;
-			priorityMessageCount = 0;
+			auto chairState = getChairState(lustChairIndex);
+			auto relicOnChair = getRelicOnChair(lustChairIndex);
+
+			if (relicOnChair == ItemID::ItemIdMAX)
+			{
+				// 何も置かれていない
+				message = lustChairMessage;
+				priorityMessageCount = 0;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			{
+				// レリックが配置されている	
+				bRelicPlacedArray[relicOnChair] = false;
+
+				// アイテムを取った
+				items << relicOnChair;
+				// 下の二つも対象のレリックに変更する
+				bShowRelicArray[relicOnChair] = false;
+				bRelicHaveArray[relicOnChair] = true;
+				bgmStopCount = bgmStopCount;
+				setChairState(lustChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
+
+				// 対象のレリックのメッセージにする
+				priorityMessage = relicGetMessageArray[relicOnChair];
+				priorityMessageCount = priorityMessageCountMax;
+			}
 		}
 	}
 
@@ -4150,8 +4248,32 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = gluttonyChairMessage;
-			priorityMessageCount = 0;
+			auto chairState = getChairState(gluttonyChairIndex);
+			auto relicOnChair = getRelicOnChair(gluttonyChairIndex);
+
+			if (relicOnChair == ItemID::ItemIdMAX)
+			{
+				// 何も置かれていない
+				message = gluttonyChairMessage;
+				priorityMessageCount = 0;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			{
+				// レリックが配置されている	
+				bRelicPlacedArray[relicOnChair] = false;
+
+				// アイテムを取った
+				items << relicOnChair;
+				// 下の二つも対象のレリックに変更する
+				bShowRelicArray[relicOnChair] = false;
+				bRelicHaveArray[relicOnChair] = true;
+				bgmStopCount = bgmStopCount;
+				setChairState(gluttonyChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
+
+				// 対象のレリックのメッセージにする
+				priorityMessage = relicGetMessageArray[relicOnChair];
+				priorityMessageCount = priorityMessageCountMax;
+			}
 		}
 	}
 
@@ -4210,8 +4332,32 @@ void CameraTest::lockon()
 		}
 		if (isClick)
 		{
-			message = slothChairMessage;
-			priorityMessageCount = 0;
+			auto chairState = getChairState(slothChairIndex);
+			auto relicOnChair = getRelicOnChair(slothChairIndex);
+
+			if (relicOnChair == ItemID::ItemIdMAX)
+			{
+				// 何も置かれていない
+				message = slothChairMessage;
+				priorityMessageCount = 0;
+			}
+			else if(bRelicPlacedArray[relicOnChair] && chairState == ChairState::Placed || chairState == ChairState::Collect)
+			{
+				// レリックが配置されている	
+				bRelicPlacedArray[relicOnChair] = false;
+
+				// アイテムを取った
+				items << relicOnChair;
+				// 下の二つも対象のレリックに変更する
+				bShowRelicArray[relicOnChair] = false;
+				bRelicHaveArray[relicOnChair] = true;
+				bgmStopCount = bgmStopCount;
+				setChairState(slothChairIndex, ChairState::Empty, ItemID::ItemIdMAX);
+
+				// 対象のレリックのメッセージにする
+				priorityMessage = relicGetMessageArray[relicOnChair];
+				priorityMessageCount = priorityMessageCountMax;
+			}
 		}
 	}
 
@@ -4315,7 +4461,7 @@ void CameraTest::lockon()
 			false
 		);
 
-		if (isHave && !bRelicHaveArray[greedRelicIndex] && !bGreedRelicPlaced)
+		if (isHave && !bRelicHaveArray[greedRelicIndex] && !bRelicPlacedArray[greedRelicIndex])
 		{
 			// アイテムを取った
 			items << GreedRelic;

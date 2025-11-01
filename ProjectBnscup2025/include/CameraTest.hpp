@@ -588,19 +588,34 @@ private:
 	Vec3 greedPicturePos = { 5, 1.45, 6.38 };
 
 	Vec3 envyChairPos = { -4.6, 0.8, 6.37 };
+	Vec3 envyRelicOnChairPos = { envyChairPos.x, 0.9, envyChairPos.z };
 	Vec3 envyPicturePos = { -5, 1.45, 6.37 };
 
 	Vec3 wrathChairPos = { 4.6, 0.8, 1.32 };
+	Vec3 wrathRelicOnChairPos = { wrathChairPos.x, 0.9, wrathChairPos.z };
 	Vec3 wrathPicturePos = { 5, 1.45, 1.31 };
 
 	Vec3 lustChairPos = { -4.6, 0.8, 1.30 };
+	Vec3 lustRelicOnChairPos = { lustChairPos.x, 0.9, lustChairPos.z };
 	Vec3 lustPicturePos = { -5, 1.45, 1.32 };
 
 	Vec3 gluttonyChairPos = { 4.6, 0.8, -3.64 };
+	Vec3 gluttonyRelicOnChairPos = { gluttonyChairPos.x, 0.9, gluttonyChairPos.z };
 	Vec3 gluttonyPicturePos = { 5, 1.45, -3.64 };
 
 	Vec3 slothChairPos = { -4.6, 0.8, -3.64 };
+	Vec3 slothRelicOnChairPos = { slothChairPos.x, 0.9, slothChairPos.z };
 	Vec3 slothPicturePos = { -5, 1.45, -3.65 };
+
+	Array<Vec3> relicOnChairPos = {
+		prideRelicOnChairPos,
+		greedRelicOnChairPos,
+		envyRelicOnChairPos,
+		wrathRelicOnChairPos,
+		lustRelicOnChairPos,
+		gluttonyRelicOnChairPos,
+		slothRelicOnChairPos
+	};
 
 	// レリック
 	float relicBaseXPos = 4.7f;
@@ -901,14 +916,20 @@ private:
 	// bool bSlothRelicHave = false;
 	Array<bool> bRelicHaveArray = { false, false, false, false, false, false, false };
 
-	bool bGreedRelicPlaced = false;
+	// bool bPrideRelicPlaced = false;
+	// bool bGreedRelicPlaced = false;
+	// bool bEnvyRelicPlaced = false;
+	// bool bWrathRelicPlaced = false;
+	// bool bLustRelicPlaced = false;
+	// bool bGluttonyRelicPlaced = false;
+	// bool bSlothRelicPlaced = false;
+	Array<bool> bRelicPlacedArray = { false, false, false, false, false, false, false };
 
 	bool bFrontOfChair = false;
 	int frontOfChairIndex = -1;
 
 	// 各要素のビット数
 	const int BITS_PER_CHAIR_CELL = 2;
-	const int BITS_PER_RELIC_CELL = 3;
 
 	// 椅子の状態をまとめた変数
 	unsigned int chairStates = 0;
