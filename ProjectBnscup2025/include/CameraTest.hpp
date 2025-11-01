@@ -223,6 +223,8 @@ private:
 
 	// モデルのpath
 	const String roomModelPath = U"assets/obj/EV_Map01.obj";
+	const String relicGluttonyModelPath = U"assets/obj/Relic_Gluttony01.obj";
+	const String relicGreedModelPath = U"assets/obj/Relic_Greed01.obj";
 
 	// old
 	const String modelPath = U"assets/models/Room/EV_Room01.obj";
@@ -255,6 +257,8 @@ private:
 
 	// modelの遅延ロード用ポインタ
 	mutable std::unique_ptr<Model> roomModel;
+	mutable std::unique_ptr<Model> greedRelicModel;
+	mutable std::unique_ptr<Model> gluttonyRelicModel;
 
 	// old
 	//mutable std::unique_ptr<Model> model;
@@ -560,6 +564,7 @@ private:
 
 	// 大罪
 	Vec3 prideChairPos = { 0.04, 0.8, 11.3 };
+	Vec3 prideRelicOnChairPos = { prideChairPos.x, 1.3, prideChairPos.z };
 	Vec3 pridePicturePos = { 0, 1.45, 11.6 };
 
 	Vec3 greedChairPos = { 4.6, 0.8, 6.38 };
@@ -580,8 +585,22 @@ private:
 	Vec3 slothChairPos = { -4.6, 0.8, -3.64 };
 	Vec3 slothPicturePos = { -5, 1.45, -3.65 };
 
+	// レリック
+	float relicBaseXPos = 4.7f;
+	float relicBaseYPos = 0.8f;
+	Vec3 prideRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11 };
+	Vec3 greedRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -10.8 };
+	Vec3 envyRelicCurrentPos = { relicBaseXPos, relicBaseYPos, 4.0 };
+	Vec3 wrathRelicCurrentPos = { relicBaseXPos, relicBaseYPos, 0.0 };
+	Vec3 lustRelicCurrentPos = { relicBaseXPos, relicBaseYPos, 0.0 };
+	Vec3 gluttonyRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.3 };
+	Vec3 slothRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -5.0 };
+
+	// 
+
+	// 脱出の扉
 	Vec3 exitDoorPos = { 0, 1, -13.5 };
-	Vec3 exitDoorPlatePos = { -1.88, 1.2, -13.7};
+	Vec3 exitDoorPlatePos = { -1.88, 1.2, -13.7 };
 
 	// オブジェクトクラス
 	ObjectController prideChairController;
@@ -819,11 +838,24 @@ private:
 	// シナリオ番号
 	int scenario = 0;
 
-	bool bWatchPicture = false; // 絵画を見ているかどうかのフラグ
-	int pictureIndex = -1;  // 見ている絵画の番号
-	int pictureOpenFrameCount = 0;  // 絵画を開いてからのフレーム数
+	// 絵画を見ているかどうかのフラグ
+	bool bWatchPicture = false;
+	// 見ている絵画の番号
+	int pictureIndex = -1;
+	// 絵画を開いてからのフレーム数
+	int pictureOpenFrameCount = 0;
+ 	// 脱出扉のプレートを見ているかどうかのフラグ
+	bool bWatchExitPlate = false;
 
-	bool bWatchExitPlate = false; // 脱出扉のプレートを見ているかどうかのフラグ
+	// 大罪の遺物を描画するかどうかのフラグ
+	bool bShowPrideRelic = true;
+	bool bShowGreedRelic = true;
+	bool bShowEnvyRelic = true;
+	bool bShowWrathRelic = true;
+	bool bShowLustRelic = true;
+	bool bShowGluttonyRelic = true;
+	bool bShowRelicSloth = true;
+
 
 	// old
 	// 錆びた鍵を持っている

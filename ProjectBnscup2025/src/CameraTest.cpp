@@ -97,6 +97,24 @@ void CameraTest::loadResources() const
 			roomModel = std::make_unique<Model>(roomModelPath);
 			Model::RegisterDiffuseTextures(*roomModel, TextureDesc::MippedSRGB);
 			break;
+		case 1:
+			modelExclamationMark = std::make_unique<Model>(modelExclamationMarkPath);
+			Model::RegisterDiffuseTextures(*modelExclamationMark, TextureDesc::MippedSRGB);
+			break;
+		case 2:
+			gluttonyRelicModel = std::make_unique<Model>(relicGluttonyModelPath);
+			Model::RegisterDiffuseTextures(*gluttonyRelicModel, TextureDesc::MippedSRGB);
+			break;
+		case 3:
+			greedRelicModel = std::make_unique<Model>(relicGreedModelPath);
+			Model::RegisterDiffuseTextures(*greedRelicModel, TextureDesc::MippedSRGB);
+			break;
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			break;
 	// case 1:
 	// 	model = std::make_unique<Model>(modelPath);
 	// 	Model::RegisterDiffuseTextures(*model, TextureDesc::MippedSRGB);
@@ -149,10 +167,7 @@ void CameraTest::loadResources() const
 	// 	modelShelf = std::make_unique<Model>(modelShelfPath);
 	// 	Model::RegisterDiffuseTextures(*modelShelf, TextureDesc::MippedSRGB);
 	// 	break;
-	case 1:
-		modelExclamationMark = std::make_unique<Model>(modelExclamationMarkPath);
-		Model::RegisterDiffuseTextures(*modelExclamationMark, TextureDesc::MippedSRGB);
-		break;
+	
 	// case 14:
 	// 	modelParchment = std::make_unique<Model>(modelParchmentPath);
 	// 	Model::RegisterDiffuseTextures(*modelParchment, TextureDesc::MippedSRGB);
@@ -189,28 +204,28 @@ void CameraTest::loadResources() const
 	// 	modelStoneYellow = std::make_unique<Model>(modelStoneYellowPath);
 	// 	Model::RegisterDiffuseTextures(*modelStoneYellow, TextureDesc::MippedSRGB);
 	// 	break;
-	case 2:
+	case 9:
 		dummyTextView(Text);
 		break;
-	case 3:
+	case 10:
 		dummyTextView(itemText);
 		break;
-	case 4:
+	case 11:
 		dummyTextView(itemNameText);
 		break;
-	case 5:
+	case 12:
 		dummyTextView(memoText);
 		break;
-	case 6:
+	case 13:
 		dummyTextView(toastedParchmentText);
 		break;
-	case 7:
+	case 14:
 		dummyTextView(prologueText);
 		break;
-	case 8:
+	case 15:
 		dummyTextView(pictureText);
 		break;
-	case 9:
+	case 16:
 		dummyTextView(exitPlateText);
 		break;
 	// case 29:
@@ -3488,6 +3503,20 @@ void CameraTest::viewModel()
 	{
 		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(roomScale).translated(roomPos) };
 		roomModel->draw();
+	}
+
+	// 強欲のレリック
+	if (bShowGreedRelic)
+	{
+		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(greedRelicCurrentPos) };
+		greedRelicModel->draw();
+	}
+	
+	// 暴食のレリック
+	if (bShowGluttonyRelic)
+	{
+		Transformer3D t{ Mat4x4::RotateY(0_deg).scaled(0.01).translated(gluttonyRelicCurrentPos) };
+		gluttonyRelicModel->draw();
 	}
 
 	// // 扉
