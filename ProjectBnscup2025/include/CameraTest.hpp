@@ -6,14 +6,6 @@
 #include "Collision.hpp"
 #include "AnimeDraw.hpp"
 
-// ポイントライトVer.1
-//struct Light
-//{
-//	Float3 g_pointLightPos;
-//	float g_pointLightStrong;
-//	float _padding;
-//};
-
 // ポイントライトVer.2
 struct PSLighting
 {
@@ -68,19 +60,6 @@ enum ItemID
 	LustRelic,	// 4 色欲のレリック
 	GluttonyRelic,	// 5 暴食のレリック
 	SlothRelic,	// 6 怠惰のレリック
-
-	// Bread,	// 0 パン
-	// Memo,	// 1 手記
-	// RustedKey,	// 2 錆びた鍵
-	// Poker,	// 3 火かき棒
-	// Parchment, // 4 羊皮紙
-	// Hanger, // 5 ハンガー
-	// DirtyCloth,	// 6 汚れた布
-	// Cloth,	// 7 布
-	// ToastedParchment,	// 8 炙った羊皮紙
-	// WireKey, // 9 針金製の鍵
-	// IronKey,	// 10 鉄製の鍵
-	// GoldKey,	// 11 黄金の鍵（仮）
 	ItemIdMAX = 99,
 };
 
@@ -110,12 +89,6 @@ private:
 
 	// リソースを読み込む
 	void loadResources() const;
-
-	// モデルの読み込み
-//	void loadModels() const;
-
-	// ドアの数
-	static const int DoorNum = 4;
 
 	// ポイントライトVer.2
 	ConstantBuffer<PSLighting> constantBuffer;
@@ -149,16 +122,8 @@ private:
 	// HDR（ハイダイナミックレンジ）レンダリング
 	const MSRenderTexture renderTexture{ Scene::Size(), TextureFormat::R16G16B16A16_Float, HasDepth::Yes };
 
-	// 地面
-	//Texture groundTexture;
-	//Mesh groundPlane;
-
 	// 背景色
 	ColorF backgroundColor;
-
-	//double m_fastMove = 1.0;
-
-	//bool m_padPressed = false;
 
 	// カメラの視点（現在）
 	Vec3 curCameraPosition = Vec3{ 0, 1.5, -2 };
@@ -195,47 +160,6 @@ private:
 	// モデル
 	//==============================
 
-	// モデルの読み込み
-	// const Model model{ U"assets/models/Room/EV_Room01.obj" };
-
-	// // ドア
-	// const Model modelDoor{ U"assets/models/Room/Gimmick_FenceDoor01.obj" };
-
-	// // 錆びた鍵
-	// const Model modelKey{ U"assets/models/Key/Gimmick_RustedKey01.obj" };
-
-	// // 鉄製の鍵
-	// const Model modelIronKey{ U"assets/models/Key/Gimmick_IronKey01.obj" };
-
-	// // パン
-	// const Model modelBread{ U"assets/models/Bread/Gimmick_bread01.obj" };
-
-	// // 火かき棒
-	// const Model modelPoker{ U"assets/models/Poker/Gimmick_Poker01.obj" };
-
-	// // 引き出し
-	// const Model modelDrawerChain{ U"assets/models/Drawer/Gimmick_Drawer01_Chain.obj" };
-	// const Model modelDrawerEye{ U"assets/models/Drawer/Gimmick_Drawer01_Eye.obj" };
-	// const Model modelDrawerFeather{ U"assets/models/Drawer/Gimmick_Drawer01_Feather.obj" };
-	// const Model modelDrawerFlower{ U"assets/models/Drawer/Gimmick_Drawer01_Flower.obj" };
-	// const Model modelDrawerNon{ U"assets/models/Drawer/Gimmick_Drawer01_Non.obj" };
-	// const Model modelDrawerSnake{ U"assets/models/Drawer/Gimmick_Drawer01_Snake.obj" };
-	// const Model modelShelf{ U"assets/models/Drawer/Gimmick_Shelf01.obj" };
-
-	// // ビックリマーク
-	// const Model modelExclamationMark{ U"assets/models/ExclamationMark/ExclamationMark.obj" };
-
-	// // 羊皮紙
-	// const Model modelParchment{ U"assets/models/Parchment/Gimmick_Parchment01.obj" };
-
-	// // ハンガー
-	// const Model modelHanger{ U"assets/models/Hangar/Gimmick_Hangar01.obj" };
-	
-	// // 汚れた布
-	// const Model modelDirtyCloth{ U"assets/models/Cloth/Gimmick_Cloth01.obj" };
-
-	// // 手記
-	// const Model modelMemo{ U"assets/models/Memo/memo.obj" };
 
 	// モデルのpath
 	const String roomModelPath = U"assets/obj/EV_Map01.obj";
@@ -246,35 +170,7 @@ private:
 	const String relicLustModelPath = U"assets/obj/Relic_Lust01.obj";
 	const String relicGreedModelPath = U"assets/obj/Relic_Greed01.obj";
 	const String relicSlothModelPath = U"assets/obj/Relic_Sloth01.obj";
-
-	// old
-	const String modelPath = U"assets/models/Room/EV_Room01.obj";
-	const String modelDoorPath = U"assets/models/Room/Gimmick_FenceDoor01.obj";
-	const String modelRustedKeyPath = U"assets/models/Key/Gimmick_RustedKey01.obj";
-	const String modelIronKeyPath = U"assets/models/Key/Gimmick_IronKey01.obj";
-	const String modelBreadPath = U"assets/models/Bread/Gimmick_bread01.obj";
-	const String modelPokerPath = U"assets/models/Poker/Gimmick_Poker01.obj";
-	const String modelDrawerChainPath   = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Chain.obj";
-	const String modelDrawerEyePath     = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Eye.obj";
-	const String modelDrawerFeatherPath = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Feather.obj";
-	const String modelDrawerFlowerPath  = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Flour.obj";
-	const String modelDrawerSnakePath   = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02_drawer_Snake.obj";
-	const String modelShelfPath         = U"assets/models/Gimmick_Cabinet02/Gimmick_Cabinet02.obj";
 	const String modelExclamationMarkPath = U"assets/models/ExclamationMark/ExclamationMark.obj";
-	const String modelParchmentPath = U"assets/models/Parchment/Gimmick_Parchment01.obj";
-	const String modelHangerPath = U"assets/models/Hangar/Gimmick_Hanger01.obj";
-	const String modelDirtyClothPath = U"assets/models/Cloth/Gimmick_Cloth01.obj";
-	const String modelMemoPath = U"assets/models/Memo/Gimmick_Memo01.obj";
-	
-	// 石板
-	const String modelStoneBasePath = U"assets/models/Gimmick_Stone/Gimmick_Stone_Base01.obj";
-	const String modelStoneBluePath = U"assets/models/Gimmick_Stone/Gimmick_Stone_Blue.obj";
-	const String modelStoneGreenPath = U"assets/models/Gimmick_Stone/Gimmick_Stone_Green01.obj";
-	const String modelStoneRedPath = U"assets/models/Gimmick_Stone/Gimmick_Stone_Red.obj";
-	const String modelStoneYellowPath = U"assets/models/Gimmick_Stone/Gimmick_Stone_Yellow01.obj";
-
-	// テスト用の引き出し
-	const String modelDrawerTestPath = U"assets/models/Drawer/Gimmick_Drawer_Test.obj";
 
 	// modelの遅延ロード用ポインタ
 	mutable std::unique_ptr<Model> roomModel;
@@ -285,33 +181,8 @@ private:
 	mutable std::unique_ptr<Model> lustRelicModel;
 	mutable std::unique_ptr<Model> gluttonyRelicModel;
 	mutable std::unique_ptr<Model> slothRelicModel;
-
-	// old
-	//mutable std::unique_ptr<Model> model;
-	// mutable std::unique_ptr<Model> modelDoor;
-	// mutable std::unique_ptr<Model> modelRustedKey;
-	// mutable std::unique_ptr<Model> modelIronKey;
-	// mutable std::unique_ptr<Model> modelBread;
-	// mutable std::unique_ptr<Model> modelPoker;
-	// mutable std::unique_ptr<Model> modelDrawerChain;
-	// mutable std::unique_ptr<Model> modelDrawerEye;
-	// mutable std::unique_ptr<Model> modelDrawerFeather;
-	// mutable std::unique_ptr<Model> modelDrawerFlower;
-	// mutable std::unique_ptr<Model> modelDrawerNon;
-	// mutable std::unique_ptr<Model> modelDrawerSnake;
-	// mutable std::unique_ptr<Model> modelShelf;
 	mutable std::unique_ptr<Model> modelExclamationMark;
-	// mutable std::unique_ptr<Model> modelParchment;
-	// mutable std::unique_ptr<Model> modelHanger;
-	// mutable std::unique_ptr<Model> modelDirtyCloth;
-	// mutable std::unique_ptr<Model> modelMemo;
-	// mutable std::unique_ptr<Model> modelStoneBase;
-	// mutable std::unique_ptr<Model> modelStoneBlue;
-	// mutable std::unique_ptr<Model> modelStoneGreen;
-	// mutable std::unique_ptr<Model> modelStoneRed;
-	// mutable std::unique_ptr<Model> modelStoneYellow;
-	// mutable std::unique_ptr<Model> modelDrawerTest;
-
+	
 	mutable int loadCount = 0;	// リソースの読み込みカウント
 	mutable bool bLoaded = false;	// リソースが読み込まれたかどうかのフラグ
 
@@ -330,38 +201,9 @@ private:
 	// BGMがストップしている時間
 	double bgmStopCount = 0.0f;
 
-
-
-	//==============================
-	// ドア関係
-	//==============================
-
-	// ドアの回転
-	Vec3 doorRot{ 0, 180_deg, 0 };	// 最初の扉
-	Vec3 door2Rot{ 0, 180_deg, 0 };	// 左下の部屋の扉
-	//double toDoorRotY = 0;
-
-	// ドアの移動（横に開ける）
-	double toDoorPosX = 0;
-	double toDoor2PosX = 0;
-
-	// ドアが開いているかどうかのフラグ
-	bool bDoorOpen[DoorNum];
-
 	//==============================
 	// シェーダー
 	//==============================
-
-	//const PixelShader psBright = HLSL{
-	//	U"example/shader/hlsl/extract_bright_linear.hlsl",
-	//	U"PS"
-	//}
-	//	| GLSL{
-	//		U"example/shader/glsl/extract_bright_linear.frag",
-	//		{
-	//			{U"PSConstants2D", 0}
-	//		}
-	//};
 
 	// 頂点シェーダ
 	const VertexShader vs3D = GLSL{
@@ -385,13 +227,6 @@ private:
 		}
 	};
 
-	//const RenderTexture gaussianA4{ renderTexture.size() / 4 }, gaussianB4{ renderTexture.size() / 4 };
-	//const RenderTexture gaussianA8{ renderTexture.size() / 8 }, gaussianB8{ renderTexture.size() / 8 };
-	//const RenderTexture gaussianA16{ renderTexture.size() / 16 }, gaussianB16{ renderTexture.size() / 16 };
-
-	//bool isGlowEffect = true;
-	//int glowEffectType = 0;
-
 	// ストップウォッチ
 	Stopwatch stopwatch{ StartImmediately::Yes };
 
@@ -414,9 +249,6 @@ private:
 	// ライトの設定
 	Vec3 lightPos;
 	float lightStrong = 4.0;
-	//double lightSize = 0.073;
-	//double emission = 1.0;
-	//double toEmission = 1.0;
 
 	// 暖炉の明るさ
 	float fireplaceStrong = 2.6;
@@ -438,155 +270,6 @@ private:
 
 	// ルームの位置
 	const Vec3 roomPos{ 0, 0, 0 };
-
-	// ドアの位置
-	Vec3 doorPos{ -1.6, 0, 1.9 };	// 最初の部屋のドア
-	Vec3 door2Pos{ 6.68, 0, 1.9 };	// 左下の部屋のドア
-	Vec3 door3Pos{ 20, 0.9, -0.7 };	// 中央の部屋のドア
-	Vec3 door4Pos{ -1.55, 1.2, -3.53 };	// 右上の部屋のドア
-
-	// 錆びた鍵の座標
-//	Vec3 rustedKeyPos = { 4, 0.26, 4.14 };
-	Vec3 rustedKeyPos = { 4.05, 0.16, 4.14 };
-
-	// 鉄製の鍵の座標
-	Vec3 IronkeyPos = { -0.48, 0.465, -4.80 };
-
-	// パンの座標
-	Vec3 breadPos = { -0.13, 0.75, 6.53 };
-
-	// 火かき棒の座標
-	Vec3 pokerPos = { 20, 0.45, -6.2 };
-
-	// 引き出し
-	Array<Vec3> drawerPos = {
-		{ 16.3, 0, 1.49 },
-		{ 16.3, 0 + 0.118 * 4, 1.49 },
-		{ 16.3, 0 + 0.118 * 3, 1.49 },
-		{ 16.3, 0 + 0.118 * 2, 1.49 },
-		{ 16.3, 0 + 0.118 * 1, 1.49 },
-		{ 16.3, 0 + 0.118 * 0, 1.49 },
-		{ 0, 0, 0 }	// ダミー
-	};
-
-	//Vec3 debugPos = { 16.3, 0.118, 1.49 };
-	//float debugPosY2 =0;
-
-	// 引き出しの移動先
-	Array<Vec3> toDrawerPos = drawerPos;
-
-	// 引き出しテスト用
-	Vec3 drawerTestPos = { 14.61, 0, 1.45 };
-
-	// 引き出し中
-	bool bDrawerPullNow = false;
-
-	double debugDrawerY = 0;
-
-	// 羊皮紙
-	Vec3 parchmentPos = { 17.07, 0.75, -2.57 };
-	Vec3 parchmentRot = { 0, 30_deg, 0 };
-
-	// ベッド
-	Vec3 bedPos = { 2.87, 0.5, 11.3 };
-	Vec3 bed2Pos = { 2.87, 0.5, 8.3 };
-	Vec3 bed3Pos = { -2.87, 0.5, 11.3 };
-	Vec3 bed4Pos = { -2.87, 0.5, 8.3 };
-	Vec3 oldBedPos = { 2.87, 0.5, 5.15 };
-
-	// トイレ
-	Vec3 toiletPos = { -3.4, 0.5, 3.1 };
-
-	// トイレ２（左上の部屋）
-	Vec3 toilet2Pos = { 5, 0.5, -4.5 };
-
-	// 棚
-	Vec3 shelfPos = { 0, 0.5, 11.5 };
-
-	// 壁
-	Vec3 wallPos = { 3.7, 0.25, 3 };
-
-	// 暖炉
-	Vec3 fireplacePos = { 16.3, 0.5, -6.5 };
-	Vec3 fireplaceLightPos = { 16.3, 0.7, -6.5 };
-
-	// 暖炉の炎
-	Vec3 fireBillboardPos = { 16.43, 0.43, -7.10 };
-	float fireBillboardScale = 0.35;
-	float fireBillboardColor = 0.7;
-
-	// ハンガー
-	Vec3 hangerPos = { 0, 1.018, 11.88 };
-	Vec3 hangerRot = { 0, 0_deg, 0 };
-
-	// 樽
-	Vec3 barrelPos = { -3.55, 0.965, 0.185 };
-	Vec3 barrel2Pos = { -3.55, 0.965, -0.72 };
-	Vec3 barrel3Pos = { 13.07, 0.965, -6.8 };
-
-	// 教団の紋章
-	Vec3 emblemPos = { 16.39, 2.09, 1.63 };
-
-	// 暖炉上の絵画
-	Vec3 painting2Pos = { 16.35, 2, -7.24 };
-
-	// 汚れた布
-	Vec3 dirtyClothPos = { 11.522, 0.458, 10.29 };
-
-	// 手記
-	Vec3 memoPos = { -3.0, 0.01, 10.6 };
-	Vec3 memoRot = { 0, 30_deg, 0 };
-
-	// 石板
-//	Vec3 stonePos = { 20.18, 1.5, -2.5 };
-	Array<Vec3> stonePos = {
-		{ 20.18, 1.2, -2.18 },	// BASE
-		{ 20.18, 1.2, -2.18 + 0.19 - 0.127 * 0 },	// 1
-		{ 20.18, 1.2, -2.18 + 0.19 - 0.127 * 1 },	// 2
-		{ 20.18, 1.2, -2.18 + 0.19 - 0.127 * 2 },	// 3
-		{ 20.18, 1.2, -2.18 + 0.19 - 0.127 * 3 },	// 4
-		{ 0, 0, 0 }	// ダミー
-	};
-
-	// 石板の移動先
-	Array<Vec3> toStonePos = stonePos;
-
-	// 石板の向き
-	Vec3 stoneRot = { 0, 90_deg, 0 };
-
-	// 石板を押している最中
-	bool bStonePullNow = false;
-
-	// 詰所の壁際の椅子
-	Vec3 chairPos = { 19.88, 0.72, -4.05 };
-	Vec3 chair2Pos = { 19.88, 0.72, -4.70 };
-	Vec3 chair3Pos = { 16.23, 1.15, -2.11 };
-	Vec3 chair4Pos = { 16.23, 1.15, -3.68 };
-
-	// 詰所のテーブル
-	Vec3 tablePos = { 16.25, 0.75, -2.92 };
-
-	// 木箱
-//	Vec3 woodenBoxPos = { 19.76, 1.14, 1.37 };
-	Vec3 woodenBoxPos = { 19.76, 1.2, 1.37 };
-	Vec3 woodenBox2Pos = { -3.57, 0.86, -3.16 };
-	Vec3 woodenBox3Pos = { 14.1, 0.79, -6.56 };
-
-	// 手錠
-	Vec3 handcuffsPos = { 14.35, 1.23, 1.75 };
-	Vec3 handcuffs2Pos = { 13.11, 1.23, 1.75 };
-
-	// 絵画
-	Vec3 paintingPos = { 20.00, 1.45, -5.76 };
-
-	// 小さい棚
-	Vec3 smallShelfPos = { -3.79, 2, -0.93 };
-	Vec3 smallShelf2Pos = { 12.6, 2, -5.17 };
-	Vec3 smallShelf3Pos = { 18.81, 2.05, -7.19 };
-
-	// 脱出の扉の左にボード
-	Vec3 boardPos = {20.11, 1.44, 0.29};
-
 
 	// 大罪
 	float chairRelicPosY = 0.45f;
@@ -690,36 +373,36 @@ private:
 	ObjectController gluttonyRelicController;
 	ObjectController slothRelicController;
 
-	// old
-	ObjectController breadController;
-	ObjectController rustedKeyController;
-	ObjectController ironkeyController;
-	ObjectController pokerController;
-	ObjectController doorController;
-	ObjectController door2Controller;
-	ObjectController door3Controller;
-	ObjectController parchmentController;
-	ObjectController bedController;
-	ObjectController bed2Controller;
-	ObjectController bed3Controller;
-	ObjectController bed4Controller;
-	ObjectController oldBedController;
-	ObjectController toiletController;
-	ObjectController shelfController;
-	ObjectController wallController;
-	ObjectController fireplaceController;
-	ObjectController fireplaceStrongController;
-	ObjectController hangerController;
-	ObjectController barrelController;
-	ObjectController dirtyClothController;
-	ObjectController memoController;
-	ObjectController drawerController;
-	ObjectController stoneController;
-	ObjectController chairController;
-	ObjectController handcuffsController;
-	ObjectController paintingController;
-	ObjectController smallShelfController;
-	ObjectController boardController;
+	// // old
+	// ObjectController breadController;
+	// ObjectController rustedKeyController;
+	// ObjectController ironkeyController;
+	// ObjectController pokerController;
+	// ObjectController doorController;
+	// ObjectController door2Controller;
+	// ObjectController door3Controller;
+	// ObjectController parchmentController;
+	// ObjectController bedController;
+	// ObjectController bed2Controller;
+	// ObjectController bed3Controller;
+	// ObjectController bed4Controller;
+	// ObjectController oldBedController;
+	// ObjectController toiletController;
+	// ObjectController shelfController;
+	// ObjectController wallController;
+	// ObjectController fireplaceController;
+	// ObjectController fireplaceStrongController;
+	// ObjectController hangerController;
+	// ObjectController barrelController;
+	// ObjectController dirtyClothController;
+	// ObjectController memoController;
+	// ObjectController drawerController;
+	// ObjectController stoneController;
+	// ObjectController chairController;
+	// ObjectController handcuffsController;
+	// ObjectController paintingController;
+	// ObjectController smallShelfController;
+	// ObjectController boardController;
 
 	double GlobalAmbientColorR = 0.4;
 	double GlobalAmbientColorG = 0.4;
@@ -788,39 +471,6 @@ private:
 	bool bDebugViewCollision = false;
 	bool bDebugviewModel = true;
 	bool bDebugFlashingLight = true;
-	//	bool bDebugShader = true;
-
-	// コリジョン無効エリア
-	double collisionNone[DoorNum][4] =
-	{
-		// x_min, x_max, z_min, z_max
-		{ -2.2, -1.1, 1.2, 2.6},	// 最初の部屋
-		{ 6.1, 7.2, 1.2, 2.6},		// 左下の部屋
-		{ 10, 12, -1.5, -0.3},		// 奥の部屋
-		{ 6.3, 7.0, -4.4, -3.0},	// 左上の部屋
-	};
-
-	// ライトを切り替えるエリア
-	//double collisionLight[5][4] =
-	//{
-	//	{ -3,  3,  3, 11},	// x_min, x_max, z_min, z_max
-	//	{ -3, 11, -3,  1},	// 通路
-	//	{ 12, 19, -2,  1},	// 奥の部屋１
-	////	{ 13, 19, -6, -3},	// 奥の部屋２
-	//	{  5, 11,-12, -4},	// 真ん中の部屋（北）
-	//	{  5, 11,  3, 11},	// 真ん中の部屋（南）
-	//};
-
-	// ライトの位置
-	//Vec3 lightPosList[5] =
-	//{
-	//	{ 0, 2.084, 7 },	// x_min, x_max, z_min, z_max
-	//	{ 4.26, 2.60, -0.93},	// 通路
-	//	{ 16.05, 2.60, -0.92},	// 奥の部屋１
-	////	{ 16.05, 2.60, -4.27},	// 奥の部屋２
-	//	{ 8.29, 2.08, -8.8},	// 真ん中の部屋（北）
-	//	{ 8.29, 2.08, 7.0},	// 真ん中の部屋（南）
-	//};
 
 	// 自分自身のコリジョンの半径
 	double myRadius = 0.3;
@@ -845,24 +495,8 @@ private:
 	const Texture gluttonyRelicUiSprite{ U"assets/sprites/UI_Relic_Gluttony.png" };
 	const Texture slothRelicUiSprite{ U"assets/sprites/UI_Relic_Sloth.png" };
 
-	// old
 	const Texture inventorySprite{ U"assets/sprites/BG_Inventory01.png" };
-	const Texture breadMiniSprite{ U"assets/sprites/bread_mini.png" };
-	const Texture breadBigSprite{ U"assets/sprites/bread_big.png" };
-	const Texture memoSprite{ U"assets/sprites/UI_notes01.png" };
-	const Texture rustedKeySprite{ U"assets/sprites/key_big.png" };
-	const Texture pokerSprite{ U"assets/sprites/UI_Poker01.png" };
-	const Texture parchmentSprite{ U"assets/sprites/UI_Parchment01.png" };
-	const Texture hangerSprite{ U"assets/sprites/UI_Hanger01.png" };
-	const Texture wireKeySprite{ U"assets/sprites/UI_WireKey01.png" };
-	const Texture toastedParchmentSprite{ U"assets/sprites/UI_Parchment02.png" };
-	const Texture dirtyClothSprite{ U"assets/sprites/UI_Dirtycloth01.png" };
-	const Texture clothSprite{ U"assets/sprites/UI_Cloth01.png" };
-	const Texture ironKeyMiniSprite{ U"assets/sprites/iron_key_mini.png" };
-	const Texture ironKeyBigSprite{ U"assets/sprites/iron_key_big.png" };
-	const Texture goldKeySprite{ U"assets/sprites/gold_key.png" };
 	const Texture nowLoadingSprite{ U"assets/sprites/UI_Now_Loading01.png" };
-
 
 	// ビルボード用
 	const Texture uvChecker{ U"assets/sprites/ExclamationMark.png", TextureDesc::MippedSRGB };
@@ -891,10 +525,7 @@ private:
 
 	// ビックリマーク
 	Vec3 markPosition{ 0.0, 0.0, 0.0 };
-//	float markSize = 0.3;
-//	float markSize = 0.2;
 	float markSize = 0.1;
-//	float markHigh = 0.2;
 	float markHigh = 0.3;
 
 	// 取得しているアイテム一覧
@@ -903,13 +534,7 @@ private:
 	// メッセージ番号
 	int message = 3;
 	int messagePattern = 0;
-//	double messagePatternCount = 0.0;
 	int itemMessage = -1;
-
-	// ライト関係の変数
-	//int lightArea = 0;
-	//int lastLightArea = 0;
-	//double lightTime = 0;
 
 	int debugItemNameX = 805;
 	int debugItemNameY = 236;
@@ -959,87 +584,87 @@ private:
 	bool bClear = false;
 	bool bPlayEpilogue = false;
 
-	// old
-	// 錆びた鍵を持っている
-	bool bRustedKeyHave = false;
+// 	// old
+// 	// 錆びた鍵を持っている
+// 	bool bRustedKeyHave = false;
 
-	// パンを持っている
-	bool bBreadHave = false;
+// 	// パンを持っている
+// 	bool bBreadHave = false;
 
-	// 火かき棒を持っている
-	bool bPokerHave = false;
+// 	// 火かき棒を持っている
+// 	bool bPokerHave = false;
 
-	// 羊皮紙を持っている
-	bool bParchmentHave = false;
+// 	// 羊皮紙を持っている
+// 	bool bParchmentHave = false;
 
-	// 手記を読んでいる
-	bool bMemo = false;
+// 	// 手記を読んでいる
+// 	bool bMemo = false;
 
-	// 壁を調べた
-	bool bWall = false;
+// 	// 壁を調べた
+// 	bool bWall = false;
 
-	// 針金を持っている
-	bool bWire = false;
+// 	// 針金を持っている
+// 	bool bWire = false;
 
-	// 針金製の鍵を持っている
-	bool bWireKey = false;
+// 	// 針金製の鍵を持っている
+// 	bool bWireKey = false;
 
-	// 鉄製の鍵を持っている
-	bool bIronKeyHave = false;
+// 	// 鉄製の鍵を持っている
+// 	bool bIronKeyHave = false;
 
-	// 暖炉の火が強くなった
-	bool bFireplaceStrong = false;
+// 	// 暖炉の火が強くなった
+// 	bool bFireplaceStrong = false;
 
-	// 炙った羊皮紙を読んでいる
-	bool bToastedParchmentRead = false;
+// 	// 炙った羊皮紙を読んでいる
+// 	bool bToastedParchmentRead = false;
 
-	// ハンガーを見つけた
-	bool bHangerFind = false;
+// 	// ハンガーを見つけた
+// 	bool bHangerFind = false;
 
-	// ハンガーを持っている
-	bool bHangerHave = false;
+// 	// ハンガーを持っている
+// 	bool bHangerHave = false;
 
-	// 汚れた布を持っている
-	bool bDirtyClothHave = false;
+// 	// 汚れた布を持っている
+// 	bool bDirtyClothHave = false;
 
-	// 手記を持っている
-	bool bMemoHave = false;
+// 	// 手記を持っている
+// 	bool bMemoHave = false;
 
-	// 布を持っている
-	bool bClothHave = false;
+// 	// 布を持っている
+// 	bool bClothHave = false;
 
-	// 布を読んでいる
-	bool bClothRead = false;
+// 	// 布を読んでいる
+// 	bool bClothRead = false;
 
-	// 樽３の近くにいる
-	//bool bBarrel3Lockon = false;
+// 	// 樽３の近くにいる
+// 	//bool bBarrel3Lockon = false;
 
-	// トイレ２の近くにいる
-	bool bToilet2Lockon = false;
+// 	// トイレ２の近くにいる
+// 	bool bToilet2Lockon = false;
 
-	// 暖炉の近くにいる
-	bool bFireplaceLockon = false;
+// 	// 暖炉の近くにいる
+// 	bool bFireplaceLockon = false;
 
-	// 火の強い暖炉の近くにいる（オミット）
-//	bool bFireplaceStrongLockon = false;
+// 	// 火の強い暖炉の近くにいる（オミット）
+// //	bool bFireplaceStrongLockon = false;
 
-	// 鉄製の鍵の前にいる
-	bool bIronKeyLockon = false;
+// 	// 鉄製の鍵の前にいる
+// 	bool bIronKeyLockon = false;
 
-	// 最初の部屋のドアの前にいる
-	bool bDoorLockon = false;
+// 	// 最初の部屋のドアの前にいる
+// 	bool bDoorLockon = false;
 
-	// 左下の部屋のドアの前にいる
-	bool bDoor2Lockon = false;
+// 	// 左下の部屋のドアの前にいる
+// 	bool bDoor2Lockon = false;
 
-	// 奥の部屋のドアの前にいる
-	bool bDoor3Lockon = false;
+// 	// 奥の部屋のドアの前にいる
+// 	bool bDoor3Lockon = false;
 
-	// 黄金の鍵を持っている
-	bool bDrawerClear = false;
+// 	// 黄金の鍵を持っている
+// 	bool bDrawerClear = false;
 
-	// （仮）石板クリアフラグ
-	bool bStoneclear = false;
+// 	// （仮）石板クリアフラグ
+// 	// bool bStoneclear = false;
 
 	const Font& boldFont = FontAsset(U"Bold");
 
@@ -1727,61 +1352,6 @@ private:
 		U"黄金の鍵",	// 11
 	};
 
-	// 手記
-	Array<String> memoText =
-	{
-		U"【囚人の手記】\n",
-		U"看守が巡回中に、腰の鍵を落とした\n",
-		U"奇跡だ。…いや、呪いかもしれない\n",
-		U"やつは気づかずに通り過ぎた。俺は急いで拾い、音を立てぬように隠した\n",
-		U"\n",
-		U"隠すには、見えぬ場所がよかった\n",
-		U"見えるけど、見ようとしなければ通り過ぎてしまうような…そんな場所\n",
-		U"いつも眠りに落ちるとき、顔を向ける方角。\n",
-		U"眠っている間、壁の向こうでこいつも眠っている——\n",
-		U"\n",
-		U"お前がこれを見つけたなら、まだ希望はある\n",
-		U"見つけてくれ、この“目に見えぬ出口”を\n",
-		U"\n",
-		U"……俺には、もう時間がなかった。",
-	};
-
-	// 羊皮紙
-	Array<String> toastedParchmentText =
-	{
-		U"ちぎれた輪が、\n",
-		U"空の底へと沈む。\n",
-		U"\n",
-		U"白い欠片が、\n",
-		U"風に踊り、やがて落ちる。\n",
-		U"\n",
-		U"絡みつくものが、\n",
-		U"静かに喉元へ這う。\n",
-		U"\n",
-		U"枯れた夢が、\n",
-		U"黒ずんだ土に崩れ落ちる。\n",
-		U"\n",
-		U"見開かれたそれが、\n",
-		U"すべてを呪うように、夜を睨む。\n",
-	};
-
-	// 布
-	Array<String> clothText =
-	{
-		U"其れは命の源を吐き出し、\n",
-		U"大地に茂る其れにより、人の営みは始まった。\n",
-		U"\n",
-		U"そして、進化の糧を手にした者は、\n",
-		U"夜を追いやった。\n",
-		U"\n",
-		U"されど、其れが無きところに命はなく、\n",
-		U"人は僅か三日と耐えられぬ。\n",
-		U"\n",
-		U"やがて陽は昇り、\n",
-		U"光は全てを照らした。\n",
-		U"感謝と共に、我らは遠き創世を想う。\n",
-	};
-
 	// プロローグ
 	Array<String> prologueText =
 	{
@@ -1897,14 +1467,10 @@ private:
 
 	float prologueCount = 0;
 	float messageCount = 0;
-	int   prologueLength = 0;
 	bool  bPrologueMessageEnd = false;
 
 	float epilogueCount = 0;
-	int   epilogueLength = 0;
 	bool  bEpilogueMessageEnd = false;
-//	bool  bPrologue2End = false;
-//	bool bPrologueBGM = false;
 	bool bStartPlaying = false;
 
 	
@@ -1913,8 +1479,6 @@ private:
 	const float prologueMessageSpeed = 5;
 	const float epilogueMessageSpeed = 5;
 	const float MessageSpeed = 5;
-//	const float MessageSpeed = 10;	// 2倍速
-//	const float prologueMessageWait = 1;
 
 	// SEを鳴らす
 	void playSEandBGMStop(String SE);
@@ -1929,8 +1493,8 @@ private:
 	// チュートリアルフラグ（パン入手から使うまで。使ったらfalseになる）
 	bool bTutorial = true;
 
-	// 合成アイテム番号
-	int synthesisIndex = -1;
+	// // 合成アイテム番号
+	// int synthesisIndex = -1;
 
 	// モデルの表示
 	void viewModel();
@@ -1941,53 +1505,53 @@ private:
 	// オブジェクトのロックオン
 	void lockon();
 
-	// 引き出しモード
-	bool bDrawerMode = false;
+	// // 引き出しモード
+	// bool bDrawerMode = false;
 
-	// 引き出しのインデックス番号
-	int drawerIndex = 0;
+	// // 引き出しのインデックス番号
+	// int drawerIndex = 0;
 
-	// 引き出しの順番
-	int drawerOrder = 0;
+	// // 引き出しの順番
+	// int drawerOrder = 0;
 
-	// 引き出しのカウンター
-	int drawerCounter= 0;
+	// // 引き出しのカウンター
+	// int drawerCounter= 0;
 
-	// 引き出しフラグ
-	bool drawerPull[6] = {
-		false,
-		false,
-		false,
-		false,
-		false,
-		false,
-	};
+	// // 引き出しフラグ
+	// bool drawerPull[6] = {
+	// 	false,
+	// 	false,
+	// 	false,
+	// 	false,
+	// 	false,
+	// 	false,
+	// };
 
-	// 引き出しアニメーション用のカウンター
-	float drawerPullCount = 0;
+	// // 引き出しアニメーション用のカウンター
+	// float drawerPullCount = 0;
 
-	// 石板モード
-	bool bStoneMode = false;
+	// // 石板モード
+	// bool bStoneMode = false;
 
-	// 石板のインデックス番号
-	int stoneIndex = 0;
+	// // 石板のインデックス番号
+	// int stoneIndex = 0;
 
-	// 石板の順番
-	int stoneOrder = 0;
+	// // 石板の順番
+	// int stoneOrder = 0;
 
-	// 石板のカウンター
-	int stoneCounter = 0;
+	// // 石板のカウンター
+	// int stoneCounter = 0;
 
-	// 石板フラグ
-	bool stonePull[4] = {
-		false,
-		false,
-		false,
-		false,
-	};
+	// // 石板フラグ
+	// bool stonePull[4] = {
+	// 	false,
+	// 	false,
+	// 	false,
+	// 	false,
+	// };
 
-	// 石板：クリア後にゲーム画面に戻るためのカウンター
-	float stonePushCount = 0;
+	// // 石板：クリア後にゲーム画面に戻るためのカウンター
+	// float stonePushCount = 0;
 
 	float debugHeight = 1.58;
 	float debugDis = 0.55;
@@ -2001,16 +1565,11 @@ private:
 
 	const float BGMVolume = 0.56f;
 
-	animeDraw fireBillboard;
-
-//	float nowLoadingTime = 0;
-//	bool bNowLoadingEnd = false;
-
 	bool bDrawerNone = false;
 	int lastDrawerIndex = 0;
 	bool bDrawerOpen = false;
 
-	bool bRustedKeyUse = false;
+	// bool bRustedKeyUse = false;
 
 	// 前のフレームでぶつかっているか
 	bool lastCheckCollision = false;
