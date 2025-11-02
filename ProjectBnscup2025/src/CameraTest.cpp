@@ -2669,7 +2669,7 @@ void CameraTest::draw() const
 	// エピローグ暗転
 	if (bPlayEpilogue)
 	{
-		float epilogueAlpha = epilogueTiming - epilogueCount;
+		float epilogueAlpha = epilogueCount;
 		if (epilogueAlpha > 1)
 		{
 			epilogueAlpha = 1;
