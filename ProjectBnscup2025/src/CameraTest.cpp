@@ -2430,11 +2430,11 @@ void CameraTest::update()
 						AudioAsset(U"BGM").play();
 					}
 
-					if (!AudioAsset(U"bonfire").isPlaying())
-					{
-						AudioAsset(U"bonfire").setVolume(0.0);
-						AudioAsset(U"bonfire").play();
-					}
+					// if (!AudioAsset(U"bonfire").isPlaying())
+					// {
+					// 	AudioAsset(U"bonfire").setVolume(0.0);
+					// 	AudioAsset(U"bonfire").play();
+					// }
 				}
 			}
 			else {
@@ -2466,7 +2466,7 @@ void CameraTest::update()
 		// ノーマライズ
 		Volume /= 3;
 
-		AudioAsset(U"bonfire").setVolume(Volume);
+		//AudioAsset(U"bonfire").setVolume(Volume);
 	}
 
 	//if (bPrologueBGM && messageCount > 0)
@@ -2877,7 +2877,7 @@ void CameraTest::draw() const
 void CameraTest::playSEandBGMStop(String SE)
 {
 	AudioAsset(U"BGM").stop();
-	AudioAsset(U"bonfire").stop();
+	//AudioAsset(U"bonfire").stop();
 	if (AudioAsset(SE).isPlaying())
 	{
 		AudioAsset(SE).stop();

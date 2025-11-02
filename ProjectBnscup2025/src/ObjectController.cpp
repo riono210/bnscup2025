@@ -74,10 +74,10 @@ std::tuple<bool, bool, int, bool> ObjectController::update(
 				{
 					AudioAsset(U"BGM").stop();
 				}
-				if (AudioAsset(U"bonfire").isPlaying())
-				{
-					AudioAsset(U"bonfire").stop();
-				}
+				// if (AudioAsset(U"bonfire").isPlaying())
+				// {
+				// 	AudioAsset(U"bonfire").stop();
+				// }
 
 				// SEの再生 TODO ここでやらない方がよさそう
 				switch (bgmNo)

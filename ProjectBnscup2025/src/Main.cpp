@@ -77,9 +77,10 @@ void Main()
 	// BGM メイン
 //	AudioAsset::Register(U"BGM", U"assets/sound/bgm/BGM.mp3", Loop::Yes);
 	AudioAsset::Register(U"BGM", U"assets/sound/bgm/BGM_Map01.mp3", Loop::Yes);
+	AudioAsset(U"BGM").setVolume(0.7);
 
-	// BGM 暖炉
-	AudioAsset::Register(U"bonfire", U"assets/sound/bgm/bonfire.mp3", Loop::Yes);
+	// // BGM 暖炉
+	// AudioAsset::Register(U"bonfire", U"assets/sound/bgm/bonfire.mp3", Loop::Yes);
 
     App manager;
 	manager.add<Title>(State::Title);
