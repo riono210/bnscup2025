@@ -1,0 +1,54 @@
+newmtl T_Gimmick_Cloth01SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_Gimmick_Cloth01_D.png
+Ni 1.00
+newmtl T_Gimmick_IronKey01SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_Gimmick_IronKey01_D.png
+Ni 1.00
+newmtl T_Gimmick_Memo01SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_Gimmick_Memo01_D.png
+Ni 1.00
+newmtl T_Gimmick_RustedKey01SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl T_Gimmick_bread01SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_Gimmick_bread01_D.png
+Ni 1.00
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert2SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_Gimmick_Poker01_D.png
+Ni 1.00
+newmtl lambert3SG
+illum 4
+Kd 0.80 0.80 0.80
+Ka 0.80 0.80 0.80
+Tf 1.00 1.00 1.00
+map_Kd T_Gimmick_Parchment01_D.png
+Ni 1.00

@@ -1,0 +1,20 @@
+# This file uses centimeters as units for non-parametric coordinates.
+
+mtllib Gimmick_Memo01.mtl
+g default
+v -5.000000 0.000000 3.500000
+v 5.000000 0.000000 3.500000
+v -5.000000 0.000000 -3.500000
+v 5.000000 0.000000 -3.500000
+vt 0.155469 0.992188
+vt 0.155469 0.007812
+vt 0.844531 0.992188
+vt 0.844531 0.007812
+vn 0.000000 1.000000 0.000000
+vn 0.000000 1.000000 0.000000
+vn 0.000000 1.000000 0.000000
+vn 0.000000 1.000000 0.000000
+s off
+g Gimmick_Mamo01 Gimmick_Memo01
+usemtl T_Gimmick_Memo01SG
+f 1/1/1 2/2/2 4/4/3 3/3/4
