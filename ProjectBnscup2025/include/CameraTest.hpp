@@ -161,13 +161,13 @@ private:
 	//bool m_padPressed = false;
 
 	// カメラの視点（現在）
-	Vec3 curCameraPosition = Vec3{ 2.5, 1.5, 10 };
+	Vec3 curCameraPosition = Vec3{ 0, 1.5, -2 };
 
 	// カメラの視点（次）
 	Vec3 toCameraPos = curCameraPosition;
 
 	// カメラの視点（1フレーム前）
-	Vec3 lastCameraPosition = Vec3{ 2.5, 1.5, 10 };
+	Vec3 lastCameraPosition = Vec3{ 0, 1.5, -2 };
 
 	// カメラの注視点（カメラが「いま見ている」場所のこと）
 	Vec3 m_focusPosition = Vec3{ 0, 0, -1 };
@@ -957,6 +957,7 @@ private:
 
 	// クリアフラグ
 	bool bClear = false;
+	bool bPlayEpilogue = false;
 
 	// old
 	// 錆びた鍵を持っている
@@ -1796,6 +1797,18 @@ private:
 		U"　　「魂を、座に戻せ。」　　",
 	};
 
+	// エピローグ
+	Array<String> epilogueText =
+	{
+		U"　　扉を出た時、気づいた。　　",
+		U"　　あの部屋に囚われていたのは、　　",
+		U"　　ほかでもない――自分自身だった。　　",
+		U"",
+		U"　　罪は消えない。　　",
+		U"　　けれど、もう逃げることはない。　　",
+		U"　　光の中で、静かに息をついた。　　",
+	};
+
 	Array<String> exitPlateText =
 	{
 		U"七つの座が、罪を抱いて沈黙している。",
@@ -1886,13 +1899,19 @@ private:
 	float messageCount = 0;
 	int   prologueLength = 0;
 	bool  bPrologueMessageEnd = false;
+
+	float epilogueCount = 0;
+	int   epilogueLength = 0;
+	bool  bEpilogueMessageEnd = false;
 //	bool  bPrologue2End = false;
 //	bool bPrologueBGM = false;
 	bool bStartPlaying = false;
 
 	
 	const float prologueTiming = 30;
+	const float epilogueTiming = 30;
 	const float prologueMessageSpeed = 5;
+	const float epilogueMessageSpeed = 5;
 	const float MessageSpeed = 5;
 //	const float MessageSpeed = 10;	// 2倍速
 //	const float prologueMessageWait = 1;

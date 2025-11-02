@@ -26,7 +26,7 @@ CameraTest::CameraTest(const InitData& init)
 	Graphics3D::SetSunDirection(Vec3{ 0, 1, -0.3 }.normalized());
 	
 	// カメラ
-	camera = BasicCamera3D{ renderTexture.size(), m_verticalFOV, Vec3{ 10, 10, -10 } };
+	camera = BasicCamera3D{ renderTexture.size(), m_verticalFOV, Vec3{ 0, 10, -2 } };
 
 	// 最初にカーソルを中央に
 	Cursor::SetPos(center.x, center.y);
@@ -38,6 +38,9 @@ CameraTest::CameraTest(const InitData& init)
 	toMousePosY = mousePosY;
 	virtualCursorPos.x = center.x;
 	virtualCursorPos.y = center.y;
+
+	 Vec3 initialFocusPosition = Vec3{ 0, 0, -3 };
+	 phiController.setFocusPosition(initialFocusPosition);
 
 #ifdef _DEBUG
 	bDebugViewCollision = true;
@@ -853,15 +856,15 @@ void CameraTest::update()
 			priorityMessageCount -= deltaTime;
 			messagePattern = 0;
 
-			// 例外：火かき棒で鉄製の鍵を入手したメッセージの後、【鉄製の鍵】を入手したというメッセージを表示
-			if (priorityMessageCount <= 0 && message == 71 )
-			{
-				// SEを鳴らす
-				playSEandBGMStop(U"Item");
+			// // 例外：火かき棒で鉄製の鍵を入手したメッセージの後、【鉄製の鍵】を入手したというメッセージを表示
+			// if (priorityMessageCount <= 0 && message == 71 )
+			// {
+			// 	// SEを鳴らす
+			// 	playSEandBGMStop(U"Item");
 
-				priorityMessage = 87;
-				priorityMessageCount = priorityMessageCountMax;
-			}
+			// 	priorityMessage = 87;
+			// 	priorityMessageCount = priorityMessageCountMax;
+			// }
 		}
 		else if (bLockon)
 		{
@@ -1491,7 +1494,7 @@ void CameraTest::update()
 
 	// インベントリの表示・非表示
 //	if (KeyI.down()
-	if ((!bWatchPicture && !bWatchExitPlate) && (KeySpace.down() || xboxController.buttonY.down()))
+	if ((!bWatchPicture && !bWatchExitPlate && !bPlayEpilogue) && (KeySpace.down() || xboxController.buttonY.down()))
 	{
 		inventoryOnOff();
 	}
@@ -2368,6 +2371,39 @@ void CameraTest::update()
 		}
 	}
 
+	// エピローグ
+	if(bPlayEpilogue && !bEpilogueMessageEnd)
+	{
+		epilogueCount += deltaTime;
+
+		if (MouseL.down() || xboxController.buttonA.down())
+		{
+			if (epilogueCount < 28)
+			{
+				float epilogueIndex = epilogueCount * 5;
+				epilogueCount = 0;
+				for (int i = 0; i < epilogueText.size(); ++i)
+				{
+					epilogueCount += (float)epilogueText[i].size() / 5.0f;
+					epilogueIndex -= epilogueText[i].size();
+
+					if (epilogueIndex <= 0)
+					{
+						break;
+					}
+				}
+			}
+		}
+
+		if (epilogueCount > epilogueTiming)
+		{
+			bEpilogueMessageEnd = true;
+
+			// message = 35;
+		}
+	}
+
+
 	if (bPrologueMessageEnd == true && bStartPlaying == false)
 	{
 		// プロローグカウンター2
@@ -2627,6 +2663,122 @@ void CameraTest::draw() const
 				);
 			}
 
+		}
+	}
+
+	// エピローグ暗転
+	if (bPlayEpilogue)
+	{
+		float epilogueAlpha = epilogueTiming - epilogueCount;
+		if (epilogueAlpha > 1)
+		{
+			epilogueAlpha = 1;
+		}
+
+		// 画面全体を黒で描画
+		Rect{ 0, 0, Scene::Width(), Scene::Height() }.draw(ColorF{ 0.0, epilogueAlpha });
+
+		// TODO 共通化する
+		double lineSpacing = 96; // 行間（フォントサイズより少し大きめ）
+		double adjustLineSpacing = 64; // 2行連続の場合の行間
+
+		// 今、表示するための文字数
+		int epilogueIndex = epilogueCount*5;
+
+		// テキストのアルファ値
+		float a = epilogueCount * 5 - (float)epilogueIndex;
+
+		// 描画位置の高さ
+		double height = 0;
+
+		int emptyLineCount = 1;
+
+		for (int i = 0; i < epilogueText.size(); ++i)
+		{
+			if (epilogueIndex <= 0)
+			{
+				break;
+			}
+
+			// 空行はスキップ
+			if (epilogueText[i].isEmpty())
+			{
+				emptyLineCount++;
+				continue;
+			}
+
+			double x = center.x;
+			double spacing = adjustLineSpacing;
+
+			if (i > 0 && emptyLineCount >= 1)
+			{
+				// 改行が含まれる場合
+				spacing = lineSpacing * emptyLineCount;
+			}
+
+			if (i == 0)
+			{
+				// 最初の行は中央基準で計算
+				// 空文字列を除いた行数を計算
+				int nonEmptyLines = 0;
+				for (const auto& text : epilogueText)
+				{
+					if (!text.isEmpty()) nonEmptyLines++;
+				}
+				
+				// 全体の高さを計算（文字がある行の間は半分の行間）
+				double totalHeight = lineSpacing * (nonEmptyLines - 1) / 2.0;
+				double topMargin = 40;
+				height = center.y - totalHeight + topMargin;
+			}
+			else if (i > 0)
+			{
+				height += spacing;
+			}
+
+			emptyLineCount = 0;
+			double y = height;
+
+			int num = 0;
+			int sub = 0;
+
+			if (epilogueIndex >= epilogueText[i].size())
+			{
+				// すべて表示
+				num = epilogueText[i].size();
+				epilogueIndex -= epilogueText[i].size();
+			}
+			else
+			{
+				// 一部表示
+				num = epilogueIndex;
+				sub = epilogueText[i].size() - num;
+				epilogueIndex = 0;
+			}
+
+			String tmp = epilogueText[i].substr(0, num);
+			tmp.append(sub, U'　');	// 後ろをスペースで埋める
+
+			boldFont(tmp).drawAt(
+				28,
+				{ x, y },
+				ColorF{ 1, 1, 1, epilogueAlpha }
+			);
+
+			// 半透明文字
+			if (num+1 < epilogueText[i].size())
+			{
+				String tmp2;
+				tmp2.append(num, U'　');		// 後ろをスペースで埋める
+				tmp2.append(1, epilogueText[i][num]);
+				tmp2.append(sub - 1, U'　');
+
+				boldFont(tmp2).drawAt(
+					28,
+					{ x, y },
+					ColorF{ 1, 1, 1, a }
+				);
+			}
 		}
 	}
 
@@ -3010,6 +3162,12 @@ void CameraTest::debugViewCollision()
 // インベントリ表示
 void CameraTest::viewInventory()
 {
+	// エピローグ中は表示しない
+	if (bPlayEpilogue)
+	{
+		return;
+	}
+
 	int itemX = center.x - inventoryWidth / 2;
 	int itemY = center.y - inventoryHeight / 2;
 	inventorySprite.scaled(0.5).draw(itemX, itemY);
@@ -4187,6 +4345,12 @@ bool CameraTest::clearCheck()
 
 void CameraTest::lockon()
 {
+	// エピローグ中は処理しない
+	if (bPlayEpilogue)
+	{
+		return;
+	}
+
 	// アイテムのロックオンフラグのリセット
 	bLockon = false;
 	bFrontOfChair = false;
@@ -4811,8 +4975,10 @@ void CameraTest::lockon()
 		if (isClick)
 		{
 			if (bClear){
-				priorityMessage = gameClearMessage;
-				priorityMessageCount = priorityMessageCountMax;
+				// クリア判定
+				bPlayEpilogue = true;
+				bStartPlaying = false;
+				message = 3;
 			}
 			else
 			{
