@@ -584,88 +584,6 @@ private:
 	bool bClear = false;
 	bool bPlayEpilogue = false;
 
-// 	// old
-// 	// 錆びた鍵を持っている
-// 	bool bRustedKeyHave = false;
-
-// 	// パンを持っている
-// 	bool bBreadHave = false;
-
-// 	// 火かき棒を持っている
-// 	bool bPokerHave = false;
-
-// 	// 羊皮紙を持っている
-// 	bool bParchmentHave = false;
-
-// 	// 手記を読んでいる
-// 	bool bMemo = false;
-
-// 	// 壁を調べた
-// 	bool bWall = false;
-
-// 	// 針金を持っている
-// 	bool bWire = false;
-
-// 	// 針金製の鍵を持っている
-// 	bool bWireKey = false;
-
-// 	// 鉄製の鍵を持っている
-// 	bool bIronKeyHave = false;
-
-// 	// 暖炉の火が強くなった
-// 	bool bFireplaceStrong = false;
-
-// 	// 炙った羊皮紙を読んでいる
-// 	bool bToastedParchmentRead = false;
-
-// 	// ハンガーを見つけた
-// 	bool bHangerFind = false;
-
-// 	// ハンガーを持っている
-// 	bool bHangerHave = false;
-
-// 	// 汚れた布を持っている
-// 	bool bDirtyClothHave = false;
-
-// 	// 手記を持っている
-// 	bool bMemoHave = false;
-
-// 	// 布を持っている
-// 	bool bClothHave = false;
-
-// 	// 布を読んでいる
-// 	bool bClothRead = false;
-
-// 	// 樽３の近くにいる
-// 	//bool bBarrel3Lockon = false;
-
-// 	// トイレ２の近くにいる
-// 	bool bToilet2Lockon = false;
-
-// 	// 暖炉の近くにいる
-// 	bool bFireplaceLockon = false;
-
-// 	// 火の強い暖炉の近くにいる（オミット）
-// //	bool bFireplaceStrongLockon = false;
-
-// 	// 鉄製の鍵の前にいる
-// 	bool bIronKeyLockon = false;
-
-// 	// 最初の部屋のドアの前にいる
-// 	bool bDoorLockon = false;
-
-// 	// 左下の部屋のドアの前にいる
-// 	bool bDoor2Lockon = false;
-
-// 	// 奥の部屋のドアの前にいる
-// 	bool bDoor3Lockon = false;
-
-// 	// 黄金の鍵を持っている
-// 	bool bDrawerClear = false;
-
-// 	// （仮）石板クリアフラグ
-// 	// bool bStoneclear = false;
-
 	const Font& boldFont = FontAsset(U"Bold");
 
 	// テキストを事前に読み込むための関数
@@ -674,8 +592,6 @@ private:
 
 	// メッセージのパターン数
 	const int MessagePatternMax = 3;
-
-//	Array<int> messageRead;
 
 	// message番号
 	const int exitDoorMessage = 94;
@@ -1475,7 +1391,7 @@ private:
 
 	
 	const float prologueTiming = 30;
-	const float epilogueTiming = 30;
+	const float epilogueTiming = 20;
 	const float prologueMessageSpeed = 5;
 	const float epilogueMessageSpeed = 5;
 	const float MessageSpeed = 5;
@@ -1493,9 +1409,6 @@ private:
 	// チュートリアルフラグ（パン入手から使うまで。使ったらfalseになる）
 	bool bTutorial = true;
 
-	// // 合成アイテム番号
-	// int synthesisIndex = -1;
-
 	// モデルの表示
 	void viewModel();
 
@@ -1504,54 +1417,6 @@ private:
 
 	// オブジェクトのロックオン
 	void lockon();
-
-	// // 引き出しモード
-	// bool bDrawerMode = false;
-
-	// // 引き出しのインデックス番号
-	// int drawerIndex = 0;
-
-	// // 引き出しの順番
-	// int drawerOrder = 0;
-
-	// // 引き出しのカウンター
-	// int drawerCounter= 0;
-
-	// // 引き出しフラグ
-	// bool drawerPull[6] = {
-	// 	false,
-	// 	false,
-	// 	false,
-	// 	false,
-	// 	false,
-	// 	false,
-	// };
-
-	// // 引き出しアニメーション用のカウンター
-	// float drawerPullCount = 0;
-
-	// // 石板モード
-	// bool bStoneMode = false;
-
-	// // 石板のインデックス番号
-	// int stoneIndex = 0;
-
-	// // 石板の順番
-	// int stoneOrder = 0;
-
-	// // 石板のカウンター
-	// int stoneCounter = 0;
-
-	// // 石板フラグ
-	// bool stonePull[4] = {
-	// 	false,
-	// 	false,
-	// 	false,
-	// 	false,
-	// };
-
-	// // 石板：クリア後にゲーム画面に戻るためのカウンター
-	// float stonePushCount = 0;
 
 	float debugHeight = 1.58;
 	float debugDis = 0.55;
@@ -1568,8 +1433,6 @@ private:
 	bool bDrawerNone = false;
 	int lastDrawerIndex = 0;
 	bool bDrawerOpen = false;
-
-	// bool bRustedKeyUse = false;
 
 	// 前のフレームでぶつかっているか
 	bool lastCheckCollision = false;

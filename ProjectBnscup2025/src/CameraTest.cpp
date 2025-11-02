@@ -1236,6 +1236,12 @@ void CameraTest::update()
 		messageCount = 9999;
 	}
 
+	if (bEpilogueMessageEnd)
+	{
+		// タイトルに戻る
+		changeScene(State::Title);
+	}
+
 	if (bStartPlaying)
 	{
 		// 止まっているBGMを再度鳴らす
