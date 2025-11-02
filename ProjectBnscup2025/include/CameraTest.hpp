@@ -307,13 +307,13 @@ private:
 	// レリック
 	float relicBaseXPos = 4.7f;
 	float relicBaseYPos = 0.8f;
-	Vec3 prideRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -10.8 };
-	Vec3 greedRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.3 };
-	Vec3 envyRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.8 };
+	Vec3 greedRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -10.8 };
+	Vec3 slothRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.3 };
+	Vec3 lustRelicCurrentPos = { relicBaseXPos, relicBaseYPos, -11.8 };
 	Vec3 wrathRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -10.8 };
-	Vec3 lustRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -11.2 };
+	Vec3 prideRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -11.2 };
 	Vec3 gluttonyRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -11.6 };
-	Vec3 slothRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -12 };
+	Vec3 envyRelicCurrentPos = { -relicBaseXPos, relicBaseYPos, -12 };
 
 	// レリックの回転
 	Array<double> relicRotY = {
