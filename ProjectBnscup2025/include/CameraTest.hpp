@@ -901,7 +901,7 @@ private:
 	Array<int> items;
 
 	// メッセージ番号
-	int message = 0;
+	int message = 3;
 	int messagePattern = 0;
 //	double messagePatternCount = 0.0;
 	int itemMessage = -1;
@@ -1980,7 +1980,7 @@ private:
 
 	bool bMouseL = false;
 
-	const float BGMVolume = 0.8;
+	const float BGMVolume = 0.56f;
 
 	animeDraw fireBillboard;
 

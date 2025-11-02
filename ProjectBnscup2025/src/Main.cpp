@@ -56,6 +56,9 @@ void Main()
 //	AudioAsset::Register(U"Stone", U"assets/sound/se/SE_Stone01.mp3");
 	AudioAsset::Register(U"Stone", U"assets/sound/se/SE_Stone02.mp3");
 
+	// SE 出口ドアの開錠
+	AudioAsset::Register(U"ExitDoorOpen", U"assets/sound/se/SE_Unlock01.mp3");
+
 	// SE アイテム
 	AudioAsset::Register(U"GET", U"assets/sound/se/GET.wav");
 	AudioAsset::Register(U"Item", U"assets/sound/se/SE_Item01.mp3");
@@ -77,7 +80,6 @@ void Main()
 	// BGM メイン
 //	AudioAsset::Register(U"BGM", U"assets/sound/bgm/BGM.mp3", Loop::Yes);
 	AudioAsset::Register(U"BGM", U"assets/sound/bgm/BGM_Map01.mp3", Loop::Yes);
-	AudioAsset(U"BGM").setVolume(0.7);
 
 	// // BGM 暖炉
 	// AudioAsset::Register(U"bonfire", U"assets/sound/bgm/bonfire.mp3", Loop::Yes);

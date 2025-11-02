@@ -242,27 +242,37 @@ void CameraTest::loadResources() const
 	case 16:
 		dummyTextView(exitPlateText);
 		break;
-	// case 29:
-	// 	// BGMの読み込み
-	// 	AudioAsset(U"BGM").setVolume(0.0);
-	// 	AudioAsset(U"BGM").play();
-	// 	AudioAsset(U"BGM").stop();
-	// 	break;
+	case 17:
+		// BGMの読み込み
+		AudioAsset(U"BGM").setVolume(0.0);
+		AudioAsset(U"BGM").play();
+		AudioAsset(U"BGM").stop();
+		break;
 	// case 30:
 	// 	AudioAsset(U"bonfire").setVolume(0.0);
 	// 	AudioAsset(U"bonfire").play();
 	// 	AudioAsset(U"bonfire").stop();
 	// 	break;
-	// case 31:
-	// 	AudioAsset(U"footsteps1").setVolume(0.0);
-	// 	AudioAsset(U"footsteps1").play();
-	// 	AudioAsset(U"footsteps1").stop();
-	// 	break;
-	// case 32:
-	// 	AudioAsset(U"footsteps2").setVolume(0.0);
-	// 	AudioAsset(U"footsteps2").play();
-	// 	AudioAsset(U"footsteps2").stop();
-	// 	break;
+	case 18:
+		AudioAsset(U"footsteps1").setVolume(0.0);
+		AudioAsset(U"footsteps1").play();
+		AudioAsset(U"footsteps1").stop();
+		break;
+	case 19:
+		AudioAsset(U"footsteps2").setVolume(0.0);
+		AudioAsset(U"footsteps2").play();
+		AudioAsset(U"footsteps2").stop();
+		break;
+	case 20:
+		AudioAsset(U"Item").setVolume(0.0);
+		AudioAsset(U"Item").play();
+		AudioAsset(U"Item").stop();
+		break;
+	case 21:
+		AudioAsset(U"ExitDoorOpen").setVolume(0.0);
+		AudioAsset(U"ExitDoorOpen").play();
+		AudioAsset(U"ExitDoorOpen").stop();
+		break;
 	// case 33:
 	// 	AudioAsset(U"drawer_open").setVolume(0.0);
 	// 	AudioAsset(U"drawer_open").play();
@@ -287,11 +297,6 @@ void CameraTest::loadResources() const
 	// 	AudioAsset(U"WoodDoor_Close").setVolume(0.0);
 	// 	AudioAsset(U"WoodDoor_Close").play();
 	// 	AudioAsset(U"WoodDoor_Close").stop();
-	// 	break;
-	// case 38:
-	// 	AudioAsset(U"Item").setVolume(0.0);
-	// 	AudioAsset(U"Item").play();
-	// 	AudioAsset(U"Item").stop();
 	// 	break;
 	// case 39:
 	// 	AudioAsset(U"Paper").setVolume(0.0);
@@ -861,13 +866,14 @@ void CameraTest::update()
 			{
 				// 違うオブジェクトにカーソルが移動したら、いったんメッセージを非表示にする
 				message = 3;
+				messagePattern = -1;
 			}
 		}
-		else
-		{
-			message = scenario;
-			messagePattern = 0;
-		}
+		// else
+		// {
+		// 	message = scenario;
+		// 	messagePattern = 0;
+		// }
 	}
 
 	// 指定したプレイヤーインデックスの XInput コントローラを取得
@@ -2354,7 +2360,7 @@ void CameraTest::update()
 		{
 			bPrologueMessageEnd = true;
 
-			message = 35;
+			// message = 35;
 		}
 	}
 
@@ -2378,26 +2384,29 @@ void CameraTest::update()
 			}
 		}
 
-		if (message == 35 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
-		{
-			message = 36;
-			messageCount = 0;
-		}
-		else if (message == 36 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
-		{
-			message = 37;
-			messageCount = 0;
-		}
-		else if (message == 37 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
-		{
-			message = 0;
-			messageCount = 0;
-		}
-		else if (message == 0 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
-		{
-			bStartPlaying = true;
-			messageCount = 9999;
-		}
+		bStartPlaying = true;
+		messageCount = 9999;
+
+		// if (message == 35 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
+		// {
+		// 	message = 36;
+		// 	messageCount = 0;
+		// }
+		// else if (message == 36 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
+		// {
+		// 	message = 37;
+		// 	messageCount = 0;
+		// }
+		// else if (message == 37 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
+		// {
+		// 	message = 0;
+		// 	messageCount = 0;
+		// }
+		// else if (message == 0 && messageCount > Text[message * MessagePatternMax].size() / MessageSpeed)
+		// {
+		// 	bStartPlaying = true;
+		// 	messageCount = 9999;
+		// }
 	}
 
 	//if (bPrologue2End)
@@ -4158,6 +4167,14 @@ bool CameraTest::clearCheck()
 	{
 		priorityMessage = allRelicPlacedMessage;
 		priorityMessageCount = priorityMessageCountMax;
+
+		// SEを鳴らす
+		if (AudioAsset(U"ExitDoorOpen").isPlaying())
+		{
+			AudioAsset(U"ExitDoorOpen").stop();
+		}
+		AudioAsset(U"ExitDoorOpen").setVolume(1.0);
+		AudioAsset(U"ExitDoorOpen").play();
 	}
 
     return isClear;
@@ -4207,7 +4224,7 @@ void CameraTest::lockon()
 				message = prideChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
+			else if(!bClear && bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
 			{
 				// レリックが配置されている
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4246,6 +4263,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4291,7 +4309,7 @@ void CameraTest::lockon()
 				message = greedChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
+			else if(!bClear && bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4330,6 +4348,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4375,7 +4394,7 @@ void CameraTest::lockon()
 				message = envyChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
+			else if(!bClear && bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4414,6 +4433,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4459,7 +4479,7 @@ void CameraTest::lockon()
 				message = wrathChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
+			else if(!bClear && bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4498,6 +4518,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4543,7 +4564,7 @@ void CameraTest::lockon()
 				message = lustChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
+			else if(!bClear && bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4582,6 +4603,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4627,7 +4649,7 @@ void CameraTest::lockon()
 				message = gluttonyChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
+			else if(!bClear && bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4666,6 +4688,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4711,7 +4734,7 @@ void CameraTest::lockon()
 				message = slothChairMessage;
 				priorityMessageCount = 0;
 			}
-			else if(bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
+			else if(!bClear && bRelicPlacedArray[relicOnChair] && (chairState == ChairState::Placed || chairState == ChairState::Collect))
 			{
 				// レリックが配置されている	
 				bRelicPlacedArray[relicOnChair] = false;
@@ -4750,6 +4773,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4812,6 +4836,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 		if (isClick)
 		{
@@ -4854,6 +4879,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 	}
 
@@ -4890,6 +4916,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 	}
 
@@ -4926,6 +4953,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 	}
 
@@ -4962,6 +4990,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 	}
 
@@ -4998,6 +5027,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 	}
 
@@ -5034,6 +5064,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 	}
 
@@ -5070,6 +5101,7 @@ void CameraTest::lockon()
 		{
 			// 見ている
 			bLockon = isLockon;
+			bookingMessage = 0;
 		}
 	}
 
