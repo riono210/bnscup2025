@@ -251,7 +251,7 @@ private:
 	float lightStrong = 4.0;
 
 	// 環境光
-	float globalAmbientColor = 0.1;
+	float globalAmbientColor = 0.5;
 
 	// 太陽光
 	float sunColor = 0.0;
