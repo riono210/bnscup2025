@@ -821,7 +821,11 @@ void CameraTest::inventoryOnOff()
 	//}
 	//AudioAsset(U"Inventory").setVolume(1.0);
 	//AudioAsset(U"Inventory").play();
-	playSE(U"Inventory");
+	if (!bClear)
+	{
+		playSE(U"Inventory");
+	}
+	
 }
 
 
@@ -3341,11 +3345,11 @@ void CameraTest::viewInventory()
 				// 王冠のみ90度ずれているので調整
 				relicRotY[prideRelicNum] = chairRotY[frontOfChairIndex] + 90_deg;
 
-				// インベントリを閉じる
-				inventoryOnOff();
-
 				// クリア判定
 				bClear = clearCheck();
+
+				// インベントリを閉じる
+				inventoryOnOff();
 			}
 			else
 			{
@@ -3383,11 +3387,11 @@ void CameraTest::viewInventory()
 				greedRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
 				relicRotY[greedRelicNum] = chairRotY[frontOfChairIndex];
 
-				// インベントリを閉じる
-				inventoryOnOff();
-
 				// クリア判定
 				bClear = clearCheck();
+
+				// インベントリを閉じる
+				inventoryOnOff();
 			}
 			else
 			{
@@ -3425,11 +3429,11 @@ void CameraTest::viewInventory()
 				envyRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
 				relicRotY[envyRelicNum] = chairRotY[frontOfChairIndex];
 
-				// インベントリを閉じる
-				inventoryOnOff();
-
 				// クリア判定
 				bClear = clearCheck();
+
+				// インベントリを閉じる
+				inventoryOnOff();
 			}
 			else
 			{
@@ -3467,11 +3471,11 @@ void CameraTest::viewInventory()
 				wrathRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
 				relicRotY[wrathRelicNum] = chairRotY[frontOfChairIndex];
 
-				// インベントリを閉じる
-				inventoryOnOff();
-
 				// クリア判定
 				bClear = clearCheck();
+
+				// インベントリを閉じる
+				inventoryOnOff();
 			}
 			else
 			{
@@ -3509,11 +3513,11 @@ void CameraTest::viewInventory()
 				lustRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
 				relicRotY[lustRelicNum] = chairRotY[frontOfChairIndex];
 
-				// インベントリを閉じる
-				inventoryOnOff();
-
 				// クリア判定
 				bClear = clearCheck();
+
+				// インベントリを閉じる
+				inventoryOnOff();
 			}
 			else
 			{
@@ -3551,11 +3555,11 @@ void CameraTest::viewInventory()
 				gluttonyRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
 				relicRotY[gluttonyRelicNum] = chairRotY[frontOfChairIndex];
 
-				// インベントリを閉じる
-				inventoryOnOff();
-
 				// クリア判定
 				bClear = clearCheck();
+
+				// インベントリを閉じる
+				inventoryOnOff();
 			}
 			else
 			{
@@ -3593,11 +3597,11 @@ void CameraTest::viewInventory()
 				slothRelicCurrentPos = relicOnChairPos[frontOfChairIndex];
 				relicRotY[slothRelicNum] = chairRotY[frontOfChairIndex];
 
-				// インベントリを閉じる
-				inventoryOnOff();
-
 				// クリア判定
 				bClear = clearCheck();
+
+				// インベントリを閉じる
+				inventoryOnOff();
 			}
 			else
 			{
